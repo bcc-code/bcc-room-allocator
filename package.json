@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 npx directus start",
+    "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 directus start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
