@@ -140,7 +140,7 @@ export default {
             handle=".handle"
             item-key="id">
           <template #item="{ element, index }">
-            <Registration v-bind="element" can-clear />
+            <Registration v-bind="element" :key="element.id" can-clear />
           </template>
         </Draggable>
         <div class="p-2">

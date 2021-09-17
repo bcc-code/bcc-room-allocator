@@ -170,9 +170,10 @@ export default {
                 :list="boys"
                 group="people"
                 itemKey="id"
+                handle=".handle"
             >
               <template #item="{ element, index }">
-                <Registration v-bind="element" />
+                <Registration v-bind="element" :key="element.id" />
               </template>
             </Draggable>
           </div>
@@ -208,9 +209,10 @@ export default {
                 :list="girls"
                 group="people"
                 itemKey="id"
+                handle=".handle"
             >
               <template #item="{ element, index }">
-                <Registration v-bind="element" />
+                <Registration v-bind="element" :key="element.id" />
               </template>
             </Draggable>
           </div>

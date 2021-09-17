@@ -188,11 +188,18 @@ class store {
             }
 
             if (this.api) {
-                await this.api.patch(`/items/registrations/${registrationId}`, { room: roomId }).then((res) => {
+                const params = new URLSearchParams({
+                    fields: ['*', 'activities.activity']
+                })
+
+                await this.api.patch(`/items/registrations/${registrationId}?${params}`, { room: roomId }).then((res) => {
                     const registration = res.data.data
                     this.state.registrations = this.state.registrations.map(reg => {
-                        if (reg.id == registrationId) {
-                            reg = registration
+                        if (reg.id == registration.id) {
+                            reg = {
+                                ...registration,
+                                activities: registration.activities.map(a => a.activity)
+                            }
                         }
                         return reg
                     })
@@ -216,6 +223,8 @@ class store {
     }
 
     async magicAssign(registrations, allowOverbooking) {
+        if (this.busy) { return }
+        this.busy = true
         const loading = this.loader(registrations.length + 1)
         try {
             let roomsMap = {}
@@ -262,7 +271,7 @@ class store {
                         if (!room.gender || room.gender === reg.gender) {
                             scores[room.id] = 0
                             scores[room.id] += room.taken < room.capacity ? 1 : totalCapacity < 1 ? room.capacity - room.taken : -10
-                            scores[room.id] += reg.activities.filter(a => room.activities[a]).length * 3
+                            scores[room.id] += (reg.activities.filter(a => room.activities[a]).length || -1) * 2
                             scores[room.id] += reg.age > (room.ageAvg * 1.5) ? 2 : 0
                         }
                     })
@@ -276,8 +285,11 @@ class store {
                             }
                         })
 
-                        addReg(reg, roomsMap[largest.id])
-                        this.setRoom(reg.id, largest.id)
+                        largest = roomIds.filter(id => scores[id] === largest.s)
+                        largest = largest[Math.floor(Math.random() * largest.length)]
+
+                        addReg(reg, roomsMap[largest])
+                        this.setRoom(reg.id, largest)
                     }
                 }
                 loading.step()
@@ -287,6 +299,7 @@ class store {
         }
 
         loading.finished()
+        this.busy = false
     }
 }
 
