@@ -1,6 +1,6 @@
 {
   "name": "bcc-room-allocator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "engines": {
@@ -9,13 +9,14 @@
   "scripts": {
     "local": "NODE_TLS_REJECT_UNAUTHORIZED=0 directus start",
     "start": "directus start",
+    "postinstall": "directus database migrate:latest && directus schema apply ./schema.yaml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "directus": "^9.0.0-rc.92",
+    "directus": "^9.0.0-rc.93",
     "mysql": "^2.18.1"
   }
 }
