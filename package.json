@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "16.x.x"
+  },
   "scripts": {
-    "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 directus start",
+    "local": "NODE_TLS_REJECT_UNAUTHORIZED=0 directus start",
+    "start": "directus start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
