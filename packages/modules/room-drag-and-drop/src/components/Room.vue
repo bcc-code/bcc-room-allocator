@@ -45,41 +45,42 @@ export default {
       return this.guests[0] ?? null
     },
     isBoysRoom () {
-      return this.firstGuest?.gender == 'Male';
+      return !! this.guests.find(reg => reg.gender == 'Male');
     },
     isGirlsRoom () {
-      return this.firstGuest?.gender == 'Female';
+      return !! this.guests.find(reg => reg.gender == 'Female');
     },
     isInsertableGroup () {
       return this.state.selectGroup == `${this.id}-${this.firstGuest?.gender}` ||
           (this.firstGuest?.gender && this.state.selectGroup.indexOf(this.firstGuest?.gender) < 0)
     },
     statusClass () {
-      let bg = ''
+      let bgFrom = 'from-gray-50'
+      let bgTo = ''
       let border = ''
       let text = 'text-gray-600'
       let pointer = ''
 
       if (this.isBoysRoom) {
-        bg = 'bg-blue-50'
+        bgTo = this.count < this.capacity ? 'to-blue-100' : 'to-blue-200'
         border = 'border-blue-400'
       }
       if (this.isGirlsRoom) {
-        bg = 'bg-pink-50'
+        if (this.isBoysRoom) {
+          bgFrom = 'from-blue-200'
+        }
+        bgTo = this.count < this.capacity ? 'to-pink-100' : 'to-pink-200'
         border = 'border-pink-400'
       }
-      if (this.count >= this.capacity) {
-        bg = this.isBoysRoom ? 'bg-blue-100' : 'bg-pink-100'
-      }
       if (this.count > this.capacity) {
-        border = 'border-t-2 border-red-600'
+        border = 'border-red-600'
       }
 
       if (this.state.selection.length) {
         pointer = this.isInsertableGroup ? 'cursor-not-allowed' : 'cursor-pointer'
       }
 
-      return [bg, border, text, pointer]
+      return [bgFrom, bgTo, border, text, pointer]
     }
   },
   methods: {
@@ -109,9 +110,10 @@ export default {
 <template>
   <div class="bi-avoid-column py-1">
     <div class="rounded-lg shadow flex flex-col">
-      <button @click="execute" class="border-b-2 rounded-t-lg p-4 flex justify-between items-center text-sm"
+      <button @click="execute"
+              class="bg-gradient-to-br  border-b-2 rounded-t-lg flex justify-between items-center text-sm overflow-hidden"
               :class="statusClass">
-        <div class="flex items-center">
+        <div class="flex items-center p-2 py-4 md:px-4">
           <svg v-if="collapse" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
           </svg>
@@ -121,10 +123,10 @@ export default {
           </svg>
           <p class="font-medium ml-1">{{ name }}</p>
         </div>
-        <p>
+        <div class="cursor-move flex items-center flex-shrink-0 relative room-handle block shadow rounded-l-full p-2 py-4 md:px-4">
           <span v-if="count <= capacity">{{ count }}/{{ capacity }}</span>
           <span v-else>{{ capacity }} <b class="text-red-500">+{{ count - capacity }}</b></span>
-        </p>
+        </div>
       </button>
       <div class="overflow-y-auto transition-all shadow-inner block bg-white rounded-b-lg"
            :style="{
@@ -135,6 +137,7 @@ export default {
             class="block"
             v-model="guests"
             group="people"
+            handle=".handle"
             item-key="id">
           <template #item="{ element, index }">
             <Registration v-bind="element" can-clear />

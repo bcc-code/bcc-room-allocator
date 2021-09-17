@@ -8,13 +8,13 @@ const mockRegistrations = [
   }, {
     id: 2,
     name: 'Mary Anne',
-    gender: 'Male',
+    gender: 'Female',
     age: 17,
     activities: [2]
   }, {
     id: 3,
     name: 'Josy Comfort',
-    gender: 'Male',
+    gender: 'Female',
     age: 19,
     activities: []
   }, {
@@ -27,7 +27,7 @@ const mockRegistrations = [
   }, {
     id: 5,
     name: 'Sophie Garden',
-    gender: 'Male',
+    gender: 'Female',
     age: 25,
     activities: [2]
   }, {

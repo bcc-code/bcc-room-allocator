@@ -2,10 +2,11 @@
   <Layout>
     <Draggable
         v-if="rooms"
-        grid-class="w-full grid grid-flow-col grid-cols-1 auto-rows-max gap-6 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2"
-        class="w-full col-count-2 md:col-count-1 lg:col-count-2"
+        grid-class="w-full grid grid-flow-col grid-cols-1 auto-rows-max gap-6 lg:grid-cols-2"
+        class="w-full col-count-1 lg:col-count-2"
         v-model="rooms"
         group="rooms"
+        handle=".room-handle"
         item-key="id">
       <template #item="{ element, index }">
         <Room v-bind="element" :key="element.id"></Room>
