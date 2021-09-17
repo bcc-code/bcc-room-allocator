@@ -9,7 +9,7 @@
   "scripts": {
     "local": "NODE_TLS_REJECT_UNAUTHORIZED=0 directus start",
     "start": "directus start",
-    "postinstall": "directus database migrate:latest && directus schema apply ./schema.yaml",
+    "prestart": "directus database migrate:latest && directus schema apply ./schema.yaml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
