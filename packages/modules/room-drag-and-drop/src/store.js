@@ -137,7 +137,7 @@ class store {
                         this.state.registrations = res.data.data.map(reg => ({
                             ...reg,
                             activities: reg.activities.map(a => a.activity)
-                        }))
+                        })).sort((a,b) => a.age > b.age ? 1 : -1)
                     });
                 } else {
                     this.state.registrations = mockRegistrations
@@ -261,37 +261,33 @@ class store {
                 }
             })
 
-            const regs = registrations.sort(() => (Math.random() > .5) ? 1 : -1);
+            const regs = registrations.sort((a, b) => a.activities.length > b.activities.length || (Math.random() > .5) ? 1 : -1);
 
             const rooms = Object.values(roomsMap)
             regs.forEach(reg => {
-                if (totalCapacity > 0 || allowOverbooking) {
-                    const scores = {}
-                    rooms.find(room => {
-                        if (!room.gender || room.gender === reg.gender) {
-                            scores[room.id] = 0
-                            scores[room.id] += room.taken < room.capacity ? 1 : totalCapacity < 1 ? room.capacity - room.taken : -10
-                            scores[room.id] += (reg.activities.filter(a => room.activities[a]).length || -1) * 2
-                            scores[room.id] += reg.age > (room.ageAvg * 1.5) ? 2 : 0
-                        }
-                    })
+                const scores = {}
+                rooms.forEach(room => {
+                    if (!room.gender || room.gender === reg.gender) {
+                        scores[room.id] = 0
+                        scores[room.id] += room.taken < room.capacity ? 1 : room.capacity - room.taken - 100
+                        scores[room.id] += reg.activities.reduce(((num, a) => num + (room.activities[a] || 0)), -1) * 2
+                        scores[room.id] += reg.age > (room.ageAvg * 1.5) ? 2 : 0
+                    }
+                })
 
-                    const roomIds = Object.keys(scores)
-                    if (roomIds.length) {
-                        let largest = {id: roomIds[0], s: scores[roomIds[0]]}
-                        roomIds.forEach(id => {
-                            if (largest.s < scores[id]) {
-                                largest = {id, s: scores[id]}
-                            }
-                        })
+                let sortedScores = Object.entries(scores).sort(([ida, a],[idb, b]) => a > b ? -1 : 1)
+                sortedScores = sortedScores.filter(([id, s]) => s === sortedScores[0][1])
+                if (sortedScores.length) {
+                    const random = Math.floor(Math.random() * sortedScores.length)
+                    const [roomId] = sortedScores[random]
 
-                        largest = roomIds.filter(id => scores[id] === largest.s)
-                        largest = largest[Math.floor(Math.random() * largest.length)]
-
-                        addReg(reg, roomsMap[largest])
-                        this.setRoom(reg.id, largest)
+                    const room = roomsMap[roomId]
+                    if (room.taken < room.capacity || allowOverbooking) {
+                        addReg(reg, room)
+                        this.setRoom(reg.id, roomId)
                     }
                 }
+
                 loading.step()
             })
         } catch (err) {
