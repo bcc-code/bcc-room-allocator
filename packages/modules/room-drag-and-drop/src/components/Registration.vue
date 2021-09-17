@@ -24,7 +24,7 @@ export default {
       return this.state.search.length > 1 && this.index.indexOf(this.state.search.toLowerCase()) > -1
     },
     subtitle () {
-      return this.activities.map(id => this.state.activities[id].name).join(', ')
+      return this.activities.map(id => this.state.activities[id]?.name).join(', ')
     },
     selected () {
       return this.state.selected[this.id]

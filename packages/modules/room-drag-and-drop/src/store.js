@@ -1,8 +1,12 @@
 import {reactive, watchEffect} from 'vue'
+import mockRegistrations from "./mock-data/mockRegistrations";
+import mockRooms from "./mock-data/mockRooms";
+import mockActivities from "./mock-data/mockActivities";
+import mockGroups from "./mock-data/mockGroups";
 
 class store {
     state = reactive({
-        loading: true,
+        loading: 0,
         user: null,
         group: {id: 0, name: ''},
         groups: {},
@@ -24,323 +28,265 @@ class store {
         this.api = api
 
         watchEffect(() => {
-            if (this.state.group) {
-                this.loadRegistrations(this.state.group.id)
-                this.loadRooms(this.state.group.id)
-            }
-        })
-
-        watchEffect(() => {
             this.state.selection = Object.keys(this.state.selected).filter(id => this.state.selected[id])
         })
     }
 
-    async loadGroups() {
-        this.state.loading = true
-        this.state.events = null
+    loader (steps = 1) {
+        const state = this.state
+        state.loading += steps
 
-        const now = new Date()
-
-        const params = new URLSearchParams({
-            limit: -1,
-            fields: [
-                'id', 'name'
-            ]
-        })
-
-        if (this.api) {
-            await this.api.get(`/items/groups?${params}`).then((res) => {
-                this.state.groups = {};
-                res.data.data.forEach(group => {
-                    this.state.groups[group.id] = group
-                    if (! this.state.group?.id) {
-                        this.state.group = group
-                    }
-                });
-            });
-        } else {
-            const group = {
-                id: 1,
-                name: 'Horten'
-            }
-
-            this.state.group = group
-            this.state.groups = {
-                1: group,
-                2: {
-                    id: 2,
-                    name: 'Drammen'
+        return {
+            step () {
+                --steps
+                --state.loading
+            },
+            finished () {
+                state.loading -= steps
+                if (state.loading < 1) {
+                    state.loading = 0
                 }
             }
         }
-        this.state.loading = true
+    }
+
+    setGroup(group) {
+        if (group.id && group.id != this.state.group?.id) {
+            this.state.group = group
+            this.loadRegistrations(group.id)
+            this.loadRooms(group.id)
+        }
+    }
+
+    async loadGroups() {
+        const loading = this.loader()
+        try {
+            this.state.events = null
+
+            const params = new URLSearchParams({
+                limit: -1,
+                fields: [
+                    'id', 'name'
+                ]
+            })
+
+            if (this.api) {
+                await this.api.get(`/items/groups?${params}`).then((res) => {
+                    this.state.groups = res.data.data.sort((a,b) => a.name > b.name ? 1 : -1)
+                });
+            } else {
+                this.state.groups = mockGroups
+            }
+
+            if (this.state.groups.length) {
+                this.setGroup(this.state.groups[0])
+            }
+        } catch (err) {
+            console.error(err)
+        }
+
+        loading.finished()
     }
 
     async loadActivities() {
-        this.state.loading = true
-        this.state.activities = null
+        const loading = this.loader()
+        try {
+            this.state.activities = null
+            const params = new URLSearchParams({
+                limit: -1,
+                fields: [
+                    'id', 'name'
+                ]
+            })
 
-        const now = new Date()
-
-        const params = new URLSearchParams({
-            limit: -1,
-            fields: [
-                'id', 'name'
-            ]
-        })
-
-        if (this.api) {
-            await this.api.get(`/items/activities?${params}`).then((res) => {
-                const activities = {}
-                res.data.data.forEach(activity => activities[activity.id] = activity);
-                this.state.activities = activities;
-            });
-        } else {
-            this.state.activities = {
-                1: {
-                    id: 1,
-                    name: 'Football'
-                },
-                2: {
-                    id: 2,
-                    name: 'Media'
-                }
+            if (this.api) {
+                await this.api.get(`/items/activities?${params}`).then((res) => {
+                    const activities = {}
+                    res.data.data.forEach(activity => activities[activity.id] = activity);
+                    this.state.activities = activities;
+                });
+            } else {
+                this.state.activities = mockActivities
             }
+        } catch (err) {
+            console.error(err)
         }
-        this.state.loading = true
+
+        loading.finished()
     }
 
     async loadRegistrations(groupId) {
-        this.state.loading = true
+        const loading = this.loader()
+        try {
+            this.state.registrations = null
+            this.state.boys = null
+            this.state.girls = null
+            if (groupId) {
+                const params = new URLSearchParams({
+                    limit: -1,
+                    filter: JSON.stringify({
+                        group: {
+                            _eq: groupId
+                        }
+                    }),
+                    fields: ['*', 'activities.activity']
+                })
 
-        this.state.registrations = null
-        this.state.boys = null
-        this.state.girls = null
-        if (groupId) {
-            const params = new URLSearchParams({
-                limit: -1,
-                filter: JSON.stringify({
-                    group: {
-                        _eq: groupId
-                    }
-                }),
-                fields: ['*', 'activities.activity']
-            })
-
-            if (this.api) {
-                await this.api.get(`/items/registrations?${params}`).then((res) => {
-                    this.state.registrations = res.data.data.map(reg => ({
-                        ...reg,
-                        activities: reg.activities.map(a => a.activity)
-                    }))
-                });
-            } else {
-                this.state.registrations = [
-                    {
-                        id: 1,
-                        name: 'John Doe',
-                        gender: 'Male',
-                        age: 14,
-                        activities: [1]
-                    }, {
-                        id: 2,
-                        name: 'Mary Anne',
-                        gender: 'Male',
-                        age: 17,
-                        activities: [2]
-                    }, {
-                        id: 3,
-                        name: 'Josy Comfort',
-                        gender: 'Male',
-                        age: 19,
-                        activities: []
-                    }, {
-                        id: 4,
-                        name: 'Marc Brown',
-                        gender: 'Male',
-                        age: 28,
-                        activities: [1, 2],
-                        room: 1
-                    }, {
-                        id: 5,
-                        name: 'Sophie Garden',
-                        gender: 'Male',
-                        age: 25,
-                        activities: [2]
-                    }, {
-                        id: 6,
-                        name: 'Ben Marco',
-                        gender: 'Male',
-                        age: 15,
-                        activities: [1]
-                    }, {
-                        id: 7,
-                        name: 'Claud Marco',
-                        gender: 'Male',
-                        age: 13,
-                        activities: [2]
-                    }, {
-                        id: 8,
-                        name: 'Free Morrow',
-                        gender: 'Male',
-                        age: 17,
-                        activities: [2]
-                    }, {
-                        id: 9,
-                        name: 'James Run',
-                        gender: 'Male',
-                        age: 17,
-                        activities: [1]
-                    }, {
-                        id: 10,
-                        name: 'Long Last',
-                        gender: 'Male',
-                        age: 27,
-                        activities: []
-                    }
-                ]
+                if (this.api) {
+                    await this.api.get(`/items/registrations?${params}`).then((res) => {
+                        this.state.registrations = res.data.data.map(reg => ({
+                            ...reg,
+                            activities: reg.activities.map(a => a.activity)
+                        }))
+                    });
+                } else {
+                    this.state.registrations = mockRegistrations
+                }
             }
+        } catch (err) {
+            console.error(err)
         }
-        this.state.loading = false
+
+        loading.finished()
     }
 
     async loadRooms(groupId) {
-        this.state.loading = true
+        const loading = this.loader()
+        try {
+            this.state.rooms = null
+            if (groupId) {
+                const params = new URLSearchParams({
+                    limit: -1,
+                    filter: JSON.stringify({
+                        group: {
+                            _eq: groupId
+                        }
+                    }),
+                    fields: ['*']
+                })
 
-        this.state.rooms = null
-        if (groupId) {
-            const params = new URLSearchParams({
-                limit: -1,
-                filter: JSON.stringify({
-                    group: {
-                        _eq: groupId
-                    }
-                }),
-                fields: ['*']
-            })
-
-            if (this.api) {
-                await this.api.get(`/items/rooms?${params}`).then((res) => {
-                    this.state.rooms = res.data.data
-                });
-            } else {
-                this.state.rooms = [
-                    {
-                        id: 1,
-                        name: '12 201',
-                        capacity: 3
-                    }, {
-                        id: 2,
-                        name: '10 406',
-                        capacity: 2
-                    }, {
-                        id: 3,
-                        name: '10 407',
-                        capacity: 3
-                    }
-                ]
+                if (this.api) {
+                    await this.api.get(`/items/rooms?${params}`).then((res) => {
+                        this.state.rooms = res.data.data
+                    });
+                } else {
+                    this.state.rooms = mockRooms
+                }
             }
+        } catch (err) {
+            console.error(err)
         }
-        this.state.loading = false
+
+        loading.finished()
     }
 
     async setRoom(registrationId, roomId) {
-        this.state.loading = true
+        const loading = this.loader()
+        try {
+            if (this.state.selected[registrationId]) {
+                this.state.selected[registrationId] = false
+            }
 
-        if (this.state.selected[registrationId]) {
-            this.state.selected[registrationId] = false
-        }
-
-        if (this.api) {
-            await this.api.patch(`/items/registrations/${registrationId}`, { room: roomId }).then((res) => {
-                const registration = res.data.data
+            if (this.api) {
+                await this.api.patch(`/items/registrations/${registrationId}`, { room: roomId }).then((res) => {
+                    const registration = res.data.data
+                    this.state.registrations = this.state.registrations.map(reg => {
+                        if (reg.id == registrationId) {
+                            reg = registration
+                        }
+                        return reg
+                    })
+                });
+            } else {
                 this.state.registrations = this.state.registrations.map(reg => {
                     if (reg.id == registrationId) {
-                        reg = registration
+                        reg = {
+                            ...reg,
+                            room: roomId
+                        }
                     }
                     return reg
                 })
-            });
-        } else {
-            this.state.registrations = this.state.registrations.map(reg => {
-                if (reg.id == registrationId) {
-                    reg = {
-                        ...reg,
-                        room: roomId
-                    }
-                }
-                return reg
-            })
+            }
+        } catch (err) {
+            console.error(err)
         }
-        this.state.loading = false
+
+        loading.finished()
     }
 
     async magicAssign(registrations, allowOverbooking) {
-        let roomsMap = {}
+        const loading = this.loader(registrations.length + 1)
+        try {
+            let roomsMap = {}
 
-        let totalCapacity = 0
-        this.state.rooms.forEach(r => {
-            roomsMap[r.id] = { ...r,
-                ageAvg: 0,
-                ageTotal: 0,
-                taken: 0,
-                guests: [],
-                activities: {},
-                gender: null
-            }
-            totalCapacity += r.capacity
-        })
-
-        const addReg = (reg, room) => {
-            --totalCapacity
-            room.taken = room.guests.push(reg)
-            room.gender = room.gender || reg.gender
-            room.ageTotal += reg.age
-            room.ageAvg = room.ageTotal / room.taken
-            reg.activities.forEach(({activity}) => {
-                room.activities[activity] = (room.activities[activity] || 0) + 1
+            let totalCapacity = 0
+            this.state.rooms.forEach(r => {
+                roomsMap[r.id] = { ...r,
+                    ageAvg: 0,
+                    ageTotal: 0,
+                    taken: 0,
+                    guests: [],
+                    activities: {},
+                    gender: null
+                }
+                totalCapacity += r.capacity
             })
 
-            return true
-        }
+            const addReg = (reg, room) => {
+                --totalCapacity
+                room.taken = room.guests.push(reg)
+                room.gender = room.gender || reg.gender
+                room.ageTotal += reg.age
+                room.ageAvg = room.ageTotal / room.taken
+                reg.activities.forEach(({activity}) => {
+                    room.activities[activity] = (room.activities[activity] || 0) + 1
+                })
 
-        this.state.registrations.forEach(reg => {
-            if (reg.room) {
-                addReg(reg, roomsMap[reg.room])
-            }
-        })
-
-        const regs = registrations.sort(() => (Math.random() > .5) ? 1 : -1);
-
-        const rooms = Object.values(roomsMap)
-        regs.forEach(reg => {
-            if (totalCapacity < 1 && ! allowOverbooking) {
-                return
+                return true
             }
 
-            const scores = {}
-            rooms.find(room => {
-                if (! room.gender || room.gender === reg.gender) {
-                    scores[room.id] = 0
-                    scores[room.id] += room.taken < room.capacity ? 1 : totalCapacity < 1 ? room.capacity - room.taken : -10
-                    scores[room.id] += reg.activities.filter(a => room.activities[a]).length * 3
-                    scores[room.id] += reg.age > (room.ageAvg * 1.5) ? 2 : 0
+            this.state.registrations.forEach(reg => {
+                if (reg.room) {
+                    addReg(reg, roomsMap[reg.room])
                 }
             })
 
-            const roomIds = Object.keys(scores)
-            if (roomIds.length) {
-                let largest = {id: roomIds[0], s: scores[roomIds[0]]}
-                roomIds.forEach(id => {
-                    if (largest.s < scores[id]) {
-                        largest = {id, s: scores[id]}
-                    }
-                })
+            const regs = registrations.sort(() => (Math.random() > .5) ? 1 : -1);
 
-                addReg(reg, roomsMap[largest.id])
-                this.setRoom(reg.id, largest.id)
-            }
-        })
+            const rooms = Object.values(roomsMap)
+            regs.forEach(reg => {
+                if (totalCapacity > 0 || allowOverbooking) {
+                    const scores = {}
+                    rooms.find(room => {
+                        if (!room.gender || room.gender === reg.gender) {
+                            scores[room.id] = 0
+                            scores[room.id] += room.taken < room.capacity ? 1 : totalCapacity < 1 ? room.capacity - room.taken : -10
+                            scores[room.id] += reg.activities.filter(a => room.activities[a]).length * 3
+                            scores[room.id] += reg.age > (room.ageAvg * 1.5) ? 2 : 0
+                        }
+                    })
+
+                    const roomIds = Object.keys(scores)
+                    if (roomIds.length) {
+                        let largest = {id: roomIds[0], s: scores[roomIds[0]]}
+                        roomIds.forEach(id => {
+                            if (largest.s < scores[id]) {
+                                largest = {id, s: scores[id]}
+                            }
+                        })
+
+                        addReg(reg, roomsMap[largest.id])
+                        this.setRoom(reg.id, largest.id)
+                    }
+                }
+                loading.step()
+            })
+        } catch (err) {
+            console.error(err)
+        }
+
+        loading.finished()
     }
 }
 

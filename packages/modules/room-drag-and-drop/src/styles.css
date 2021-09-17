@@ -17,3 +17,23 @@
     transform: translateX(20px);
     opacity: 0;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-indigo-50 shadow-inner;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-indigo-400;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    @apply bg-indigo-600;
+}
