@@ -159,7 +159,7 @@ export default {
       <!-- Start left column area -->
       <div class="order-3 md:order-1 w-full md:w-1/3 lg:w-1/4 md:sticky top-0">
         <div class="h-full relative">
-          <div class="md:absolute inset-0 p-6 overflow-hidden overflow-y-auto rounded-lg">
+          <div class="sticky max-h-screen inset-0 p-6 overflow-hidden overflow-y-auto rounded-lg">
             <button @click="bcc_store.magicAssign(boys, overbook)" type="button"
                     class="flex items-center ml-auto mb-2 px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
               Auto assign
@@ -198,7 +198,7 @@ export default {
       <!-- Start right column area -->
       <div class="order-4 w-full md:w-1/3 lg:w-1/4 md:sticky top-0">
         <div class="h-full relative">
-          <div class="md:absolute inset-0 p-6 overflow-hidden overflow-y-auto rounded-lg">
+          <div class="sticky max-h-screen inset-0 p-6 overflow-hidden overflow-y-auto rounded-lg">
             <button @click="bcc_store.magicAssign(girls, overbook)" type="button"
                     class="flex items-center mr-auto mb-2 px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
               <SparklesIcon class="mr-2 -ml-1 h-5 w-5"/>

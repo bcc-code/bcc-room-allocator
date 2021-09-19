@@ -3,6 +3,7 @@ import mockRegistrations from "./mock-data/mockRegistrations";
 import mockRooms from "./mock-data/mockRooms";
 import mockActivities from "./mock-data/mockActivities";
 import mockGroups from "./mock-data/mockGroups";
+import AutoAssign from "./room-algorithm";
 
 class store {
     state = reactive({
@@ -222,73 +223,18 @@ class store {
         loading.finished()
     }
 
+
+
     async magicAssign(registrations, allowOverbooking) {
         if (this.busy) { return }
         this.busy = true
-        const loading = this.loader(registrations.length + 1)
+        const loading = this.loader()
+
         try {
-            let roomsMap = {}
-
-            let totalCapacity = 0
-            this.state.rooms.forEach(r => {
-                roomsMap[r.id] = { ...r,
-                    ageAvg: 0,
-                    ageTotal: 0,
-                    taken: 0,
-                    guests: [],
-                    activities: {},
-                    gender: null
-                }
-                totalCapacity += r.capacity
-            })
-
-            const addReg = (reg, room) => {
-                --totalCapacity
-                room.taken = room.guests.push(reg)
-                room.gender = room.gender || reg.gender
-                room.ageTotal += reg.age
-                room.ageAvg = room.ageTotal / room.taken
-                reg.activities.forEach(({activity}) => {
-                    room.activities[activity] = (room.activities[activity] || 0) + 1
-                })
-
-                return true
-            }
-
-            this.state.registrations.forEach(reg => {
-                if (reg.room) {
-                    addReg(reg, roomsMap[reg.room])
-                }
-            })
-
-            const regs = registrations.sort((a, b) => a.activities.length > b.activities.length || (Math.random() > .5) ? 1 : -1);
-
-            const rooms = Object.values(roomsMap)
-            regs.forEach(reg => {
-                const scores = {}
-                rooms.forEach(room => {
-                    if (!room.gender || room.gender === reg.gender) {
-                        scores[room.id] = 0
-                        scores[room.id] += room.taken < room.capacity ? 1 : room.capacity - room.taken - 100
-                        scores[room.id] += reg.activities.reduce(((num, a) => num + (room.activities[a] || 0)), -1) * 2
-                        scores[room.id] += reg.age > (room.ageAvg * 1.5) ? 2 : 0
-                    }
-                })
-
-                let sortedScores = Object.entries(scores).sort(([ida, a],[idb, b]) => a > b ? -1 : 1)
-                sortedScores = sortedScores.filter(([id, s]) => s === sortedScores[0][1])
-                if (sortedScores.length) {
-                    const random = Math.floor(Math.random() * sortedScores.length)
-                    const [roomId] = sortedScores[random]
-
-                    const room = roomsMap[roomId]
-                    if (room.taken < room.capacity || allowOverbooking) {
-                        addReg(reg, room)
-                        this.setRoom(reg.id, roomId)
-                    }
-                }
-
-                loading.step()
+            const Assigner = new AutoAssign(this.state, registrations, allowOverbooking)
+            const solution = await Assigner.run()
+            solution.roomsMap.forEach((room, roomId) => {
+                room.guests.forEach(reg => this.setRoom(reg.id, roomId))
             })
         } catch (err) {
             console.error(err)
