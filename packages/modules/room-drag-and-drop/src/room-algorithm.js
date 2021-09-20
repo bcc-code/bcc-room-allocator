@@ -8,13 +8,13 @@ export default class AutoAssign {
 
     samples = 3
 
-    constructor (state, registrations, allowOverbooking, samples = 10) {
+    constructor (state, registrations, allowOverbooking, samples) {
         this.rooms = readonly(state.rooms)
-        this.existingRegistrations = state.registrations
-        this.registrations = registrations.sort((a, b) => a.activities.length > b.activities.length || (Math.random() > .5) ? 1 : -1);
+        this.existingRegistrations = readonly(state.registrations)
+        this.registrations = registrations
         this.allowOverbooking = allowOverbooking
 
-        this.samples = samples
+        this.samples = samples || Math.ceil(registrations.length / 3) + 1
     }
 
     async run () {
@@ -35,7 +35,7 @@ export default class AutoAssign {
                     }
 
                     resolve(solution)
-                }, 1000)
+                }, 100 * i)
             }))
         }
 
@@ -69,7 +69,7 @@ export default class AutoAssign {
                 let score = reg.activities.reduce(((num, a) => {
                     return num + (room.activities[a] || 0)
                 }), 0) * 2
-                score += room.taken < room.capacity ? 2 : room.capacity - room.taken - 100
+                score += room.taken < room.capacity ? 2 : room.capacity - room.taken - 50
                 score += room.ageAvg ? (reg.age > (room.ageAvg * 1.5)) * 1 : 1
 
                 return score
@@ -103,8 +103,9 @@ export default class AutoAssign {
 
     createSolution () {
         const roomsMap = this.createRoomsMap()
+        const regs = this.registrations.sort((a, b) => a.activities.length > b.activities.length || (Math.random() > .5) ? -1 : 1)
 
-        this.registrations.forEach(reg => {
+        regs.forEach(reg => {
             const scores = new Map()
             let highestScore = -100
 
@@ -114,7 +115,7 @@ export default class AutoAssign {
                     if (! scores.has(score)) {
                         scores.set(score, [])
                     }
-                    scores.get(score).push(id)
+                    scores.get(score).push(room)
                     if (score > highestScore) {
                         highestScore = score
                     }
@@ -123,10 +124,10 @@ export default class AutoAssign {
 
             const highestScoredRooms = scores.get(highestScore)
             if (highestScoredRooms.length) {
-                const random = Math.floor(Math.random() * highestScoredRooms.length)
-                const roomId = highestScoredRooms[random]
-
-                const room = roomsMap.get(roomId)
+                highestScoredRooms.sort((a,b) => (a.capacity - a.taken) > (b.capacity - b.taken) ? -1 : 1)
+                const room = highestScoredRooms[0]
+                /* const random = Math.floor(Math.random() * highestScoredRooms.length)
+                const room = highestScoredRooms[random] */
                 if (room.taken < room.capacity || this.allowOverbooking) {
                     this.addReg(reg, room, highestScore)
                 }
