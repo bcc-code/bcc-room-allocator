@@ -55,21 +55,22 @@ export default {
           (this.firstGuest?.gender && this.state.selectGroup.indexOf(this.firstGuest?.gender) < 0)
     },
     statusClass () {
-      let bgFrom = 'from-gray-50'
+      let bgFrom = ''
       let bgTo = ''
       let border = ''
       let text = 'text-gray-600'
       let pointer = ''
 
       if (this.isBoysRoom) {
-        bgTo = this.count < this.capacity ? 'to-blue-100' : 'to-blue-200'
+        text = 'text-white'
+        bgFrom = 'from-blue-500'
+        bgTo = this.count < this.capacity ? 'to-blue-400' : 'to-blue-600'
         border = 'border-blue-400'
       }
       if (this.isGirlsRoom) {
-        if (this.isBoysRoom) {
-          bgFrom = 'from-blue-200'
-        }
-        bgTo = this.count < this.capacity ? 'to-pink-100' : 'to-pink-200'
+        text = 'text-white'
+        bgFrom = this.isBoysRoom ? 'from-blue-500' : 'from-pink-500'
+        bgTo = this.count < this.capacity ? 'to-pink-400' : 'to-pink-600'
         border = 'border-pink-400'
       }
       if (this.count > this.capacity) {

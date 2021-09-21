@@ -25,15 +25,15 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    @apply bg-indigo-50 shadow-inner;
+    @apply bg-bcc-green-50 shadow-inner;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    @apply bg-indigo-400;
+    @apply bg-bcc-green-60;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    @apply bg-indigo-600;
+    @apply bg-bcc-green-80;
 }
