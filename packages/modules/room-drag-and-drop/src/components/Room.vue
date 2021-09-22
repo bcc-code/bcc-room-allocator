@@ -13,6 +13,7 @@ export default {
     id: [String, Number],
     name: String,
     capacity: Number,
+    gender: String
   },
   inject: ['bcc_store'],
   data: () => ({
@@ -41,18 +42,12 @@ export default {
     count () {
       return this.guests.length || 0
     },
-    firstGuest () {
-      return this.guests[0] ?? null
-    },
-    isBoysRoom () {
-      return !! this.guests.find(reg => reg.gender == 'Male');
-    },
-    isGirlsRoom () {
-      return !! this.guests.find(reg => reg.gender == 'Female');
+    currentGender () {
+      return this.gender || this.guests[0]?.gender || null
     },
     isInsertableGroup () {
-      return this.state.selectGroup == `${this.id}-${this.firstGuest?.gender}` ||
-          (this.firstGuest?.gender && this.state.selectGroup.indexOf(this.firstGuest?.gender) < 0)
+      return this.state.selectGroup == `${this.id}-${this.currentGender}` ||
+          (this.currentGender || this.state.selectGroup.indexOf(this.currentGender) < 0)
     },
     statusClass () {
       let bgFrom = ''
@@ -61,15 +56,14 @@ export default {
       let text = 'text-gray-600'
       let pointer = ''
 
-      if (this.isBoysRoom) {
+      if (this.currentGender == 'Male') {
         text = 'text-white'
         bgFrom = 'from-blue-500'
         bgTo = this.count < this.capacity ? 'to-blue-400' : 'to-blue-600'
         border = 'border-blue-400'
-      }
-      if (this.isGirlsRoom) {
+      } else if (this.currentGender == 'Female') {
         text = 'text-white'
-        bgFrom = this.isBoysRoom ? 'from-blue-500' : 'from-pink-500'
+        bgFrom = 'from-pink-500'
         bgTo = this.count < this.capacity ? 'to-pink-400' : 'to-pink-600'
         border = 'border-pink-400'
       }
@@ -86,7 +80,7 @@ export default {
   },
   methods: {
     canAdd(reg) {
-      return ! this.firstGuest || reg.gender === this.firstGuest.gender
+      return ! this.currentGender || reg.gender === this.currentGender
     },
     execute () {
       let selection = this.state.selection

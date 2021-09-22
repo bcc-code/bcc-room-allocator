@@ -88,8 +88,7 @@ export default class AutoAssign {
             taken: 0,
             score: 0,
             guests: [],
-            activities: {},
-            gender: null
+            activities: {}
         }))
 
         this.existingRegistrations.forEach(reg => {
