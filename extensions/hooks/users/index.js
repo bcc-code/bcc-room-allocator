@@ -5,11 +5,11 @@ module.exports = function registerHook({ services, exceptions }) {
     return {
         'oauth.auth0.login.before': async function (payload, { schema, database }) {
             const { profile, access_token } = payload
-            console.log(payload)
+
             if (access_token && profile.email) {
                 try {
                     const service = new UsersService({ schema, knex: database });
-                    const id = await service.createOne({
+                    await service.createOne({
                         id: profile['https://login.bcc.no/claims/personId'],
                         first_name: profile.given_name,
                         last_name: profile.family_name,
