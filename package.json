@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "directus": "^9.0.0-rc.95",
+    "directus": "^9.0.0-rc.94",
     "mysql": "^2.18.1"
   }
 }
