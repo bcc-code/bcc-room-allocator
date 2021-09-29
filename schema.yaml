@@ -1,23 +1,23 @@
 version: 1
-directus: 9.0.0-rc.93
+directus: 9.0.0-rc.95
 collections:
   - collection: activities
     meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
       collection: activities
-      color: '#00C897'
+      icon: sports_handball
+      note: null
       display_template: null
       hidden: false
-      icon: sports_handball
-      item_duplication_fields: null
-      note: null
       singleton: false
-      sort_field: null
       translations: null
+      archive_field: null
+      archive_app_filter: true
+      archive_value: null
       unarchive_value: null
+      sort_field: null
+      accountability: all
+      color: '#00C897'
+      item_duplication_fields: null
     schema:
       name: activities
       schema: bcc-room-allocator
@@ -26,21 +26,21 @@ collections:
       engine: InnoDB
   - collection: group_users
     meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
       collection: group_users
-      color: null
+      icon: import_export
+      note: Group users
       display_template: null
       hidden: true
-      icon: import_export
-      item_duplication_fields: null
-      note: Group users
       singleton: false
-      sort_field: null
       translations: null
+      archive_field: null
+      archive_app_filter: true
+      archive_value: null
       unarchive_value: null
+      sort_field: null
+      accountability: all
+      color: null
+      item_duplication_fields: null
     schema:
       name: group_users
       schema: bcc-room-allocator
@@ -49,21 +49,21 @@ collections:
       engine: InnoDB
   - collection: groups
     meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
       collection: groups
-      color: '#68B0F4'
+      icon: people
+      note: null
       display_template: null
       hidden: false
-      icon: people
-      item_duplication_fields: null
-      note: null
       singleton: false
-      sort_field: null
       translations: null
+      archive_field: null
+      archive_app_filter: true
+      archive_value: null
       unarchive_value: null
+      sort_field: null
+      accountability: all
+      color: '#68B0F4'
+      item_duplication_fields: null
     schema:
       name: groups
       schema: bcc-room-allocator
@@ -72,21 +72,21 @@ collections:
       engine: InnoDB
   - collection: registrations
     meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
       collection: registrations
-      color: '#F7971C'
+      icon: local_activity
+      note: null
       display_template: null
       hidden: false
-      icon: local_activity
-      item_duplication_fields: null
-      note: null
       singleton: false
-      sort_field: null
       translations: null
+      archive_field: null
+      archive_app_filter: true
+      archive_value: null
       unarchive_value: null
+      sort_field: null
+      accountability: all
+      color: '#F7971C'
+      item_duplication_fields: null
     schema:
       name: registrations
       schema: bcc-room-allocator
@@ -95,21 +95,21 @@ collections:
       engine: InnoDB
   - collection: registrations_activities
     meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
       collection: registrations_activities
-      color: null
+      icon: import_export
+      note: Registration activities
       display_template: null
       hidden: true
-      icon: import_export
-      item_duplication_fields: null
-      note: Registration activities
       singleton: false
-      sort_field: null
       translations: null
+      archive_field: null
+      archive_app_filter: true
+      archive_value: null
       unarchive_value: null
+      sort_field: null
+      accountability: all
+      color: null
+      item_duplication_fields: null
     schema:
       name: registrations_activities
       schema: bcc-room-allocator
@@ -118,21 +118,21 @@ collections:
       engine: InnoDB
   - collection: rooms
     meta:
-      accountability: all
-      archive_app_filter: true
-      archive_field: null
-      archive_value: null
       collection: rooms
-      color: '#E35169'
+      icon: local_hotel
+      note: null
       display_template: null
       hidden: false
-      icon: local_hotel
-      item_duplication_fields: null
-      note: null
       singleton: false
-      sort_field: null
       translations: null
+      archive_field: null
+      archive_app_filter: true
+      archive_value: null
       unarchive_value: null
+      sort_field: null
+      accountability: all
+      color: '#E35169'
+      item_duplication_fields: null
     schema:
       name: rooms
       schema: bcc-room-allocator
@@ -162,22 +162,21 @@ fields:
       comment: ''
     meta:
       collection: group_users
-      conditions: null
+      field: id
+      special: null
+      interface: null
+      options: null
       display: null
       display_options: null
-      field: id
-      group: null
-      hidden: true
-      id: 15
-      interface: null
-      note: null
-      options: null
       readonly: false
-      required: false
+      hidden: true
       sort: null
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
   - collection: group_users
     field: user
     type: string
@@ -200,22 +199,21 @@ fields:
       comment: ''
     meta:
       collection: group_users
-      conditions: null
+      field: user
+      special: null
+      interface: null
+      options: null
       display: null
       display_options: null
-      field: user
-      group: null
-      hidden: true
-      id: 17
-      interface: null
-      note: null
-      options: null
       readonly: false
-      required: false
+      hidden: true
       sort: null
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
   - collection: group_users
     field: group
     type: integer
@@ -238,22 +236,21 @@ fields:
       comment: ''
     meta:
       collection: group_users
-      conditions: null
+      field: group
+      special: null
+      interface: null
+      options: null
       display: null
       display_options: null
-      field: group
-      group: null
-      hidden: true
-      id: 18
-      interface: null
-      note: null
-      options: null
       readonly: false
-      required: false
+      hidden: true
       sort: null
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
   - collection: groups
     field: id
     type: integer
@@ -276,22 +273,21 @@ fields:
       comment: ''
     meta:
       collection: groups
-      conditions: null
+      field: id
+      special: null
+      interface: input
+      options: null
       display: raw
       display_options: null
-      field: id
-      group: null
-      hidden: true
-      id: 12
-      interface: input
-      note: null
-      options: null
       readonly: true
-      required: false
+      hidden: true
       sort: 1
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
   - collection: groups
     field: name
     type: string
@@ -314,24 +310,23 @@ fields:
       comment: ''
     meta:
       collection: groups
-      conditions: null
-      display: raw
-      display_options: null
       field: name
-      group: null
-      hidden: false
-      id: 13
+      special: null
       interface: input
-      note: null
       options:
         trim: true
         iconLeft: null
+      display: raw
+      display_options: null
       readonly: false
-      required: true
+      hidden: false
       sort: 2
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: true
   - collection: groups
     field: country
     type: string
@@ -354,22 +349,21 @@ fields:
       comment: ''
     meta:
       collection: groups
-      conditions: null
+      field: country
+      special: null
+      interface: input
+      options: null
       display: raw
       display_options: null
-      field: country
-      group: null
-      hidden: false
-      id: 21
-      interface: input
-      note: null
-      options: null
       readonly: false
-      required: true
+      hidden: false
       sort: 3
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: true
   - collection: activities
     field: id
     type: integer
@@ -392,22 +386,21 @@ fields:
       comment: ''
     meta:
       collection: activities
-      conditions: null
+      field: id
+      special: null
+      interface: input
+      options: null
       display: raw
       display_options: null
-      field: id
-      group: null
-      hidden: true
-      id: 26
-      interface: input
-      note: null
-      options: null
       readonly: true
-      required: false
+      hidden: true
       sort: null
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
   - collection: activities
     field: name
     type: string
@@ -430,137 +423,22 @@ fields:
       comment: ''
     meta:
       collection: activities
-      conditions: null
-      display: raw
-      display_options: null
       field: name
-      group: null
-      hidden: false
-      id: 27
+      special: null
       interface: input
-      note: null
       options:
         trim: true
+      display: raw
+      display_options: null
       readonly: false
+      hidden: false
+      sort: null
+      width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
       required: true
-      sort: null
-      special: null
-      translations: null
-      width: full
-  - collection: registrations_activities
-    field: id
-    type: integer
-    schema:
-      name: id
-      table: registrations_activities
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: true
-      has_auto_increment: true
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations_activities
-      conditions: null
-      display: null
-      display_options: null
-      field: id
-      group: null
-      hidden: true
-      id: 29
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: null
-      special: null
-      translations: null
-      width: full
-  - collection: registrations_activities
-    field: activity
-    type: integer
-    schema:
-      name: activity
-      table: registrations_activities
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: activities
-      comment: ''
-    meta:
-      collection: registrations_activities
-      conditions: null
-      display: null
-      display_options: null
-      field: activity
-      group: null
-      hidden: true
-      id: 31
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: null
-      special: null
-      translations: null
-      width: full
-  - collection: registrations_activities
-    field: registration
-    type: integer
-    schema:
-      name: registration
-      table: registrations_activities
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: registrations
-      comment: ''
-    meta:
-      collection: registrations_activities
-      conditions: null
-      display: null
-      display_options: null
-      field: registration
-      group: null
-      hidden: true
-      id: 32
-      interface: null
-      note: null
-      options: null
-      readonly: false
-      required: false
-      sort: null
-      special: null
-      translations: null
-      width: full
   - collection: registrations
     field: id
     type: integer
@@ -583,22 +461,21 @@ fields:
       comment: ''
     meta:
       collection: registrations
-      conditions: null
+      field: id
+      special: null
+      interface: input
+      options: null
       display: raw
       display_options: null
-      field: id
-      group: null
-      hidden: true
-      id: 1
-      interface: input
-      note: null
-      options: null
       readonly: true
-      required: false
+      hidden: true
       sort: null
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
   - collection: registrations
     field: name
     type: string
@@ -621,24 +498,23 @@ fields:
       comment: ''
     meta:
       collection: registrations
-      conditions: null
-      display: raw
-      display_options: null
       field: name
-      group: null
-      hidden: false
-      id: 2
+      special: null
       interface: input
-      note: null
       options:
         trim: true
         placeholder: Full name
+      display: raw
+      display_options: null
       readonly: false
-      required: true
+      hidden: false
       sort: null
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: true
   - collection: registrations
     field: age
     type: integer
@@ -661,24 +537,23 @@ fields:
       comment: ''
     meta:
       collection: registrations
-      conditions: null
-      display: raw
-      display_options: null
       field: age
-      group: null
-      hidden: false
-      id: 3
+      special: null
       interface: input
-      note: null
       options:
         max: 130
         min: 0
+      display: raw
+      display_options: null
       readonly: false
-      required: true
+      hidden: false
       sort: null
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: true
   - collection: registrations
     field: gender
     type: string
@@ -701,36 +576,35 @@ fields:
       comment: ''
     meta:
       collection: registrations
-      conditions: null
-      display: labels
-      display_options:
-        choices:
-          - text: Male
-            value: Male
-            background: '#89CFF0'
-            foreground: '#FFFFFF'
-          - text: Female
-            value: Female
-            background: '#FFC0CB'
-            foreground: '#607D8B'
       field: gender
-      group: null
-      hidden: false
-      id: 4
+      special: null
       interface: select-dropdown
-      note: null
       options:
         choices:
           - text: Male
             value: Male
           - text: Female
             value: Female
+      display: labels
+      display_options:
+        choices:
+          - text: Male
+            value: Male
+            background: '#68B0F4'
+            foreground: '#ECEFF1'
+          - text: Female
+            value: Female
+            background: '#E35169'
+            foreground: '#ECEFF1'
       readonly: false
-      required: true
+      hidden: false
       sort: null
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: true
   - collection: registrations
     field: allergy
     type: string
@@ -753,24 +627,23 @@ fields:
       comment: ''
     meta:
       collection: registrations
-      conditions: null
-      display: null
-      display_options: null
       field: allergy
-      group: null
-      hidden: false
-      id: 7
+      special: null
       interface: input
-      note: null
       options:
         font: monospace
         trim: true
+      display: null
+      display_options: null
       readonly: false
-      required: false
+      hidden: false
       sort: null
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
   - collection: registrations
     field: group
     type: integer
@@ -793,24 +666,23 @@ fields:
       comment: ''
     meta:
       collection: registrations
-      conditions: null
+      field: group
+      special: null
+      interface: select-dropdown-m2o
+      options:
+        template: '{{name}}'
       display: related-values
       display_options:
         template: '{{name}}'
-      field: group
-      group: null
-      hidden: false
-      id: 19
-      interface: select-dropdown-m2o
-      note: null
-      options:
-        template: '{{name}}'
       readonly: false
-      required: true
+      hidden: false
       sort: null
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: true
   - collection: registrations
     field: room
     type: integer
@@ -833,24 +705,23 @@ fields:
       comment: ''
     meta:
       collection: registrations
-      conditions: null
+      field: room
+      special: null
+      interface: select-dropdown-m2o
+      options:
+        template: "{{name}}\_({{capacity}})"
       display: related-values
       display_options:
         template: '{{name}}'
-      field: room
-      group: null
-      hidden: false
-      id: 24
-      interface: select-dropdown-m2o
-      note: null
-      options:
-        template: "{{name}}\_({{capacity}})"
       readonly: false
-      required: false
+      hidden: false
       sort: null
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
   - collection: rooms
     field: id
     type: integer
@@ -873,22 +744,21 @@ fields:
       comment: ''
     meta:
       collection: rooms
-      conditions: null
+      field: id
+      special: null
+      interface: input
+      options: null
       display: raw
       display_options: null
-      field: id
-      group: null
-      hidden: true
-      id: 8
-      interface: input
-      note: null
-      options: null
       readonly: true
-      required: false
+      hidden: true
       sort: 1
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
   - collection: rooms
     field: name
     type: string
@@ -911,23 +781,22 @@ fields:
       comment: ''
     meta:
       collection: rooms
-      conditions: null
-      display: null
-      display_options: null
       field: name
-      group: null
-      hidden: false
-      id: 9
+      special: null
       interface: input
-      note: null
       options:
         trim: true
+      display: null
+      display_options: null
       readonly: false
-      required: true
+      hidden: false
       sort: 2
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: true
   - collection: rooms
     field: capacity
     type: integer
@@ -950,25 +819,24 @@ fields:
       comment: ''
     meta:
       collection: rooms
-      conditions: null
-      display: raw
-      display_options: null
       field: capacity
-      group: null
-      hidden: false
-      id: 11
+      special: null
       interface: slider
-      note: null
       options:
         maxValue: 16
         minValue: 1
         stepInterval: 1
+      display: raw
+      display_options: null
       readonly: false
-      required: true
+      hidden: false
       sort: 4
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: true
   - collection: rooms
     field: group
     type: integer
@@ -991,24 +859,23 @@ fields:
       comment: ''
     meta:
       collection: rooms
-      conditions: null
+      field: group
+      special: null
+      interface: select-dropdown-m2o
+      options:
+        template: '{{name}}'
       display: related-values
       display_options:
         template: '{{name}}'
-      field: group
-      group: null
-      hidden: false
-      id: 22
-      interface: select-dropdown-m2o
-      note: The group that can allocate to this room
-      options:
-        template: '{{name}}'
       readonly: false
-      required: true
+      hidden: false
       sort: 5
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: The group that can allocate to this room
+      conditions: null
+      required: true
   - collection: rooms
     field: gender
     type: string
@@ -1031,7 +898,15 @@ fields:
       comment: ''
     meta:
       collection: rooms
-      conditions: null
+      field: gender
+      special: null
+      interface: select-dropdown
+      options:
+        choices:
+          - text: Male
+            value: Male
+          - text: Female
+            value: Female
       display: labels
       display_options:
         choices:
@@ -1043,30 +918,168 @@ fields:
             value: Female
             background: '#E35169'
             foreground: '#ECEFF1'
-      field: gender
-      group: null
-      hidden: false
-      id: 33
-      interface: select-dropdown
-      note: null
-      options:
-        choices:
-          - text: Male
-            value: Male
-          - text: Female
-            value: Female
       readonly: false
-      required: false
+      hidden: false
       sort: 3
-      special: null
-      translations: null
       width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
+  - collection: registrations_activities
+    field: id
+    type: integer
+    schema:
+      name: id
+      table: registrations_activities
+      data_type: int unsigned
+      default_value: null
+      generation_expression: null
+      max_length: null
+      numeric_precision: 10
+      numeric_scale: 0
+      is_generated: false
+      is_nullable: false
+      is_unique: false
+      is_primary_key: true
+      has_auto_increment: true
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: registrations_activities
+      field: id
+      special: null
+      interface: null
+      options: null
+      display: null
+      display_options: null
+      readonly: false
+      hidden: true
+      sort: null
+      width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
+  - collection: registrations_activities
+    field: activity
+    type: integer
+    schema:
+      name: activity
+      table: registrations_activities
+      data_type: int unsigned
+      default_value: null
+      generation_expression: null
+      max_length: null
+      numeric_precision: 10
+      numeric_scale: 0
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: id
+      foreign_key_table: activities
+      comment: ''
+    meta:
+      collection: registrations_activities
+      field: activity
+      special: null
+      interface: null
+      options: null
+      display: null
+      display_options: null
+      readonly: false
+      hidden: true
+      sort: null
+      width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
+  - collection: registrations_activities
+    field: registration
+    type: integer
+    schema:
+      name: registration
+      table: registrations_activities
+      data_type: int unsigned
+      default_value: null
+      generation_expression: null
+      max_length: null
+      numeric_precision: 10
+      numeric_scale: 0
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: id
+      foreign_key_table: registrations
+      comment: ''
+    meta:
+      collection: registrations_activities
+      field: registration
+      special: null
+      interface: null
+      options: null
+      display: null
+      display_options: null
+      readonly: false
+      hidden: true
+      sort: null
+      width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
+  - collection: registrations_activities
+    field: comment
+    type: string
+    schema:
+      name: comment
+      table: registrations_activities
+      data_type: varchar
+      default_value: null
+      generation_expression: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: registrations_activities
+      field: comment
+      special: null
+      interface: input
+      options: null
+      display: null
+      display_options: null
+      readonly: false
+      hidden: false
+      sort: null
+      width: full
+      group: null
+      translations: null
+      note: null
+      conditions: null
+      required: false
   - collection: groups
     field: users
     type: m2m
     schema: null
     meta:
-      id: 14
       collection: groups
       field: users
       special:
@@ -1092,7 +1105,6 @@ fields:
     type: m2m
     schema: null
     meta:
-      id: 16
       collection: directus_users
       field: groups
       special:
@@ -1115,7 +1127,6 @@ fields:
     type: o2m
     schema: null
     meta:
-      id: 20
       collection: groups
       field: registrations
       special:
@@ -1142,7 +1153,6 @@ fields:
     type: o2m
     schema: null
     meta:
-      id: 23
       collection: groups
       field: rooms
       special:
@@ -1165,7 +1175,6 @@ fields:
     type: o2m
     schema: null
     meta:
-      id: 25
       collection: rooms
       field: guests
       special:
@@ -1190,7 +1199,6 @@ fields:
     type: m2m
     schema: null
     meta:
-      id: 28
       collection: registrations
       field: activities
       special:
@@ -1217,7 +1225,6 @@ fields:
     type: m2m
     schema: null
     meta:
-      id: 30
       collection: activities
       field: registrations
       special:
@@ -1240,18 +1247,6 @@ fields:
       conditions: null
       required: false
 relations:
-  - collection: directus_settings
-    field: storage_default_folder
-    related_collection: directus_folders
-    schema:
-      table: directus_settings
-      column: storage_default_folder
-      foreign_key_table: directus_folders
-      foreign_key_column: id
-      constraint_name: directus_settings_storage_default_folder_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-    meta: null
   - collection: group_users
     field: user
     related_collection: directus_users
@@ -1264,16 +1259,15 @@ relations:
       on_update: NO ACTION
       on_delete: CASCADE
     meta:
-      id: 1
-      junction_field: group
       many_collection: group_users
       many_field: user
-      one_allowed_collections: null
       one_collection: directus_users
-      one_collection_field: null
-      one_deselect_action: nullify
       one_field: groups
+      one_collection_field: null
+      one_allowed_collections: null
+      junction_field: group
       sort_field: null
+      one_deselect_action: nullify
   - collection: group_users
     field: group
     related_collection: groups
@@ -1286,60 +1280,15 @@ relations:
       on_update: NO ACTION
       on_delete: CASCADE
     meta:
-      id: 2
-      junction_field: user
       many_collection: group_users
       many_field: group
-      one_allowed_collections: null
       one_collection: groups
-      one_collection_field: null
-      one_deselect_action: delete
       one_field: users
-      sort_field: null
-  - collection: registrations_activities
-    field: registration
-    related_collection: registrations
-    schema:
-      table: registrations_activities
-      column: registration
-      foreign_key_table: registrations
-      foreign_key_column: id
-      constraint_name: registrations_activities_registration_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
-    meta:
-      id: 6
-      junction_field: activity
-      many_collection: registrations_activities
-      many_field: registration
-      one_allowed_collections: null
-      one_collection: registrations
       one_collection_field: null
+      one_allowed_collections: null
+      junction_field: user
+      sort_field: null
       one_deselect_action: delete
-      one_field: activities
-      sort_field: null
-  - collection: registrations_activities
-    field: activity
-    related_collection: activities
-    schema:
-      table: registrations_activities
-      column: activity
-      foreign_key_table: activities
-      foreign_key_column: id
-      constraint_name: registrations_activities_activity_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
-    meta:
-      id: 7
-      junction_field: registration
-      many_collection: registrations_activities
-      many_field: activity
-      one_allowed_collections: null
-      one_collection: activities
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: registrations
-      sort_field: null
   - collection: registrations
     field: room
     related_collection: rooms
@@ -1352,16 +1301,15 @@ relations:
       on_update: NO ACTION
       on_delete: SET NULL
     meta:
-      id: 5
-      junction_field: null
       many_collection: registrations
       many_field: room
-      one_allowed_collections: null
       one_collection: rooms
-      one_collection_field: null
-      one_deselect_action: nullify
       one_field: guests
+      one_collection_field: null
+      one_allowed_collections: null
+      junction_field: null
       sort_field: null
+      one_deselect_action: nullify
   - collection: registrations
     field: group
     related_collection: groups
@@ -1374,16 +1322,15 @@ relations:
       on_update: NO ACTION
       on_delete: CASCADE
     meta:
-      id: 3
-      junction_field: null
       many_collection: registrations
       many_field: group
-      one_allowed_collections: null
       one_collection: groups
-      one_collection_field: null
-      one_deselect_action: nullify
       one_field: registrations
+      one_collection_field: null
+      one_allowed_collections: null
+      junction_field: null
       sort_field: null
+      one_deselect_action: nullify
   - collection: rooms
     field: group
     related_collection: groups
@@ -1396,13 +1343,54 @@ relations:
       on_update: NO ACTION
       on_delete: CASCADE
     meta:
-      id: 4
-      junction_field: null
       many_collection: rooms
       many_field: group
-      one_allowed_collections: null
       one_collection: groups
-      one_collection_field: null
-      one_deselect_action: nullify
       one_field: rooms
+      one_collection_field: null
+      one_allowed_collections: null
+      junction_field: null
       sort_field: null
+      one_deselect_action: nullify
+  - collection: registrations_activities
+    field: registration
+    related_collection: registrations
+    schema:
+      table: registrations_activities
+      column: registration
+      foreign_key_table: registrations
+      foreign_key_column: id
+      constraint_name: registrations_activities_registration_foreign
+      on_update: NO ACTION
+      on_delete: CASCADE
+    meta:
+      many_collection: registrations_activities
+      many_field: registration
+      one_collection: registrations
+      one_field: activities
+      one_collection_field: null
+      one_allowed_collections: null
+      junction_field: activity
+      sort_field: null
+      one_deselect_action: delete
+  - collection: registrations_activities
+    field: activity
+    related_collection: activities
+    schema:
+      table: registrations_activities
+      column: activity
+      foreign_key_table: activities
+      foreign_key_column: id
+      constraint_name: registrations_activities_activity_foreign
+      on_update: NO ACTION
+      on_delete: CASCADE
+    meta:
+      many_collection: registrations_activities
+      many_field: activity
+      one_collection: activities
+      one_field: registrations
+      one_collection_field: null
+      one_allowed_collections: null
+      junction_field: registration
+      sort_field: null
+      one_deselect_action: nullify
