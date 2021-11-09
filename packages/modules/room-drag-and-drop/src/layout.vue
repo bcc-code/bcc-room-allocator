@@ -66,7 +66,7 @@ export default {
       <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         <div class="relative flex items-center justify-between h-16">
           <!-- Logo section -->
-          <a href="/admin/collections" class="flex items-center px-2 lg:px-0 xl:w-64">
+          <a href="/admin/content/registrations" class="flex items-center px-2 lg:px-0 xl:w-64">
             <div class="flex-shrink-0">
               <svg class="h-8 w-auto" viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="500" cy="500" r="500" fill="white"/>
