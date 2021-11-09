@@ -1,22 +1,26 @@
 {
   "name": "bcc-room-allocator",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "",
   "main": "index.js",
   "engines": {
     "node": "16.x.x"
   },
+  "watch": {
+    "start": "extensions/*"
+  },
   "scripts": {
-    "local": "NODE_TLS_REJECT_UNAUTHORIZED=0 directus start",
-    "start": "directus start",
-    "poststart": "directus database migrate:latest && directus schema apply ./schema.yaml",
+    "local": "NODE_TLS_REJECT_UNAUTHORIZED=0 npm-watch start",
+    "start": "TZ=UTC directus start",
+    "prestart": "directus database migrate:latest && directus schema apply ./schema.yaml --yes",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "directus": "9.0.0-rc.94",
-    "mysql": "^2.18.1"
+    "directus": "^9.0.0",
+    "mysql": "^2.18.1",
+    "npm-watch": "^0.11.0"
   }
 }
