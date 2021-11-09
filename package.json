@@ -11,7 +11,7 @@
   },
   "scripts": {
     "local": "NODE_TLS_REJECT_UNAUTHORIZED=0 npm-watch start",
-    "start": "TZ=UTC directus start",
+    "start": "directus start",
     "prestart": "directus database migrate:latest && directus schema apply ./schema.yaml --yes",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
