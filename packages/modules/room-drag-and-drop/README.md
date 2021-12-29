@@ -1,7 +1,9 @@
-# Vue 3 + Vite
+## Room Allocator module for BCC Event Rooms
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is the drag and drop room allocator installed as a module in the main application
 
-## Recommended IDE Setup
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+### Build and publish to main project
+
+ - `npm install`
+ - `npm run deploy`

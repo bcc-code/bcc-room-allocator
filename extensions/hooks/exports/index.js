@@ -111,7 +111,7 @@ module.exports = function registerHook({action, filter}, { services }) {
         }
     }
 
-    action('exports.items.create', async ({ key, collection}, context) => {
+    action('exports.items.create', async ({ key }, context) => {
         return runExport(key, context)
     })
 
