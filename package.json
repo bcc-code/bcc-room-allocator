@@ -1,6 +1,6 @@
 {
   "name": "bcc-room-allocator",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "main": "index.js",
   "engines": {
@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "directus": "^9.4.1",
+    "directus": "^9.4.2",
     "mysql": "^2.18.1",
     "npm-watch": "^0.11.0"
   }

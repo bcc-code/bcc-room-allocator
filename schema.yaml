@@ -23,7 +23,7 @@ collections:
       unarchive_value: null
     schema:
       name: activities
-      schema: bcc-room-allocator
+      schema: room_allocator_db
       comment: ''
       collation: utf8mb4_0900_ai_ci
       engine: InnoDB
@@ -49,7 +49,7 @@ collections:
       unarchive_value: published
     schema:
       name: exports
-      schema: bcc-room-allocator
+      schema: room_allocator_db
       comment: ''
       collation: utf8mb4_0900_ai_ci
       engine: InnoDB
@@ -75,7 +75,7 @@ collections:
       unarchive_value: null
     schema:
       name: group_users
-      schema: bcc-room-allocator
+      schema: room_allocator_db
       comment: ''
       collation: utf8mb4_0900_ai_ci
       engine: InnoDB
@@ -101,7 +101,7 @@ collections:
       unarchive_value: null
     schema:
       name: groups
-      schema: bcc-room-allocator
+      schema: room_allocator_db
       comment: ''
       collation: utf8mb4_0900_ai_ci
       engine: InnoDB
@@ -127,7 +127,7 @@ collections:
       unarchive_value: '1'
     schema:
       name: registrations
-      schema: bcc-room-allocator
+      schema: room_allocator_db
       comment: ''
       collation: utf8mb4_0900_ai_ci
       engine: InnoDB
@@ -153,7 +153,7 @@ collections:
       unarchive_value: null
     schema:
       name: registrations_activities
-      schema: bcc-room-allocator
+      schema: room_allocator_db
       comment: ''
       collation: utf8mb4_0900_ai_ci
       engine: InnoDB
@@ -179,7 +179,7 @@ collections:
       unarchive_value: null
     schema:
       name: rooms
-      schema: bcc-room-allocator
+      schema: room_allocator_db
       comment: ''
       collation: utf8mb4_0900_ai_ci
       engine: InnoDB
@@ -294,7 +294,7 @@ fields:
       field: change_since
       group: null
       hidden: false
-      interface: datetime
+      interface: date-picker
       note: Leave empty if you want to export all changes since the last export
       options: null
       readonly: false
@@ -1257,6 +1257,43 @@ fields:
       translations: null
       width: full
   - collection: rooms
+    field: arrival
+    type: timestamp
+    schema:
+      name: arrival
+      table: rooms
+      data_type: timestamp
+      default_value: null
+      generation_expression: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: rooms
+      conditions: null
+      display: null
+      display_options: null
+      field: arrival
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      width: half
+  - collection: rooms
     field: capacity
     type: integer
     schema:
@@ -1294,6 +1331,84 @@ fields:
       required: true
       sort: 4
       special: null
+      translations: null
+      width: full
+  - collection: rooms
+    field: departure
+    type: timestamp
+    schema:
+      name: departure
+      table: rooms
+      data_type: timestamp
+      default_value: null
+      generation_expression: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: rooms
+      conditions: null
+      display: null
+      display_options: null
+      field: departure
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      width: half
+  - collection: rooms
+    field: features
+    type: json
+    schema:
+      name: features
+      table: rooms
+      data_type: json
+      default_value: null
+      generation_expression: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: rooms
+      conditions: null
+      display: null
+      display_options: null
+      field: features
+      group: null
+      hidden: false
+      interface: select-multiple-checkbox
+      note: null
+      options:
+        choices:
+          - text: For disabled
+            value: handicapped
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - json
       translations: null
       width: full
   - collection: rooms
@@ -1530,13 +1645,13 @@ fields:
         template: '{{id}}'
       readonly: false
       hidden: false
-      sort: 5
+      sort: 1
       width: full
       translations: null
       note: null
       conditions: null
       required: false
-      group: null
+      group: accordion-f-tsvw
   - collection: groups
     field: rooms
     type: alias
@@ -1548,20 +1663,21 @@ fields:
         - o2m
       interface: list-o2m
       options:
-        template: "{{name}}\_{{capacity}}"
+        filter: null
+        template: "{{name}}\_{{capacity}}\_{{id}}"
         enableCreate: false
       display: related-values
       display_options:
         template: '{{id}}'
       readonly: false
       hidden: false
-      sort: null
+      sort: 2
       width: full
       translations: null
       note: null
       conditions: null
       required: false
-      group: null
+      group: accordion-f-tsvw
   - collection: rooms
     field: guests
     type: alias
@@ -1690,111 +1806,51 @@ fields:
       conditions: null
       required: false
       group: null
+  - collection: groups
+    field: accordion-f-tsvw
+    type: alias
+    schema: null
+    meta:
+      collection: groups
+      field: accordion-f-tsvw
+      special:
+        - alias
+        - no-data
+        - group
+      interface: group-accordion
+      options: null
+      display: null
+      display_options: null
+      readonly: false
+      hidden: false
+      sort: 5
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
 relations:
-  - collection: rooms
-    field: group
-    related_collection: groups
+  - collection: exports
+    field: file
+    related_collection: directus_files
     schema:
-      table: rooms
-      column: group
-      foreign_key_table: groups
+      table: exports
+      column: file
+      foreign_key_table: directus_files
       foreign_key_column: id
-      constraint_name: rooms_group_foreign
+      constraint_name: exports_file_foreign
       on_update: NO ACTION
-      on_delete: CASCADE
+      on_delete: SET NULL
     meta:
       junction_field: null
-      many_collection: rooms
-      many_field: group
+      many_collection: exports
+      many_field: file
       one_allowed_collections: null
-      one_collection: groups
+      one_collection: directus_files
       one_collection_field: null
       one_deselect_action: nullify
-      one_field: rooms
-      sort_field: null
-  - collection: registrations_activities
-    field: registration
-    related_collection: registrations
-    schema:
-      table: registrations_activities
-      column: registration
-      foreign_key_table: registrations
-      foreign_key_column: id
-      constraint_name: registrations_activities_registration_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
-    meta:
-      junction_field: activity
-      many_collection: registrations_activities
-      many_field: registration
-      one_allowed_collections: null
-      one_collection: registrations
-      one_collection_field: null
-      one_deselect_action: delete
-      one_field: activities
-      sort_field: null
-  - collection: registrations_activities
-    field: activity
-    related_collection: activities
-    schema:
-      table: registrations_activities
-      column: activity
-      foreign_key_table: activities
-      foreign_key_column: id
-      constraint_name: registrations_activities_activity_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
-    meta:
-      junction_field: registration
-      many_collection: registrations_activities
-      many_field: activity
-      one_allowed_collections: null
-      one_collection: activities
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: registrations
-      sort_field: null
-  - collection: group_users
-    field: user
-    related_collection: directus_users
-    schema:
-      table: group_users
-      column: user
-      foreign_key_table: directus_users
-      foreign_key_column: id
-      constraint_name: group_users_user_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
-    meta:
-      junction_field: group
-      many_collection: group_users
-      many_field: user
-      one_allowed_collections: null
-      one_collection: directus_users
-      one_collection_field: null
-      one_deselect_action: nullify
-      one_field: groups
-      sort_field: null
-  - collection: group_users
-    field: group
-    related_collection: groups
-    schema:
-      table: group_users
-      column: group
-      foreign_key_table: groups
-      foreign_key_column: id
-      constraint_name: group_users_group_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
-    meta:
-      junction_field: user
-      many_collection: group_users
-      many_field: group
-      one_allowed_collections: null
-      one_collection: groups
-      one_collection_field: null
-      one_deselect_action: delete
-      one_field: users
+      one_field: null
       sort_field: null
   - collection: exports
     field: user_created
@@ -1817,26 +1873,110 @@ relations:
       one_deselect_action: nullify
       one_field: null
       sort_field: null
-  - collection: exports
-    field: file
-    related_collection: directus_files
+  - collection: group_users
+    field: group
+    related_collection: groups
     schema:
-      table: exports
-      column: file
-      foreign_key_table: directus_files
+      table: group_users
+      column: group
+      foreign_key_table: groups
       foreign_key_column: id
-      constraint_name: exports_file_foreign
+      constraint_name: group_users_group_foreign
       on_update: NO ACTION
-      on_delete: SET NULL
+      on_delete: CASCADE
     meta:
-      junction_field: null
-      many_collection: exports
-      many_field: file
+      junction_field: user
+      many_collection: group_users
+      many_field: group
       one_allowed_collections: null
-      one_collection: directus_files
+      one_collection: groups
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: users
+      sort_field: null
+  - collection: group_users
+    field: user
+    related_collection: directus_users
+    schema:
+      table: group_users
+      column: user
+      foreign_key_table: directus_users
+      foreign_key_column: id
+      constraint_name: group_users_user_foreign
+      on_update: NO ACTION
+      on_delete: CASCADE
+    meta:
+      junction_field: group
+      many_collection: group_users
+      many_field: user
+      one_allowed_collections: null
+      one_collection: directus_users
       one_collection_field: null
       one_deselect_action: nullify
-      one_field: null
+      one_field: groups
+      sort_field: null
+  - collection: registrations_activities
+    field: activity
+    related_collection: activities
+    schema:
+      table: registrations_activities
+      column: activity
+      foreign_key_table: activities
+      foreign_key_column: id
+      constraint_name: registrations_activities_activity_foreign
+      on_update: NO ACTION
+      on_delete: CASCADE
+    meta:
+      junction_field: registration
+      many_collection: registrations_activities
+      many_field: activity
+      one_allowed_collections: null
+      one_collection: activities
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: registrations
+      sort_field: null
+  - collection: registrations_activities
+    field: registration
+    related_collection: registrations
+    schema:
+      table: registrations_activities
+      column: registration
+      foreign_key_table: registrations
+      foreign_key_column: id
+      constraint_name: registrations_activities_registration_foreign
+      on_update: NO ACTION
+      on_delete: CASCADE
+    meta:
+      junction_field: activity
+      many_collection: registrations_activities
+      many_field: registration
+      one_allowed_collections: null
+      one_collection: registrations
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: activities
+      sort_field: null
+  - collection: registrations
+    field: group
+    related_collection: groups
+    schema:
+      table: registrations
+      column: group
+      foreign_key_table: groups
+      foreign_key_column: id
+      constraint_name: registrations_group_foreign
+      on_update: NO ACTION
+      on_delete: CASCADE
+    meta:
+      junction_field: null
+      many_collection: registrations
+      many_field: group
+      one_allowed_collections: null
+      one_collection: groups
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: registrations
       sort_field: null
   - collection: registrations
     field: room
@@ -1859,24 +1999,24 @@ relations:
       one_deselect_action: nullify
       one_field: guests
       sort_field: null
-  - collection: registrations
+  - collection: rooms
     field: group
     related_collection: groups
     schema:
-      table: registrations
+      table: rooms
       column: group
       foreign_key_table: groups
       foreign_key_column: id
-      constraint_name: registrations_group_foreign
+      constraint_name: rooms_group_foreign
       on_update: NO ACTION
       on_delete: CASCADE
     meta:
       junction_field: null
-      many_collection: registrations
+      many_collection: rooms
       many_field: group
       one_allowed_collections: null
       one_collection: groups
       one_collection_field: null
       one_deselect_action: nullify
-      one_field: registrations
+      one_field: rooms
       sort_field: null
