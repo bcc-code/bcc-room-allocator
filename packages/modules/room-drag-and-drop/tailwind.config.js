@@ -7,6 +7,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'prime-lighter': '#CCDCDA',
+        'prime-lightest': '#E6EDED',
         'bcc-green': '#004E48',
         'bcc-green-90': 'rgba(0, 78, 72, 0.9)',
         'bcc-green-80': 'rgba(0, 78, 72, 0.8)',

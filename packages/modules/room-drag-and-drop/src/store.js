@@ -4,12 +4,14 @@ import mockRooms from "./mock-data/mockRooms";
 import mockActivities from "./mock-data/mockActivities";
 import mockGroups from "./mock-data/mockGroups";
 import AutoAssign from "./room-algorithm";
+import mockEvents from "./mock-data/mockEvents";
 
 class store {
     state = reactive({
         loading: 0,
         user: null,
-        group: {id: 0, name: ''},
+        event: null,
+        group: null,
         groups: {},
         rooms: null,
         activities: {},
@@ -51,6 +53,32 @@ class store {
         }
     }
 
+    async loadEvents() {
+        const loading = this.loader()
+        try {
+            this.state.events = null
+
+            if (this.api) {
+                const params = new URLSearchParams({
+                    limit: -1,
+                    fields: [
+                        'id', 'title', 'start_date'
+                    ]
+                })
+
+                await this.api.get(`/items/events?${params}`).then((res) => {
+                    this.state.events = res.data.data.sort((a,b) => a.start_date > b.start_date ? 1 : -1)
+                });
+            } else {
+                this.state.events = mockEvents
+            }
+        } catch (err) {
+            console.error(err)
+        }
+
+        loading.finished()
+    }
+
     setGroup(group) {
         if (group.id && group.id != this.state.group?.id) {
             this.state.group = group
@@ -62,25 +90,21 @@ class store {
     async loadGroups() {
         const loading = this.loader()
         try {
-            this.state.events = null
-
-            const params = new URLSearchParams({
-                limit: -1,
-                fields: [
-                    'id', 'name'
-                ]
-            })
+            this.state.groups = null
 
             if (this.api) {
+                const params = new URLSearchParams({
+                    limit: -1,
+                    fields: [
+                        'id', 'name'
+                    ]
+                })
+
                 await this.api.get(`/items/groups?${params}`).then((res) => {
                     this.state.groups = res.data.data.sort((a,b) => a.name > b.name ? 1 : -1)
                 });
             } else {
                 this.state.groups = mockGroups
-            }
-
-            if (this.state.groups.length) {
-                this.setGroup(this.state.groups[0])
             }
         } catch (err) {
             console.error(err)
@@ -93,14 +117,14 @@ class store {
         const loading = this.loader()
         try {
             this.state.activities = null
-            const params = new URLSearchParams({
-                limit: -1,
-                fields: [
-                    'id', 'name'
-                ]
-            })
-
             if (this.api) {
+                const params = new URLSearchParams({
+                    limit: -1,
+                    fields: [
+                        'id', 'name'
+                    ]
+                })
+
                 await this.api.get(`/items/activities?${params}`).then((res) => {
                     const activities = {}
                     res.data.data.forEach(activity => activities[activity.id] = activity);
@@ -123,17 +147,19 @@ class store {
             this.state.boys = null
             this.state.girls = null
             if (groupId) {
-                const params = new URLSearchParams({
-                    limit: -1,
-                    filter: JSON.stringify({
-                        group: {
-                            _eq: groupId
-                        }
-                    }),
-                    fields: ['*', 'activities.activity']
-                })
-
                 if (this.api) {
+                    const params = new URLSearchParams({
+                        limit: -1,
+                        filter: JSON.stringify({
+                            group: {
+                                _eq: groupId
+                            },
+                            event: {
+                                _eq: this.state.event.id
+                            }
+                        }),
+                        fields: ['*', 'activities.activity']
+                    })
                     await this.api.get(`/items/registrations?${params}`).then((res) => {
                         this.state.registrations = res.data.data.map(reg => ({
                             ...reg,
@@ -161,6 +187,9 @@ class store {
                     filter: JSON.stringify({
                         group: {
                             _eq: groupId
+                        },
+                        event: {
+                            _eq: this.state.event.id
                         }
                     }),
                     fields: ['*']
@@ -223,7 +252,39 @@ class store {
         loading.finished()
     }
 
+    async updateRoom (room, data) {
+        const loading = this.loader()
+        try {
+            if (this.api) {
+                await this.api.patch(`/items/rooms/${room.id}`, data).then((res) => {
+                    Object.entries(res.data.data).forEach(([key, value]) => {
+                        room[key] = value
+                    })
+                });
+            } else {
+                Object.entries(data).forEach(([key, value]) => {
+                    room[key] = value
+                })
+            }
+        } catch (err) {
+            console.error(err)
+        }
+        loading.finished()
+    }
 
+    async toggleComplete(roomId) {
+        if (this.busy) { return }
+        this.busy = true
+
+        const room = this.state.rooms.find(r => r.id == roomId)
+        if (! room) throw new Error('Room not found')
+
+        await this.updateRoom(room, {
+            is_complete: !room.is_complete
+        })
+
+        this.busy = false
+    }
 
     async magicAssign(registrations, allowOverbooking) {
         if (this.busy) { return }

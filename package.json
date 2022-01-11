@@ -11,14 +11,17 @@
   },
   "scripts": {
     "local": "NODE_TLS_REJECT_UNAUTHORIZED=0 npm-watch start",
-    "start": "directus start",
+    "start": "node node_modules/directus/dist/cli/run.js start",
+    "snapshot": "node node_modules/directus/dist/cli/run.js schema snapshot ./schema.yaml --yes --format yaml",
+    "apply": "node node_modules/directus/dist/cli/run.js schema apply ./schema.yaml --yes",
+    "migrate": "node node_modules/directus/dist/cli/run.js database migrate:latest",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "directus": "^9.4.2",
+    "directus": "^9.4.3",
     "mysql": "^2.18.1",
     "npm-watch": "^0.11.0"
   }

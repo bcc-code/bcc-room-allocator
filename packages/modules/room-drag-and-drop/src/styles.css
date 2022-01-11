@@ -4,18 +4,17 @@
 
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
-.slide-fade-enter-active {
-    transition: all 0.2s ease-in;
-}
-
+.slide-fade-enter-active,
 .slide-fade-leave-active {
-    transition: all 0.4s ease-out;
+    transition: all 0.4s ease;
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-    transform: translateX(20px);
+    transform: translateY(20px);
     opacity: 0;
+    position: absolute;
+    top: 0;
 }
 
 /* width */

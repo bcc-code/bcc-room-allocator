@@ -1,24 +1,30 @@
 <script>
 import Registration from "./Registration.vue";
 import Draggable from "vuedraggable";
-import {XIcon} from "@heroicons/vue/outline";
+import {XIcon, CheckCircleIcon, ExclamationCircleIcon, CalendarIcon} from "@heroicons/vue/outline";
 
 export default {
   components: {
     Registration,
     Draggable,
-    XIcon
+    XIcon, CheckCircleIcon, ExclamationCircleIcon, CalendarIcon
   },
   props: {
     id: [String, Number],
     name: String,
     capacity: Number,
-    gender: String
+    gender: String,
+    arrival: Date,
+    departure: Date,
+    is_complete: Boolean,
+    is_reviewed: Boolean,
   },
   inject: ['bcc_store'],
-  data: () => ({
-    collapse: false
-  }),
+  data() {
+    return {
+      collapse: false
+    }
+  },
   computed: {
     state () {
       return this.bcc_store.state
@@ -33,7 +39,6 @@ export default {
       set (value) {
         value.filter(reg => reg.room !== this.id).forEach(reg => {
           if (this.canAdd(reg)) {
-            this.collapse = false
             this.bcc_store.setRoom(reg.id, this.id)
           }
         })
@@ -45,9 +50,15 @@ export default {
     currentGender () {
       return this.gender || this.guests[0]?.gender || null
     },
+    dateInfo () {
+      const a = this.arrival ? new Date(this.arrival) : null
+      const d = this.departure ? new Date(this.departure) : null
+      return `${a ? a.getDate() : ''} - ${d ? d.getDate() : ''}`
+    },
     isInsertableGroup () {
+      if (this.is_complete) return false
       return this.state.selectGroup == `${this.id}-${this.currentGender}` ||
-          (this.currentGender || this.state.selectGroup.indexOf(this.currentGender) < 0)
+          (this.currentGender && this.state.selectGroup.indexOf(this.currentGender) < 0)
     },
     statusClass () {
       let bgFrom = ''
@@ -56,17 +67,18 @@ export default {
       let text = 'text-gray-600'
       let pointer = ''
 
-      if (this.currentGender == 'Male') {
+      if (this.currentGender === 'male') {
         text = 'text-white'
-        bgFrom = 'from-blue-500'
+        bgFrom = this.is_complete ? 'from-indigo-600' : 'from-blue-500'
         bgTo = this.count < this.capacity ? 'to-blue-400' : 'to-blue-600'
         border = 'border-blue-400'
-      } else if (this.currentGender == 'Female') {
+      } else if (this.currentGender === 'female') {
         text = 'text-white'
-        bgFrom = 'from-pink-500'
+        bgFrom = this.is_complete ? 'from-purple-500' : 'from-pink-500'
         bgTo = this.count < this.capacity ? 'to-pink-400' : 'to-pink-600'
         border = 'border-pink-400'
       }
+
       if (this.count > this.capacity) {
         border = 'border-red-600'
       }
@@ -80,13 +92,13 @@ export default {
   },
   methods: {
     canAdd(reg) {
-      return ! this.currentGender || reg.gender === this.currentGender
+      if (this.is_complete) return false
+      return !this.currentGender || reg.gender === this.currentGender
     },
     execute () {
       let selection = this.state.selection
-      this.collapse = ! this.collapse
       if (selection.length) {
-        this.collapse = false
+        if (this.is_complete) { return alert('Cannot edit while room is marked as completed') }
         const roomId = this.isInsertableGroup ? null : this.id
         selection.forEach((id) => {
           this.bcc_store.setRoom(id, roomId)
@@ -94,9 +106,25 @@ export default {
       }
     },
     clear () {
+      if (this.is_complete) { return alert('Cannot clear while room is marked as completed') }
       this.guests.forEach(reg => {
         this.bcc_store.setRoom(reg.id, null)
       })
+    },
+    toggleComplete () {
+      if (! this.is_complete) {
+        if (! this.guests.some(reg => reg.age > 18)) {
+          return alert('Room can not be completed without an adult above 18 years old.')
+        }
+
+        if (! confirm('Are you sure you want to mark this room as completed?')) {
+          return
+        }
+      } else if (! confirm('Are you sure you want to mark this room as incomplete?')) {
+        return
+      }
+
+      this.bcc_store.toggleComplete(this.id)
     }
   }
 }
@@ -106,16 +134,14 @@ export default {
   <div class="bi-avoid-column py-1">
     <div class="rounded-lg shadow flex flex-col">
       <button @click="execute"
-              class="bg-gradient-to-br  border-b-2 rounded-t-lg flex justify-between items-center text-sm overflow-hidden"
+              @dblclick.capture="collapse = !collapse"
+              class="bg-gradient-to-br border-b-2 rounded-t-lg flex justify-between items-center text-sm overflow-hidden"
               :class="statusClass">
         <div class="flex items-center p-2 py-4 md:px-4">
-          <svg v-if="collapse" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-          </svg>
-          <svg v-else class="h-5 w-5 opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-          </svg>
+          <button @click.prevent.capture="toggleComplete">
+            <CheckCircleIcon v-if="is_complete" class="h-5 w-5" />
+            <ExclamationCircleIcon v-else class="h-5 w-5" />
+          </button>
           <p class="font-medium ml-1">{{ name }}</p>
         </div>
         <div class="cursor-move flex items-center flex-shrink-0 relative room-handle block shadow rounded-l-full p-2 py-4 md:px-4">
@@ -138,10 +164,16 @@ export default {
             <Registration v-bind="element" :key="element.id" can-clear />
           </template>
         </Draggable>
-        <div class="p-2">
+        <div class="flex items-center justify-between p-2">
+          <button
+              @click="$emit('edit')"
+              class="flex items-center px-2 text-xs py-1 text-gray-800 bg-gray-100 rounded-full">
+            <CalendarIcon class="w-4"/>
+            <span v-if="dateInfo" class="ml-1">{{ dateInfo }}</span>
+          </button>
           <button v-if="count > 1"
                   @click="clear"
-                  class="flex items-center ml-auto px-2 text-xs py-1 text-red-800 bg-red-100 rounded-full">
+                  class="flex items-center px-2 text-xs py-1 text-red-800 bg-red-100 rounded-full">
             Remove all
             <XIcon class="rounded-full ml-2 w-4 h-4" />
           </button>
@@ -149,5 +181,4 @@ export default {
       </div>
     </div>
   </div>
-
 </template>

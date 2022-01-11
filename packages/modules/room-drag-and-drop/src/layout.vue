@@ -1,62 +1,38 @@
-
-<script>
+<script setup>
+import {computed, inject, ref} from "vue";
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { SearchIcon, SparklesIcon } from '@heroicons/vue/solid'
 import { MenuAlt1Icon, XIcon } from '@heroicons/vue/outline'
 import Draggable from "vuedraggable";
 import Registration from "./components/Registration.vue";
 
-export default {
-  components: {
-    Disclosure,
-    DisclosureButton,
-    DisclosurePanel,
-    Menu,
-    MenuButton,
-    MenuItem,
-    MenuItems,
-    MenuAlt1Icon,
-    SearchIcon,
-    XIcon,
-    SparklesIcon,
-    Draggable,
-    Registration,
-  },
-  data () {
-    return {
-      overbook: false,
-    }
-  },
-  computed: {
-    state () {
-      return this.bcc_store.state
-    },
-    activities () {
-      return this.state.activities
-    },
-    registrations () {
-      let filters = this.state.filteredActivities
-      if (filters.length) {
-        return this.state.registrations.filter(reg => filters.find((value) => reg.activities.indexOf(value) > -1))
-      }
-      return this.state.registrations
-    },
-    boys () {
-      return this.registrations?.filter(reg => reg.gender == 'Male' && !reg.room)
-    },
-    girls () {
-      return this.registrations?.filter(reg => reg.gender == 'Female' && !reg.room)
-    },
-    groups () {
-      return this.state.groups || {}
-    },
-    group: {
-      get () { return this.state.group },
-      set (value) { this.bcc_store.setGroup(value) }
-    }
-  },
-  inject: ['bcc_store'],
-}
+const overbook = ref(false)
+
+const BccStore = inject('bcc_store')
+
+const activities = computed(() => {
+  return BccStore.state.activities
+})
+const registrations = computed(() => {
+  let filters = BccStore.state.filteredActivities
+  if (filters.length) {
+    return BccStore.state.registrations.filter(reg => filters.find((value) => reg.activities.indexOf(value) > -1))
+  }
+  return BccStore.state.registrations
+})
+const boys = computed(() => {
+  return registrations.value?.filter(reg => reg.gender === 'male' && !reg.room)
+})
+const girls = computed(() => {
+  return registrations.value?.filter(reg => reg.gender === 'female' && !reg.room)
+})
+const groups = computed(() => {
+  return BccStore.state.groups || {}
+})
+const group = computed(({
+  get () { return BccStore.state.group },
+  set (value) { BccStore.setGroup(value) }
+}))
 </script>
 
 <template>
@@ -79,20 +55,22 @@ export default {
             </div>
           </a>
 
+          <h1 class="font-semibold text-prime-lightest px-2">{{ BccStore.state.event.title }}</h1>
+
           <!-- Search section -->
           <div class="flex-1 flex items-center justify-center lg:justify-end">
-            <div v-if="state.group && state.group.id" class="w-full px-2 lg:px-6">
+            <div v-if="BccStore.state.group && BccStore.state.group.id" class="w-full px-2 lg:px-6">
               <label for="search" class="sr-only">Search by name or id</label>
               <div class="relative text-gray-200 focus-within:text-gray-400">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <SearchIcon class="h-5 w-5" aria-hidden="true" />
                 </div>
-                <input id="search" name="search" v-model="state.search" class="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-400 bg-opacity-25 text-gray-100 placeholder-gray-200 focus:outline-none focus:bg-white focus:ring-0 focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm" placeholder="Search" type="search" />
+                <input id="search" name="search" v-model="BccStore.state.search" class="block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-400 bg-opacity-25 text-gray-100 placeholder-gray-200 focus:outline-none focus:bg-white focus:ring-0 focus:placeholder-gray-400 focus:text-gray-900 sm:text-sm" placeholder="Search" type="search" />
               </div>
             </div>
             <Menu as="div" class="ml-3 relative">
               <MenuButton class="max-w-xs py-1 px-2 text-gray-100 flex items-center text-sm rounded-full focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-100">
-                <svg v-if="state.filteredActivities.length" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                <svg v-if="BccStore.state.filteredActivities.length" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                   <path fill-rule="evenodd" d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z" clip-rule="evenodd" />
                 </svg>
                 <svg v-else class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -104,7 +82,7 @@ export default {
                 <MenuItems class="origin-top-right absolute z-10 mt-2 w-48 max-h-64 overflow-y-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                   <MenuItem v-for="item in activities" :key="item.id">
                     <label :for="'act'+item.id" class="block bg-gray-100 rounded-md w-full py-2 px-4 text-sm flex items-center">
-                      <input :id="'act'+item.id" v-model="state.filteredActivities" :value="item.id" type="checkbox"
+                      <input :id="'act'+item.id" v-model="BccStore.state.filteredActivities" :value="item.id" type="checkbox"
                              class="focus:ring-gray-500 h-4 w-4 mr-2 text-gray-600 border-gray-300 rounded" />
                       <p>{{ item.name }}</p>
                     </label>
@@ -113,15 +91,16 @@ export default {
               </transition>
             </Menu>
           </div>
+
+          <!-- Mobile menu button -->
           <div class="flex lg:hidden">
-            <!-- Mobile menu button -->
             <DisclosureButton class="bg-bcc-green inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-bcc-green focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-offset-gray-600 focus:ring-white">
               <span class="sr-only">Open main menu</span>
               <MenuAlt1Icon v-if="!open" class="block h-6 w-6" aria-hidden="true" />
               <XIcon v-else class="block h-6 w-6" aria-hidden="true" />
             </DisclosureButton>
           </div>
-          <!-- Links section -->
+
           <div class="hidden lg:block lg:w-80">
             <div class="flex items-center justify-end">
               <!-- Group Selector -->
@@ -135,8 +114,8 @@ export default {
                 <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
                   <MenuItems class="origin-top-right absolute z-10 right-0 mt-2 w-48 max-h-64 overflow-y-auto rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <MenuItem v-for="item in groups" :key="item.id">
-                      <button @click="bcc_store.setGroup(item)" :disabled="item.id == state.group.id"
-                              :class="item.id == state.group.id ? 'text-gray-900 bg-gray-300 font-medium' : 'text-gray-700'"
+                      <button @click="BccStore.setGroup(item)" :disabled="item.id == BccStore.state.group.id"
+                              :class="item.id == BccStore.state.group.id ? 'text-gray-900 bg-gray-300 font-medium' : 'text-gray-700'"
                               class="block bg-gray-100 rounded-md w-full py-2 px-4 text-sm focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-500">{{ item.name }}</button>
                     </MenuItem>
                   </MenuItems>
@@ -150,15 +129,15 @@ export default {
       <DisclosurePanel class="lg:hidden">
         <div class="px-2 pt-2 pb-3 flex flex-col items-center">
           <template v-for="item in groups" :key="item.id">
-            <button @click="bcc_store.setGroup(item)" :disabled="item.id == state.group.id"
-                    :class="item.id == state.group.id ? 'text-gray-600 bg-gray-100 font-medium' : 'bg-white text-gray-700'"
+            <button @click="BccStore.setGroup(item)" :disabled="item.id == BccStore.state.group.id"
+                    :class="item.id == BccStore.state.group.id ? 'text-gray-600 bg-gray-100 font-medium' : 'bg-white text-gray-700'"
                     class="block py-2 px-4 my-1 text-sm focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-gray-500">{{ item.name }}</button>
           </template>
         </div>
       </DisclosurePanel>
     </Disclosure>
 
-    <v-progress-linear :indeterminate="state.loading > 0" />
+    <v-progress-linear :indeterminate="BccStore.state.loading > 0" />
 
     <!-- 3 column wrapper -->
     <div class="flex-grow flex flex-col md:flex-row w-full max-w-7xl mx-auto xl:px-8 bg-gray-100">
@@ -166,7 +145,7 @@ export default {
       <div class="order-3 md:order-1 w-full md:w-1/3 lg:w-1/4 md:sticky top-0">
         <div class="h-full relative">
           <div class="sticky max-h-screen inset-0 p-6 overflow-hidden overflow-y-auto rounded-lg">
-            <button @click="bcc_store.magicAssign(boys, overbook)" type="button"
+            <button v-if="boys && boys.length" @click="BccStore.magicAssign(boys, overbook)" type="button"
                     class="flex items-center ml-auto mb-2 px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
               Auto assign
               <SparklesIcon class="ml-2 -mr-1 h-5 w-5"/>
@@ -205,7 +184,7 @@ export default {
       <div class="order-4 w-full md:w-1/3 lg:w-1/4 md:sticky top-0">
         <div class="h-full relative">
           <div class="sticky max-h-screen inset-0 p-6 overflow-hidden overflow-y-auto rounded-lg">
-            <button @click="bcc_store.magicAssign(girls, overbook)" type="button"
+            <button v-if="girls && girls.length" @click="BccStore.magicAssign(girls, overbook)" type="button"
                     class="flex items-center mr-auto mb-2 px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
               <SparklesIcon class="mr-2 -ml-1 h-5 w-5"/>
               Auto assign
