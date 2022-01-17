@@ -21,7 +21,7 @@ class store {
         search: '',
         selection: [],
         selected: {},
-        selectGroup: 'null',
+        selectGroup: '',
         filteredAge: {min: 0, max: 120},
         filteredActivities: [],
     })
@@ -282,6 +282,9 @@ class store {
         await this.updateRoom(room, {
             is_complete: !room.is_complete
         })
+
+        this.state.selectGroup = ''
+        this.state.selected = {}
 
         this.busy = false
     }

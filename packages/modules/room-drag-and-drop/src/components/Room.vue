@@ -57,7 +57,7 @@ export default {
     },
     isInsertableGroup () {
       if (this.is_complete) return false
-      return this.state.selectGroup == `${this.id}-${this.currentGender}` ||
+      return this.state.selectGroup === `${this.id}-${this.currentGender}` ||
           (this.currentGender && this.state.selectGroup.indexOf(this.currentGender) < 0)
     },
     statusClass () {
@@ -161,7 +161,7 @@ export default {
             handle=".handle"
             item-key="id">
           <template #item="{ element, index }">
-            <Registration v-bind="element" :key="element.id" can-clear />
+            <Registration v-bind="element" :key="element.id" :can-edit="! is_complete" />
           </template>
         </Draggable>
         <div class="flex items-center justify-between p-2">

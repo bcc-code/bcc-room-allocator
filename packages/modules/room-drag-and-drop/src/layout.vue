@@ -158,7 +158,7 @@ const group = computed(({
                 handle=".handle"
             >
               <template #item="{ element, index }">
-                <Registration v-bind="element" :key="element.id" />
+                <Registration v-bind="element" :key="element.id" can-edit />
               </template>
             </Draggable>
           </div>
@@ -197,7 +197,7 @@ const group = computed(({
                 handle=".handle"
             >
               <template #item="{ element, index }">
-                <Registration v-bind="element" :key="element.id" />
+                <Registration v-bind="element" :key="element.id" can-edit />
               </template>
             </Draggable>
           </div>
