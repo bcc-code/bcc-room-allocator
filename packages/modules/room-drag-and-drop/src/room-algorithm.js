@@ -93,7 +93,13 @@ export default class AutoAssign {
 
         this.existingRegistrations.forEach(reg => {
             if (reg.room) {
-                this.addReg(reg, roomsMap.get(reg.room))
+                const room = roomsMap.get(reg.room)
+                if (room) {
+                    this.addReg(reg, )
+                } else {
+                    reg.room = null
+                }
+
             }
         })
 
