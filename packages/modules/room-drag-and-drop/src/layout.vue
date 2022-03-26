@@ -146,7 +146,8 @@ const group = computed(({
         <div class="h-full relative">
           <div class="sticky max-h-screen inset-0 p-6 overflow-hidden overflow-y-auto rounded-lg">
             <button v-if="boys && boys.length" @click="BccStore.magicAssign(boys, overbook)" type="button"
-                    class="flex items-center ml-auto mb-2 px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    :disabled="BccStore.state.loading"
+                    class="flex items-center ml-auto mb-2 px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50">
               Auto assign
               <SparklesIcon class="ml-2 -mr-1 h-5 w-5"/>
             </button>
@@ -185,7 +186,8 @@ const group = computed(({
         <div class="h-full relative">
           <div class="sticky max-h-screen inset-0 p-6 overflow-hidden overflow-y-auto rounded-lg">
             <button v-if="girls && girls.length" @click="BccStore.magicAssign(girls, overbook)" type="button"
-                    class="flex items-center mr-auto mb-2 px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+                    :disabled="BccStore.state.loading"
+                    class="flex items-center mr-auto mb-2 px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 disabled:opacity-50">
               <SparklesIcon class="mr-2 -ml-1 h-5 w-5"/>
               Auto assign
             </button>

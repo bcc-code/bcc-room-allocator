@@ -1,27 +1,34 @@
 {
   "name": "bcc-room-allocator",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "",
   "main": "index.js",
   "engines": {
     "node": "16.x.x"
   },
   "watch": {
-    "start": "extensions/*"
+    "devStart": {
+      "patterns": [
+        "extensions"
+      ],
+      "delay": 500
+    }
   },
   "scripts": {
-    "local": "NODE_TLS_REJECT_UNAUTHORIZED=0 npm-watch start",
+    "watch": "npm-watch",
     "start": "node node_modules/directus/dist/cli/run.js start",
+    "devStart": "npx kill-port 8080 && directus start",
     "snapshot": "node node_modules/directus/dist/cli/run.js schema snapshot ./schema.yaml --yes --format yaml",
     "apply": "node node_modules/directus/dist/cli/run.js schema apply ./schema.yaml --yes",
     "migrate": "node node_modules/directus/dist/cli/run.js database migrate:latest",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "rollback": "node node_modules/directus/dist/cli/run.js database migrate:down",
+    "test": "npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "directus": "^9.4.3",
+    "directus": "^9.6.0",
     "mysql": "^2.18.1",
     "npm-watch": "^0.11.0"
   }

@@ -95,7 +95,7 @@ export default class AutoAssign {
             if (reg.room) {
                 const room = roomsMap.get(reg.room)
                 if (room) {
-                    this.addReg(reg, )
+                    this.addReg(reg, room, this.getScore(room, reg))
                 } else {
                     reg.room = null
                 }
