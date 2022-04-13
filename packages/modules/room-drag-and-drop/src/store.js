@@ -9,6 +9,7 @@ import mockEvents from "./mock-data/mockEvents";
 class store {
     state = reactive({
         loading: 0,
+        status: '',
         user: null,
         event: null,
         group: null,
@@ -48,6 +49,7 @@ class store {
                 state.loading -= steps
                 if (state.loading < 1) {
                     state.loading = 0
+                    state.status = ''
                 }
             }
         }
@@ -295,13 +297,19 @@ class store {
         const loading = this.loader()
 
         try {
+            this.state.status = 'Starting up the magic...'
             const Assigner = new AutoAssign(this.state, registrations, allowOverbooking)
-            const solution = await Assigner.run()
+            const solution = await Assigner.run((status) => {
+                this.state.status = status
+            })
+            this.state.status = 'Assigning guests to their rooms...'
             solution.roomsMap.forEach((room, roomId) => {
                 room.guests.forEach(reg => this.setRoom(reg.id, roomId))
             })
+            this.state.status = 'Done!'
         } catch (err) {
             console.error(err)
+            this.state.status = 'Error: ' + err.message
         }
 
         loading.finished()

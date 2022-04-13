@@ -132,11 +132,11 @@ export default {
 
 <template>
   <div class="bi-avoid-column py-1">
-    <div class="rounded-lg shadow flex flex-col">
+    <div class="rounded-lg shadow flex flex-col border-l-4" :class="statusClass">
       <button @click="execute"
               @dblclick.capture="collapse = !collapse"
-              class="bg-gradient-to-br border-b-2 rounded-t-lg flex justify-between items-center text-sm overflow-hidden"
-              :class="statusClass">
+              class="rounded-t-lg bg-white text-black flex justify-between items-center overflow-hidden"
+              >
         <div class="flex items-center p-2 py-4 md:px-4">
           <button @click.prevent.capture="toggleComplete">
             <CheckCircleIcon v-if="is_complete" class="h-5 w-5" />

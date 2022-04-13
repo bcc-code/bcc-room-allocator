@@ -17,25 +17,26 @@ export default class AutoAssign {
         this.samples = samples || Math.ceil(registrations.length / 3) + 1
     }
 
-    async run () {
+    async run (statusCb = (msg) => {}) {
         let bestSolution = this.createSolution()
         if (! this.registrations.length) {
             return bestSolution
         }
-        console.log(-1, bestSolution.totalScore)
+        statusCb(`First initial solution: ${bestSolution.totalScore}`)
+
         const queue = []
         for (let i=0; i<this.samples; ++i) {
             queue.push(new Promise(resolve => {
                 setTimeout(() => {
                     const solution = this.createSolution()
-                    console.log(i, solution.totalScore)
 
                     if (solution.totalScore > bestSolution.totalScore) {
                         bestSolution = solution
+                        statusCb(`Better solution found #${i}: ${bestSolution.totalScore}`)
                     }
 
                     resolve(solution)
-                }, 100 * i)
+                }, 1000 * i)
             }))
         }
 
