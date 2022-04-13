@@ -303,9 +303,12 @@ class store {
                 this.state.status = status
             })
             this.state.status = 'Assigning guests to their rooms...'
-            solution.roomsMap.forEach((room, roomId) => {
-                room.guests.forEach(reg => this.setRoom(reg.id, roomId))
+            const Q = solution.roomsMap.map((room, roomId) => {
+                const q = room.guests.map(reg => this.setRoom(reg.id, roomId))
+                return Promise.all(q)
             })
+            await Promise.all(Q)
+
             this.state.status = 'Done!'
         } catch (err) {
             console.error(err)
