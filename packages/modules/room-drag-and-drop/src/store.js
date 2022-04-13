@@ -303,9 +303,9 @@ class store {
                 this.state.status = status
             })
             this.state.status = 'Assigning guests to their rooms...'
-            const Q = solution.roomsMap.map((room, roomId) => {
-                const q = room.guests.map(reg => this.setRoom(reg.id, roomId))
-                return Promise.all(q)
+            const Q = []
+            solution.roomsMap.forEach((room, roomId) => {
+                room.guests.forEach(reg => Q.push(this.setRoom(reg.id, roomId)))
             })
             await Promise.all(Q)
 
