@@ -68,7 +68,7 @@ export default {
 
     <div class="flex-1 leading-tight handle text-sm">
       <p class="font-medium text-gray-800" :title="id">{{ name }}</p>
-      <p class="text-gray-500">{{ subtitle }}</p>
+      <p class="w-full text-gray-500 overflow-ellipsis">{{ subtitle }}</p>
     </div>
     <div class="flex items-center">
       <p class="text-gray-400 text-sm">{{ age }}</p>

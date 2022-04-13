@@ -36,7 +36,7 @@ export default class AutoAssign {
                     }
 
                     resolve(solution)
-                }, 1000 * i)
+                }, 50 * i)
             }))
         }
 
