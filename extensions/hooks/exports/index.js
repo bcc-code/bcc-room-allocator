@@ -18,6 +18,7 @@ module.exports = function registerHook({action, filter}, { services }) {
             },
             fields: [
                 'id',
+                'person_id',
                 'group',
                 'room',
                 'date_updated'
@@ -55,7 +56,7 @@ module.exports = function registerHook({action, filter}, { services }) {
             if (regs.length) {
                 regs.forEach(r => {
                     json2csv.input.push({
-                        PersonId: r.id,
+                        PersonId: r.person_id,
                         TeamId: r.group,
                         RoomNo: r.room,
                         Updated: r.date_updated,

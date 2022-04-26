@@ -71,7 +71,7 @@ export default class AutoAssign {
                     return num + (room.activities[a] || 0)
                 }), 0) * 2
                 score += room.taken < room.capacity ? 2 : room.capacity - room.taken - 50
-                score += room.ageAvg ? (reg.age > (room.ageAvg * 1.5)) * 1 : 1
+                score += reg.age > room.ageAvg ? 1 : 0
 
                 return score
             }
