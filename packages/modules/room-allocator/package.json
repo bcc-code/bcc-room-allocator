@@ -1,0 +1,33 @@
+{
+	"name": "directus-extension-room-allocator",
+	"version": "1.0.0",
+	"keywords": [
+		"directus",
+		"directus-extension",
+		"directus-custom-module"
+	],
+	"directus:extension": {
+		"type": "module",
+		"path": "dist/index.js",
+		"source": "src/index.ts",
+		"host": "^9.9.0"
+	},
+	"scripts": {
+		"dev": "directus-extension build -w --no-minify --sourcemap -o ../../../extensions/modules/room-allocator/index.js",
+		"build": "directus-extension build -o ../../../extensions/modules/room-allocator/index.js"
+	},
+	"devDependencies": {
+		"@directus/extensions-sdk": "9.9.0",
+		"@headlessui/vue": "^1.5.0",
+		"@heroicons/vue": "^1.0.6",
+		"autoprefixer": "^10.4.4",
+		"postcss": "^8.4.12",
+		"sass": "^1.50.1",
+		"tailwindcss": "^3.0.24",
+		"typescript": "^4.6.3",
+		"vue": "^3.2.31"
+	},
+	"dependencies": {
+		"vuedraggable": "^4.1.0"
+	}
+}
