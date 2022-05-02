@@ -26,6 +26,13 @@ const { state } = localStore
                 label="Show girl rooms"
                 block full-width
     />
+    <br/>
+    <v-radio v-model="state.sortBy" value="age" label="Sort by Age"
+      block
+    />
+    <v-radio v-model="state.sortBy" value="name" label="Sort by Name"
+      block
+    />
   </sidebar-detail>
 
   <sidebar-detail

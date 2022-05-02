@@ -23,7 +23,14 @@ const loading = ref(false)
 
 const guests = computed({
   get() {
-    return localStore.registrations.value?.filter(reg => reg.room == props.id) ?? []
+    const _guests = localStore.registrations.value?.filter(reg => reg.room == props.id) ?? []
+
+    _guests.sort((a, b) => a.name.localeCompare(b.name))
+    if (state.sortBy === 'age') {
+      _guests.sort((a, b) => a.age - b.age)
+    }
+
+    return _guests
   },
   set(value) {
     loading.value = true

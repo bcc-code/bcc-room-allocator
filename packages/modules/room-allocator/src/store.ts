@@ -26,6 +26,8 @@ export type localState = {
 
     showBoyRooms: boolean,
     showGirlRooms: boolean,
+
+    sortBy: 'age' | 'name',
 }
 
 class Store {
@@ -48,6 +50,8 @@ class Store {
 
         showBoyRooms: true,
         showGirlRooms: true,
+
+        sortBy: 'age',
     })
 
     public scope = computed<any>(() => {
@@ -160,13 +164,11 @@ class Store {
     }
 
     public setSelectedGroup(group: Group | number) {
-        console.debug('setSelectedGroup', group)
         const groupId: number = typeof group === 'number' ? group : group.id
         this.state.selectedGroup = this.groups.value.find(e => e.id === groupId) ?? null;
     }
 
     public setSelectedEvent(event: Event | string) {
-        console.debug('setSelectedEvent', event)
         const eventId = typeof event === 'string' ? event : event.id
         this.state.selectedEvent = this.events.value.find(e => e.id === eventId) ?? null;
     }
