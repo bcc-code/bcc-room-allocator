@@ -16,8 +16,6 @@ export default class AutoAssign {
         this.mentorAge = store.state.minMentorAge
         this.minMentors = store.state.minMentors / 100
 
-        console.log(this.mentorAge, this.minMentors)
-
         this.rooms = store.rooms.value
         this.existingRegistrations = store.registrations.value
         this.registrations = registrations

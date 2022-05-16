@@ -27,7 +27,7 @@ const guests = computed({
 
     _guests.sort((a, b) => a.name.localeCompare(b.name))
     if (state.sortBy === 'age') {
-      _guests.sort((a, b) => a.age - b.age)
+      _guests.sort((a, b) => b.age - a.age)
     }
 
     return _guests

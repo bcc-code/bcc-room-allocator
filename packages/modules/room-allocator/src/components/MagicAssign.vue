@@ -42,7 +42,6 @@ async function magicAssign(gender: 'male' | 'female') {
 
     const Q = []
     solution.roomsMap.forEach((room, roomId) => {
-      localStore.rooms.value.find(r => r.id === roomId)!.name = String(room.score)
       room.guests.forEach(reg => {
         if (reg.room !== roomId) {
           Q.push(localStore.setRoom(reg.id, roomId).then(step))
@@ -71,7 +70,7 @@ async function magicAssign(gender: 'male' | 'female') {
 
 <template>
   <v-checkbox full-width block v-model="allowOverbooking" label="Allow Overbooking" />
-  <v-checkbox full-width block v-model="state.preview" label="Preview" />
+  <!--v-checkbox full-width block v-model="state.preview" label="Preview" /-->
   <br/>
 
   <label>Mentor Age ({{ state.minMentorAge }})</label>
