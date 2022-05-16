@@ -92,11 +92,9 @@ const statusClass = computed(() => {
 
 function canAdd(reg) {
   if (props.is_complete) {
-    localStore.setError(`Room is set too complete`)
     return false
   }
   if (reg.room === props.id) {
-    localStore.setError(`Already in room`)
     return false
   }
   return !currentGender.value || reg.gender === currentGender.value
