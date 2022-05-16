@@ -8,10 +8,10 @@ const { state } = localStore
 const groups = computed(() => localStore.groups.value)
 
 watch([groups], () => {
-  if (groups.value.length === 1) {
-    localStore.setSelectedGroup(groups.value[0])
+  if (groups.value.length > 10) {
+    localStore.setSelectedGroup(69)
   } else {
-    localStore.setSelectedGroup(42)
+    localStore.setSelectedGroup(groups.value[0])
   }
 })
 </script>

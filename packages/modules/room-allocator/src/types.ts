@@ -24,6 +24,7 @@ export interface ScoredRoom extends Room {
     taken: number
     ageAvg: number
     ageTotal: number
+    mentors: number
     activities: Record<number, number>
     guests: Array<Registration>
 }

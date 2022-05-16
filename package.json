@@ -22,6 +22,8 @@
     "apply": "node node_modules/directus/dist/cli/run.js schema apply ./schema.yaml --yes",
     "migrate": "node node_modules/directus/dist/cli/run.js database migrate:latest",
     "rollback": "node node_modules/directus/dist/cli/run.js database migrate:down",
+    "rbac-export": "node node_modules/directus/dist/cli/run.js rbac export --system",
+    "rbac-import": "node node_modules/directus/dist/cli/run.js rbac import",
     "test": "npm run build"
   },
   "keywords": [],

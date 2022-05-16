@@ -5,6 +5,11 @@ import {AxiosInstance} from "axios";
 
 export type localState = {
     loading: number;
+
+    preview: boolean,
+    minMentors: number,
+    minMentorAge: number,
+
     responseError: Error | Record<string, any> | null
     errors: Array<string>;
 
@@ -33,6 +38,11 @@ export type localState = {
 class Store {
     public state = reactive<localState>({
         loading: 0,
+
+        preview: false,
+        minMentors: 25,
+        minMentorAge: 21,
+
         responseError: null,
         errors: [],
 
@@ -152,7 +162,6 @@ class Store {
         this.registrations = this.registrationCollection.items as Ref<Registration[]>
         this.activites = this.activitiesCollection.items as Ref<Activity[]>
 
-        console.info('hello store')
         this.api = useApi()
     }
 
@@ -178,7 +187,12 @@ class Store {
     }
 
     async setRoom(registrationId: sID<Registration>, roomId: nID<Room> | null) {
+        if (this.state.preview) {
+            this.registrations.value.find(r => r.id === registrationId)!.room = roomId
+            return
+        }
         ++this.state.loading
+
         try {
             if (this.state.selected[registrationId]) {
                 this.state.selected[registrationId] = false

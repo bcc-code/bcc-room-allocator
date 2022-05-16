@@ -1,5 +1,5 @@
 version: 1
-directus: 9.9.0
+directus: 9.9.1
 collections:
   - collection: activities
     meta:
@@ -18,7 +18,7 @@ collections:
       accountability: all
       color: '#00C897'
       item_duplication_fields: null
-      sort: null
+      sort: 1
       group: null
       collapse: open
     schema:
@@ -44,7 +44,7 @@ collections:
       accountability: all
       color: '#00C897'
       item_duplication_fields: null
-      sort: null
+      sort: 2
       group: null
       collapse: open
     schema:
@@ -70,7 +70,7 @@ collections:
       accountability: all
       color: '#607D8B'
       item_duplication_fields: null
-      sort: null
+      sort: 3
       group: null
       collapse: open
     schema:
@@ -96,7 +96,7 @@ collections:
       accountability: all
       color: null
       item_duplication_fields: null
-      sort: null
+      sort: 4
       group: null
       collapse: open
     schema:
@@ -122,7 +122,7 @@ collections:
       accountability: all
       color: '#68B0F4'
       item_duplication_fields: null
-      sort: null
+      sort: 5
       group: null
       collapse: open
     schema:
@@ -148,7 +148,7 @@ collections:
       accountability: all
       color: '#F7971C'
       item_duplication_fields: null
-      sort: null
+      sort: 6
       group: null
       collapse: open
     schema:
@@ -174,7 +174,7 @@ collections:
       accountability: all
       color: null
       item_duplication_fields: null
-      sort: null
+      sort: 7
       group: null
       collapse: open
     schema:
@@ -200,7 +200,7 @@ collections:
       accountability: all
       color: '#E35169'
       item_duplication_fields: null
-      sort: null
+      sort: 8
       group: null
       collapse: open
     schema:
@@ -528,162 +528,6 @@ fields:
       group: null
       validation: null
       validation_message: null
-  - collection: registrations_activities
-    field: id
-    type: integer
-    schema:
-      name: id
-      table: registrations_activities
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: true
-      has_auto_increment: true
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations_activities
-      field: id
-      special: null
-      interface: null
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: true
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: registrations_activities
-    field: activity
-    type: integer
-    schema:
-      name: activity
-      table: registrations_activities
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: activities
-      comment: ''
-    meta:
-      collection: registrations_activities
-      field: activity
-      special: null
-      interface: null
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: true
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: registrations_activities
-    field: registration
-    type: integer
-    schema:
-      name: registration
-      table: registrations_activities
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: registrations
-      comment: ''
-    meta:
-      collection: registrations_activities
-      field: registration
-      special: null
-      interface: null
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: true
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: registrations_activities
-    field: comment
-    type: string
-    schema:
-      name: comment
-      table: registrations_activities
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations_activities
-      field: comment
-      special: null
-      interface: input
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
   - collection: events
     field: id
     type: uuid
@@ -931,316 +775,6 @@ fields:
       note: null
       conditions: null
       required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: id
-    type: integer
-    schema:
-      name: id
-      table: exports
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: true
-      has_auto_increment: true
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: exports
-      field: id
-      special: null
-      interface: input
-      options: null
-      display: null
-      display_options: null
-      readonly: true
-      hidden: true
-      sort: 1
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: status
-    type: string
-    schema:
-      name: status
-      table: exports
-      data_type: varchar
-      default_value: new
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: exports
-      field: status
-      special: null
-      interface: select-dropdown
-      options:
-        choices:
-          - text: $t:published
-            value: published
-          - text: $t:New
-            value: new
-          - text: $t:archived
-            value: archived
-          - text: $t:Pending
-            value: pending
-      display: labels
-      display_options:
-        choices:
-          - value: published
-            background: '#00C897'
-            foreground: '#FFFFFF'
-          - value: draft
-            background: '#68B0F4'
-            foreground: '#FFFFFF'
-          - value: archived
-            background: '#ECEFF1'
-            foreground: '#607D8B'
-          - value: pending
-            background: '#F2C94C'
-            foreground: '#607D8B'
-        showAsDot: true
-      readonly: true
-      hidden: false
-      sort: 3
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: user_created
-    type: string
-    schema:
-      name: user_created
-      table: exports
-      data_type: char
-      default_value: null
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: directus_users
-      comment: ''
-    meta:
-      collection: exports
-      field: user_created
-      special:
-        - user-created
-      interface: select-dropdown-m2o
-      options:
-        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
-      display: user
-      display_options: null
-      readonly: true
-      hidden: false
-      sort: 6
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: date_created
-    type: timestamp
-    schema:
-      name: date_created
-      table: exports
-      data_type: timestamp
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: exports
-      field: date_created
-      special:
-        - date-created
-      interface: datetime
-      options:
-        enableTime: true
-      display: datetime
-      display_options:
-        relative: true
-      readonly: true
-      hidden: false
-      sort: 7
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: change_since
-    type: dateTime
-    schema:
-      name: change_since
-      table: exports
-      data_type: datetime
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: exports
-      field: change_since
-      special: null
-      interface: date-picker
-      options: null
-      display: datetime
-      display_options:
-        relative: true
-      readonly: false
-      hidden: false
-      sort: 5
-      width: full
-      translations: null
-      note: Leave empty if you want to export all changes since the last export
-      conditions:
-        - name: Disable on update
-          rule:
-            id:
-              _nnull: true
-          readonly: true
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: file
-    type: uuid
-    schema:
-      name: file
-      table: exports
-      data_type: char
-      default_value: null
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: directus_files
-      comment: ''
-    meta:
-      collection: exports
-      field: file
-      special:
-        - file
-      interface: file
-      options: null
-      display: file
-      display_options: null
-      readonly: true
-      hidden: false
-      sort: 4
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: event
-    type: string
-    schema:
-      name: event
-      table: exports
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: events
-      comment: ''
-    meta:
-      collection: exports
-      field: event
-      special:
-        - m2o
-      interface: select-dropdown-m2o
-      options:
-        template: '{{title}}'
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 2
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: true
       group: null
       validation: null
       validation_message: null
@@ -1705,12 +1239,12 @@ fields:
       group: null
       validation: null
       validation_message: null
-  - collection: registrations
+  - collection: registrations_activities
     field: id
     type: integer
     schema:
       name: id
-      table: registrations
+      table: registrations_activities
       data_type: int unsigned
       default_value: null
       generation_expression: null
@@ -1726,9 +1260,476 @@ fields:
       foreign_key_table: null
       comment: ''
     meta:
-      collection: registrations
+      collection: registrations_activities
       field: id
       special: null
+      interface: null
+      options: null
+      display: null
+      display_options: null
+      readonly: false
+      hidden: true
+      sort: null
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+  - collection: registrations_activities
+    field: activity
+    type: integer
+    schema:
+      name: activity
+      table: registrations_activities
+      data_type: int unsigned
+      default_value: null
+      generation_expression: null
+      max_length: null
+      numeric_precision: 10
+      numeric_scale: 0
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: id
+      foreign_key_table: activities
+      comment: ''
+    meta:
+      collection: registrations_activities
+      field: activity
+      special: null
+      interface: null
+      options: null
+      display: null
+      display_options: null
+      readonly: false
+      hidden: true
+      sort: null
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+  - collection: registrations_activities
+    field: registration
+    type: string
+    schema:
+      name: registration
+      table: registrations_activities
+      data_type: char
+      default_value: null
+      generation_expression: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: id
+      foreign_key_table: registrations
+      comment: ''
+    meta:
+      collection: registrations_activities
+      field: registration
+      special: null
+      interface: null
+      options: null
+      display: null
+      display_options: null
+      readonly: false
+      hidden: true
+      sort: null
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+  - collection: registrations_activities
+    field: comment
+    type: string
+    schema:
+      name: comment
+      table: registrations_activities
+      data_type: varchar
+      default_value: null
+      generation_expression: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: registrations_activities
+      field: comment
+      special: null
+      interface: input
+      options: null
+      display: null
+      display_options: null
+      readonly: false
+      hidden: false
+      sort: null
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+  - collection: exports
+    field: id
+    type: integer
+    schema:
+      name: id
+      table: exports
+      data_type: int unsigned
+      default_value: null
+      generation_expression: null
+      max_length: null
+      numeric_precision: 10
+      numeric_scale: 0
+      is_generated: false
+      is_nullable: false
+      is_unique: false
+      is_primary_key: true
+      has_auto_increment: true
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: exports
+      field: id
+      special: null
+      interface: input
+      options: null
+      display: null
+      display_options: null
+      readonly: true
+      hidden: true
+      sort: 1
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+  - collection: exports
+    field: status
+    type: string
+    schema:
+      name: status
+      table: exports
+      data_type: varchar
+      default_value: new
+      generation_expression: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: false
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: exports
+      field: status
+      special: null
+      interface: select-dropdown
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:New
+            value: new
+          - text: $t:archived
+            value: archived
+          - text: $t:Pending
+            value: pending
+      display: labels
+      display_options:
+        choices:
+          - value: published
+            background: '#00C897'
+            foreground: '#FFFFFF'
+          - value: draft
+            background: '#68B0F4'
+            foreground: '#FFFFFF'
+          - value: archived
+            background: '#ECEFF1'
+            foreground: '#607D8B'
+          - value: pending
+            background: '#F2C94C'
+            foreground: '#607D8B'
+        showAsDot: true
+      readonly: true
+      hidden: false
+      sort: 3
+      width: half
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+  - collection: exports
+    field: user_created
+    type: string
+    schema:
+      name: user_created
+      table: exports
+      data_type: char
+      default_value: null
+      generation_expression: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      comment: ''
+    meta:
+      collection: exports
+      field: user_created
+      special:
+        - user-created
+      interface: select-dropdown-m2o
+      options:
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      display: user
+      display_options: null
+      readonly: true
+      hidden: false
+      sort: 6
+      width: half
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+  - collection: exports
+    field: date_created
+    type: timestamp
+    schema:
+      name: date_created
+      table: exports
+      data_type: timestamp
+      default_value: null
+      generation_expression: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: exports
+      field: date_created
+      special:
+        - date-created
+      interface: datetime
+      options:
+        enableTime: true
+      display: datetime
+      display_options:
+        relative: true
+      readonly: true
+      hidden: false
+      sort: 7
+      width: half
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+  - collection: exports
+    field: change_since
+    type: dateTime
+    schema:
+      name: change_since
+      table: exports
+      data_type: datetime
+      default_value: null
+      generation_expression: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: exports
+      field: change_since
+      special: null
+      interface: date-picker
+      options: null
+      display: datetime
+      display_options:
+        relative: true
+      readonly: false
+      hidden: false
+      sort: 5
+      width: full
+      translations: null
+      note: Leave empty if you want to export all changes since the last export
+      conditions:
+        - name: Disable on update
+          rule:
+            id:
+              _nnull: true
+          readonly: true
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+  - collection: exports
+    field: file
+    type: uuid
+    schema:
+      name: file
+      table: exports
+      data_type: char
+      default_value: null
+      generation_expression: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: id
+      foreign_key_table: directus_files
+      comment: ''
+    meta:
+      collection: exports
+      field: file
+      special:
+        - file
+      interface: file
+      options: null
+      display: file
+      display_options: null
+      readonly: true
+      hidden: false
+      sort: 4
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+  - collection: exports
+    field: event
+    type: string
+    schema:
+      name: event
+      table: exports
+      data_type: char
+      default_value: null
+      generation_expression: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: id
+      foreign_key_table: events
+      comment: ''
+    meta:
+      collection: exports
+      field: event
+      special:
+        - m2o
+      interface: select-dropdown-m2o
+      options:
+        template: '{{title}}'
+      display: null
+      display_options: null
+      readonly: false
+      hidden: false
+      sort: 2
+      width: half
+      translations: null
+      note: null
+      conditions: null
+      required: true
+      group: null
+      validation: null
+      validation_message: null
+  - collection: registrations
+    field: id
+    type: uuid
+    schema:
+      name: id
+      table: registrations
+      data_type: char
+      default_value: null
+      generation_expression: null
+      max_length: 36
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: false
+      is_unique: false
+      is_primary_key: true
+      has_auto_increment: false
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: registrations
+      field: id
+      special:
+        - uuid
       interface: input
       options: null
       display: raw
@@ -1882,48 +1883,6 @@ fields:
       validation: null
       validation_message: null
   - collection: registrations
-    field: allergy
-    type: string
-    schema:
-      name: allergy
-      table: registrations
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations
-      field: allergy
-      special: null
-      interface: input
-      options:
-        font: monospace
-        trim: true
-      display: formatted-value
-      display_options:
-        font: monospace
-      readonly: false
-      hidden: false
-      sort: 5
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: user
-      validation: null
-      validation_message: null
-  - collection: registrations
     field: group
     type: integer
     schema:
@@ -2007,48 +1966,6 @@ fields:
       validation: null
       validation_message: null
   - collection: registrations
-    field: date_updated
-    type: dateTime
-    schema:
-      name: date_updated
-      table: registrations
-      data_type: datetime
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations
-      field: date_updated
-      special:
-        - date-updated
-        - date-created
-      interface: datetime
-      options: null
-      display: datetime
-      display_options:
-        relative: true
-      readonly: true
-      hidden: false
-      sort: 5
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: null
-      validation: null
-      validation_message: null
-  - collection: registrations
     field: status
     type: boolean
     schema:
@@ -2095,14 +2012,14 @@ fields:
     schema:
       name: event
       table: registrations
-      data_type: varchar
+      data_type: char
       default_value: null
       generation_expression: null
       max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_generated: false
-      is_nullable: true
+      is_nullable: false
       is_unique: false
       is_primary_key: false
       has_auto_increment: false
@@ -2132,15 +2049,15 @@ fields:
       validation: null
       validation_message: null
   - collection: registrations
-    field: personId
+    field: person_id
     type: string
     schema:
-      name: personId
+      name: person_id
       table: registrations
-      data_type: varchar
-      default_value: '36'
+      data_type: char
+      default_value: ''
       generation_expression: null
-      max_length: 255
+      max_length: 36
       numeric_precision: null
       numeric_scale: null
       is_generated: false
@@ -2153,7 +2070,7 @@ fields:
       comment: ''
     meta:
       collection: registrations
-      field: personId
+      field: person_id
       special: null
       interface: input
       options:
@@ -2170,6 +2087,95 @@ fields:
       conditions: null
       required: true
       group: user
+      validation: null
+      validation_message: null
+  - collection: registrations
+    field: tags
+    type: csv
+    schema:
+      name: tags
+      table: registrations
+      data_type: varchar
+      default_value: null
+      generation_expression: null
+      max_length: 255
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: registrations
+      field: tags
+      special:
+        - cast-csv
+      interface: tags
+      options:
+        presets:
+          - mentor
+          - responsible
+        whitespace: _
+        alphabetize: true
+        placeholder: Mentor | Room responsible
+        capitalization: lowercase
+      display: null
+      display_options: null
+      readonly: false
+      hidden: false
+      sort: 5
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: user
+      validation: null
+      validation_message: null
+  - collection: registrations
+    field: date_updated
+    type: dateTime
+    schema:
+      name: date_updated
+      table: registrations
+      data_type: datetime
+      default_value: null
+      generation_expression: null
+      max_length: null
+      numeric_precision: null
+      numeric_scale: null
+      is_generated: false
+      is_nullable: true
+      is_unique: false
+      is_primary_key: false
+      has_auto_increment: false
+      foreign_key_column: null
+      foreign_key_table: null
+      comment: ''
+    meta:
+      collection: registrations
+      field: date_updated
+      special:
+        - date-updated
+        - date-created
+      interface: datetime
+      options: null
+      display: datetime
+      display_options:
+        relative: true
+      readonly: true
+      hidden: false
+      sort: 5
+      width: half
+      translations: null
+      note: null
+      conditions: null
+      required: true
+      group: null
       validation: null
       validation_message: null
   - collection: groups
@@ -2525,27 +2531,6 @@ fields:
       validation_message: null
 relations:
   - collection: exports
-    field: event
-    related_collection: events
-    schema:
-      table: exports
-      column: event
-      foreign_key_table: events
-      foreign_key_column: id
-      constraint_name: exports_event_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-    meta:
-      many_collection: exports
-      many_field: event
-      one_collection: events
-      one_field: null
-      one_collection_field: null
-      one_allowed_collections: null
-      junction_field: null
-      sort_field: null
-      one_deselect_action: nullify
-  - collection: exports
     field: file
     related_collection: directus_files
     schema:
@@ -2560,6 +2545,27 @@ relations:
       many_collection: exports
       many_field: file
       one_collection: directus_files
+      one_field: null
+      one_collection_field: null
+      one_allowed_collections: null
+      junction_field: null
+      sort_field: null
+      one_deselect_action: nullify
+  - collection: exports
+    field: event
+    related_collection: events
+    schema:
+      table: exports
+      column: event
+      foreign_key_table: events
+      foreign_key_column: id
+      constraint_name: exports_ibfk_1
+      on_update: CASCADE
+      on_delete: CASCADE
+    meta:
+      many_collection: exports
+      many_field: event
+      one_collection: events
       one_field: null
       one_collection_field: null
       one_allowed_collections: null
@@ -2659,7 +2665,7 @@ relations:
       foreign_key_table: registrations
       foreign_key_column: id
       constraint_name: registrations_activities_registration_foreign
-      on_update: NO ACTION
+      on_update: CASCADE
       on_delete: CASCADE
     meta:
       many_collection: registrations_activities
@@ -2671,27 +2677,6 @@ relations:
       junction_field: activity
       sort_field: null
       one_deselect_action: delete
-  - collection: registrations
-    field: event
-    related_collection: events
-    schema:
-      table: registrations
-      column: event
-      foreign_key_table: events
-      foreign_key_column: id
-      constraint_name: registrations_event_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
-    meta:
-      many_collection: registrations
-      many_field: event
-      one_collection: events
-      one_field: registrations
-      one_collection_field: null
-      one_allowed_collections: null
-      junction_field: null
-      sort_field: null
-      one_deselect_action: nullify
   - collection: registrations
     field: group
     related_collection: groups
@@ -2729,6 +2714,27 @@ relations:
       many_field: room
       one_collection: rooms
       one_field: guests
+      one_collection_field: null
+      one_allowed_collections: null
+      junction_field: null
+      sort_field: null
+      one_deselect_action: nullify
+  - collection: registrations
+    field: event
+    related_collection: events
+    schema:
+      table: registrations
+      column: event
+      foreign_key_table: events
+      foreign_key_column: id
+      constraint_name: registrations_ibfk_2
+      on_update: CASCADE
+      on_delete: CASCADE
+    meta:
+      many_collection: registrations
+      many_field: event
+      one_collection: events
+      one_field: registrations
       one_collection_field: null
       one_allowed_collections: null
       junction_field: null

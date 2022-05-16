@@ -8,8 +8,12 @@ import NavDetail from "./nav-detail.vue";
 const localStore = inject('localStore') as Store
 const { state } = localStore
 
-const boys = computed(() => localStore.registrations.value?.filter(r => r.gender === 'male' && !r.room))
-const girls = computed(() => localStore.registrations.value?.filter(r => r.gender === 'female' && !r.room))
+const boys = computed(() => localStore.registrations.value?.filter(r => r.gender === 'male' && !r.room)
+    .sort((a,b) => a[state.sortBy] > b[state.sortBy] ? 1 : -1)
+);
+const girls = computed(() => localStore.registrations.value?.filter(r => r.gender === 'female' && !r.room)
+    .sort((a,b) => a[state.sortBy] > b[state.sortBy] ? 1 : -1)
+);
 </script>
 
 <template>

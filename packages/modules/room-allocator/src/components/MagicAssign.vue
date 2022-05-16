@@ -25,14 +25,24 @@ async function magicAssign(gender: 'male' | 'female') {
     percentage.value = 0
     const step = () => percentage.value = Math.round((++progress / solution.totalGuests) * 100)
 
+    if (state.preview) {
+      localStore.registrations.value.forEach((reg) => {
+        localStore.setRoom(reg.id, null)
+      })
+    }
     const registrations: Array<Registration> = localStore.registrations.value.filter(r => ! r.room && r.gender === gender)
+
+    await (new Promise((res) => setTimeout(res, 100)))
+
     const Assigner = new AutoAssign(localStore, registrations, allowOverbooking.value)
     const solution = await Assigner.run((msg) => {
       status.value = msg
     })
     status.value = 'Assigning guests to their rooms...'
+
     const Q = []
     solution.roomsMap.forEach((room, roomId) => {
+      localStore.rooms.value.find(r => r.id === roomId)!.name = String(room.score)
       room.guests.forEach(reg => {
         if (reg.room !== roomId) {
           Q.push(localStore.setRoom(reg.id, roomId).then(step))
@@ -61,6 +71,16 @@ async function magicAssign(gender: 'male' | 'female') {
 
 <template>
   <v-checkbox full-width block v-model="allowOverbooking" label="Allow Overbooking" />
+  <v-checkbox full-width block v-model="state.preview" label="Preview" />
+  <br/>
+
+  <label>Mentor Age ({{ state.minMentorAge }})</label>
+  <v-slider v-model="state.minMentorAge" min="18" max="26" step="1" />
+
+  <br/>
+  <label>Percentage of Mentors ({{ state.minMentors }})</label>
+  <v-slider v-model="state.minMentors" min="10" max="50" step="5" />
+
   <br/>
   <v-button
     :loading="busy === 'male'"
