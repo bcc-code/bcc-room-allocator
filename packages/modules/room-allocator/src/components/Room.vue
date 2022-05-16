@@ -14,6 +14,7 @@ const props = defineProps<{
   gender: string,
   arrival?: Date,
   departure?: Date,
+  features?: Array<string>,
   is_complete: boolean,
   is_reviewed: boolean,
 }>()
@@ -120,8 +121,8 @@ function clear () {
 
 async function toggleComplete () {
   if (! props.is_complete) {
-    if (! guests.value.some(reg => reg.age > 18)) {
-      return localStore.alert('Room can not be completed without an adult above 18 years old.')
+    if (! guests.value.some(reg => reg.age >= state.minMentorAge)) {
+      return localStore.alert(`Room can not be completed without an adult above ${state.minMentorAge} years old.`)
     }
   }
 
@@ -133,17 +134,19 @@ async function toggleComplete () {
 
 <template>
   <div class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 shrink-0 grow m-2">
-    <div class="rounded-lg shadow flex flex-col border-l-4" :class="statusClass">
+    <div class="rounded-lg flex flex-col border-l-4 shadow" :class="statusClass">
       <button @click="execute"
-              @dblclick.capture="collapse = !collapse"
-              class="rounded-t-lg bg-white text-black flex justify-between items-center overflow-hidden"
-              >
-        <div class="flex items-center p-2 py-4 md:px-4">
+        @dblclick.capture="collapse = !collapse"
+        class="rounded-t-lg bg-white text-black flex justify-between items-center overflow-hidden"
+      >
+        <div class="flex items-center p-2 py-4 md:px-4" style="--v-icon-size: 1.4rem">
           <button @click.prevent.capture="toggleComplete">
-            <v-icon v-if="is_complete" name="check_circle" style="--v-icon-size: 1.4rem; --v-icon-color: var(--success)" />
-            <v-icon v-else name="warning_amber" style="--v-icon-size: 1.4rem; --v-icon-color: var(--warning)" />
+            <v-icon v-if="is_complete" name="check_circle" style="--v-icon-color: var(--success)" />
+            <v-icon v-else name="warning_amber" style="--v-icon-color: var(--warning)" />
           </button>
           <p class="font-medium ml-1">{{ name }}</p>
+          <v-icon v-if="features && features.includes('handicapped')" name="accessible" title="Handicap room" right />
+          <v-icon v-if="features && features.includes('long_bed')" name="king_bed" title="Has extra long bed" right />
           <v-progress-circular v-if="loading" indeterminate />
         </div>
         <div class="cursor-move flex items-center flex-shrink-0 relative room-handle block shadow rounded-l-full p-2 py-4 md:px-4">
@@ -152,9 +155,8 @@ async function toggleComplete () {
         </div>
       </button>
       <div class="overflow-y-auto transition-all shadow-inner block bg-white rounded-b-lg"
-           :style="{
-            maxHeight: collapse ? '1rem' : '100rem'
-          }">
+       :style="{ maxHeight: collapse ? '1rem' : '100rem' }"
+      >
         <Draggable
             style="min-height: 2rem"
             class="block"

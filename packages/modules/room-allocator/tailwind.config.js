@@ -13,10 +13,7 @@ module.exports = {
         'bcc-green-80': 'rgba(0, 78, 72, 0.8)',
         'bcc-green-70': 'rgba(0, 78, 72, 0.7)',
         'bcc-green-60': 'rgba(0, 78, 72, 0.6)',
-        'bcc-green-50': 'rgba(0, 78, 72, 0.5)',
-
-        'gray-50': 'rgba(252, 253, 254)',
-        'green-50': 'rgba(246, 255, 250)',
+        'bcc-green-50': 'rgba(0, 78, 72, 0.5)'
       }
     },
   },
