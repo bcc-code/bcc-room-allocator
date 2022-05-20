@@ -1,401 +1,478 @@
 version: 1
-directus: 9.9.1
+directus: 9.11.0
 collections:
   - collection: activities
     meta:
-      collection: activities
-      icon: sports_handball
-      note: null
-      display_template: null
-      hidden: false
-      singleton: false
-      translations: null
-      archive_field: null
-      archive_app_filter: true
-      archive_value: null
-      unarchive_value: null
-      sort_field: null
       accountability: all
-      color: '#00C897'
-      item_duplication_fields: null
-      sort: 1
-      group: null
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
       collapse: open
+      collection: activities
+      color: '#00C897'
+      display_template: null
+      group: null
+      hidden: false
+      icon: sports_handball
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: 1
+      sort_field: null
+      translations: null
+      unarchive_value: null
     schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
       name: activities
       schema: room_allocator_db
-      comment: ''
+  - collection: activity_coordinators
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: activity_coordinators
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
       collation: utf8mb4_0900_ai_ci
+      comment: ''
       engine: InnoDB
+      name: activity_coordinators
+      schema: room_allocator_db
   - collection: events
     meta:
-      collection: events
-      icon: event
-      note: null
-      display_template: '{{title}}'
-      hidden: false
-      singleton: false
-      translations: null
-      archive_field: status
-      archive_app_filter: true
-      archive_value: archived
-      unarchive_value: draft
-      sort_field: null
       accountability: all
-      color: '#00C897'
-      item_duplication_fields: null
-      sort: 2
-      group: null
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
       collapse: open
+      collection: events
+      color: '#00C897'
+      display_template: '{{title}}'
+      group: null
+      hidden: false
+      icon: event
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: 2
+      sort_field: null
+      translations: null
+      unarchive_value: draft
     schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
       name: events
       schema: room_allocator_db
-      comment: ''
-      collation: utf8mb4_0900_ai_ci
-      engine: InnoDB
   - collection: exports
     meta:
-      collection: exports
-      icon: cloud_download
-      note: null
-      display_template: null
-      hidden: false
-      singleton: false
-      translations: null
-      archive_field: status
-      archive_app_filter: true
-      archive_value: archived
-      unarchive_value: published
-      sort_field: null
       accountability: all
-      color: '#607D8B'
-      item_duplication_fields: null
-      sort: 3
-      group: null
+      archive_app_filter: true
+      archive_field: status
+      archive_value: archived
       collapse: open
+      collection: exports
+      color: '#607D8B'
+      display_template: null
+      group: null
+      hidden: false
+      icon: cloud_download
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: 3
+      sort_field: null
+      translations: null
+      unarchive_value: published
     schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
       name: exports
       schema: room_allocator_db
-      comment: ''
-      collation: utf8mb4_0900_ai_ci
-      engine: InnoDB
   - collection: group_users
     meta:
-      collection: group_users
-      icon: import_export
-      note: Group users
-      display_template: null
-      hidden: true
-      singleton: false
-      translations: null
-      archive_field: null
-      archive_app_filter: true
-      archive_value: null
-      unarchive_value: null
-      sort_field: null
       accountability: all
-      color: null
-      item_duplication_fields: null
-      sort: 4
-      group: null
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
       collapse: open
+      collection: group_users
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: Group users
+      singleton: false
+      sort: 4
+      sort_field: null
+      translations: null
+      unarchive_value: null
     schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
       name: group_users
       schema: room_allocator_db
-      comment: ''
-      collation: utf8mb4_0900_ai_ci
-      engine: InnoDB
   - collection: groups
     meta:
-      collection: groups
-      icon: people
-      note: null
-      display_template: null
-      hidden: false
-      singleton: false
-      translations: null
-      archive_field: null
-      archive_app_filter: true
-      archive_value: null
-      unarchive_value: null
-      sort_field: null
       accountability: all
-      color: '#68B0F4'
-      item_duplication_fields: null
-      sort: 5
-      group: null
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
       collapse: open
+      collection: groups
+      color: '#68B0F4'
+      display_template: null
+      group: null
+      hidden: false
+      icon: people
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: 5
+      sort_field: null
+      translations: null
+      unarchive_value: null
     schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
       name: groups
       schema: room_allocator_db
-      comment: ''
-      collation: utf8mb4_0900_ai_ci
-      engine: InnoDB
   - collection: registrations
     meta:
-      collection: registrations
-      icon: local_activity
-      note: null
-      display_template: null
-      hidden: false
-      singleton: false
-      translations: null
-      archive_field: status
-      archive_app_filter: true
-      archive_value: '0'
-      unarchive_value: '1'
-      sort_field: room
       accountability: all
-      color: '#F7971C'
-      item_duplication_fields: null
-      sort: 6
-      group: null
+      archive_app_filter: true
+      archive_field: status
+      archive_value: '0'
       collapse: open
+      collection: registrations
+      color: '#F7971C'
+      display_template: null
+      group: null
+      hidden: false
+      icon: local_activity
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: 6
+      sort_field: room
+      translations: null
+      unarchive_value: '1'
     schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
       name: registrations
       schema: room_allocator_db
-      comment: ''
-      collation: utf8mb4_0900_ai_ci
-      engine: InnoDB
   - collection: registrations_activities
     meta:
-      collection: registrations_activities
-      icon: import_export
-      note: Registration activities
-      display_template: null
-      hidden: true
-      singleton: false
-      translations: null
-      archive_field: null
-      archive_app_filter: true
-      archive_value: null
-      unarchive_value: null
-      sort_field: null
       accountability: all
-      color: null
-      item_duplication_fields: null
-      sort: 7
-      group: null
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
       collapse: open
+      collection: registrations_activities
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: Registration activities
+      singleton: false
+      sort: 7
+      sort_field: null
+      translations: null
+      unarchive_value: null
     schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
       name: registrations_activities
       schema: room_allocator_db
-      comment: ''
-      collation: utf8mb4_0900_ai_ci
-      engine: InnoDB
   - collection: rooms
     meta:
-      collection: rooms
-      icon: local_hotel
-      note: null
-      display_template: null
-      hidden: false
-      singleton: false
-      translations: null
-      archive_field: null
-      archive_app_filter: true
-      archive_value: null
-      unarchive_value: null
-      sort_field: null
       accountability: all
-      color: '#E35169'
-      item_duplication_fields: null
-      sort: 8
-      group: null
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
       collapse: open
+      collection: rooms
+      color: '#E35169'
+      display_template: null
+      group: null
+      hidden: false
+      icon: local_hotel
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: 8
+      sort_field: null
+      translations: null
+      unarchive_value: null
     schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
       name: rooms
       schema: room_allocator_db
-      comment: ''
+  - collection: tmp
+    meta: null
+    schema:
       collation: utf8mb4_0900_ai_ci
+      comment: ''
       engine: InnoDB
+      name: tmp
+      schema: room_allocator_db
+  - collection: user_roles
+    meta:
+      accountability: all
+      archive_app_filter: true
+      archive_field: null
+      archive_value: null
+      collapse: open
+      collection: user_roles
+      color: null
+      display_template: null
+      group: null
+      hidden: true
+      icon: import_export
+      item_duplication_fields: null
+      note: null
+      singleton: false
+      sort: null
+      sort_field: null
+      translations: null
+      unarchive_value: null
+    schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
+      name: user_roles
+      schema: room_allocator_db
 fields:
-  - collection: group_users
-    field: id
-    type: integer
-    schema:
-      name: id
-      table: group_users
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: true
-      has_auto_increment: true
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: group_users
-      field: id
-      special: null
-      interface: null
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: true
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: group_users
-    field: user
-    type: string
-    schema:
-      name: user
-      table: group_users
-      data_type: char
-      default_value: null
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: directus_users
-      comment: ''
-    meta:
-      collection: group_users
-      field: user
-      special: null
-      interface: null
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: true
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: group_users
-    field: group
-    type: integer
-    schema:
-      name: group
-      table: group_users
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: groups
-      comment: ''
-    meta:
-      collection: group_users
-      field: group
-      special: null
-      interface: null
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: true
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
   - collection: activities
-    field: id
-    type: integer
-    schema:
-      name: id
-      table: activities
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: true
-      has_auto_increment: true
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
+    field: alt_ids
     meta:
       collection: activities
-      field: id
-      special: null
-      interface: input
-      options: null
-      display: raw
-      display_options: null
-      readonly: true
-      hidden: true
-      sort: null
-      width: full
-      translations: null
-      note: null
       conditions: null
-      required: false
+      display: null
+      display_options: null
+      field: alt_ids
       group: null
+      hidden: false
+      interface: tags
+      note: null
+      options:
+        allowCustom: false
+        placeholder: Alternative IDs to match
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - cast-csv
+      translations: null
       validation: null
       validation_message: null
-  - collection: activities
-    field: name
-    type: string
+      width: full
     schema:
-      name: name
-      table: activities
+      comment: ''
       data_type: varchar
       default_value: null
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
       foreign_key_column: null
       foreign_key_table: null
-      comment: ''
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: alt_ids
+      numeric_precision: null
+      numeric_scale: null
+      table: activities
+    type: csv
+  - collection: activities
+    field: coordinators
     meta:
       collection: activities
-      field: name
-      special: null
-      interface: input
+      field: coordinators
+      special:
+        - m2m
+      interface: list-m2m
+      options: null
+      display: null
+      display_options: null
+      readonly: false
+      hidden: false
+      sort: null
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+    schema: null
+    type: alias
+  - collection: activities
+    field: event
+    meta:
+      collection: activities
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: event
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
       options:
-        trim: true
+        template: '{{title}}'
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: events
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: event
+      numeric_precision: null
+      numeric_scale: null
+      table: activities
+    type: string
+  - collection: activities
+    field: id
+    meta:
+      collection: activities
+      conditions: null
+      display: raw
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: activities
+    type: integer
+  - collection: activities
+    field: name
+    meta:
+      collection: activities
+      conditions: null
       display: formatted-value
       display_options:
         bold: true
+      field: name
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        trim: true
+      readonly: false
+      required: true
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: name
+      numeric_precision: null
+      numeric_scale: null
+      table: activities
+    type: string
+  - collection: activities
+    field: registrations
+    meta:
+      collection: activities
+      field: registrations
+      special:
+        - m2m
+      interface: list-m2m
+      options:
+        template: "{{registration.name}}\_{{registration.age}}\_{{registration.gender}}"
+        enableCreate: false
+        enableSelect: false
+      display: related-values
+      display_options:
+        template: '{{id}}'
       readonly: false
       hidden: false
       sort: null
@@ -403,81 +480,496 @@ fields:
       translations: null
       note: null
       conditions: null
-      required: true
+      required: false
       group: null
       validation: null
       validation_message: null
-  - collection: groups
-    field: id
-    type: integer
+    schema: null
+    type: alias
+  - collection: activity_coordinators
+    field: activity
+    meta:
+      collection: activity_coordinators
+      conditions: null
+      display: null
+      display_options: null
+      field: activity
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
     schema:
-      name: id
-      table: groups
+      comment: ''
       data_type: int unsigned
       default_value: null
+      foreign_key_column: id
+      foreign_key_table: activities
       generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
       max_length: null
+      name: activity
       numeric_precision: 10
       numeric_scale: 0
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: true
-      has_auto_increment: true
+      table: activity_coordinators
+    type: integer
+  - collection: activity_coordinators
+    field: id
+    meta:
+      collection: activity_coordinators
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
       foreign_key_column: null
       foreign_key_table: null
-      comment: ''
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: activity_coordinators
+    type: integer
+  - collection: activity_coordinators
+    field: user
     meta:
-      collection: groups
-      field: id
-      special: null
-      interface: input
-      options: null
-      display: raw
+      collection: activity_coordinators
+      conditions: null
+      display: null
       display_options: null
-      readonly: true
+      field: user
+      group: null
       hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: user
+      numeric_precision: null
+      numeric_scale: null
+      table: activity_coordinators
+    type: string
+  - collection: directus_roles
+    field: has_role
+    meta:
+      collection: directus_roles
+      field: has_role
+      special:
+        - m2m
+      interface: list-m2m
+      options: null
+      display: null
+      display_options: null
+      readonly: false
+      hidden: false
+      sort: null
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+    schema: null
+    type: alias
+  - collection: directus_users
+    field: activities
+    meta:
+      collection: directus_users
+      field: activities
+      special:
+        - m2m
+      interface: list-m2m
+      options:
+        template: '{{activity.name}}'
+        enableCreate: false
+      display: related-values
+      display_options:
+        template: '{{activity.name}}'
+      readonly: false
+      hidden: false
+      sort: null
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+    schema: null
+    type: alias
+  - collection: directus_users
+    field: groups
+    meta:
+      collection: directus_users
+      field: groups
+      special:
+        - m2m
+      interface: list-m2m
+      options:
+        template: '{{group.name}}'
+      display: related-values
+      display_options:
+        template: '{{group.name}}'
+      readonly: false
+      hidden: false
+      sort: null
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+    schema: null
+    type: alias
+  - collection: directus_users
+    field: roles
+    meta:
+      collection: directus_users
+      field: roles
+      special:
+        - m2m
+      interface: list-m2m
+      options:
+        template: '{{role.name}}'
+        enableCreate: false
+      display: related-values
+      display_options:
+        template: '{{role.name}}'
+      readonly: false
+      hidden: false
+      sort: null
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+    schema: null
+    type: alias
+  - collection: events
+    field: accordion-hnsphe
+    meta:
+      collection: events
+      field: accordion-hnsphe
+      special:
+        - alias
+        - no-data
+        - group
+      interface: group-accordion
+      options: {}
+      display: null
+      display_options: null
+      readonly: false
+      hidden: false
+      sort: 9
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+    schema: null
+    type: alias
+  - collection: events
+    field: allocate_deadline
+    meta:
+      collection: events
+      conditions: null
+      display: datetime
+      display_options:
+        format: short
+      field: allocate_deadline
+      group: null
+      hidden: false
+      interface: datetime
+      note: Deadline for BUK Contacts to update allocated room
+      options: null
+      readonly: false
+      required: false
+      sort: 7
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: timestamp
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: allocate_deadline
+      numeric_precision: null
+      numeric_scale: null
+      table: events
+    type: timestamp
+  - collection: events
+    field: deadline
+    meta:
+      collection: events
+      conditions: null
+      display: null
+      display_options: null
+      field: deadline
+      group: null
+      hidden: false
+      interface: datetime
+      note: >-
+        Deadline for BUK Contacts to make any other change incl. activity on a
+        registration
+      options: null
+      readonly: false
+      required: true
+      sort: 8
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: timestamp
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: deadline
+      numeric_precision: null
+      numeric_scale: null
+      table: events
+    type: timestamp
+  - collection: events
+    field: end_date
+    meta:
+      collection: events
+      conditions: null
+      display: null
+      display_options: null
+      field: end_date
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 6
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: timestamp
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: end_date
+      numeric_precision: null
+      numeric_scale: null
+      table: events
+    type: timestamp
+  - collection: events
+    field: id
+    meta:
+      collection: events
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: 36
+      name: id
+      numeric_precision: null
+      numeric_scale: null
+      table: events
+    type: uuid
+  - collection: events
+    field: reference
+    meta:
+      collection: events
+      conditions: null
+      display: null
+      display_options: null
+      field: reference
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 32
+      name: reference
+      numeric_precision: null
+      numeric_scale: null
+      table: events
+    type: string
+  - collection: events
+    field: registrations
+    meta:
+      collection: events
+      field: registrations
+      special:
+        - o2m
+      interface: list-o2m
+      options: null
+      display: related-values
+      display_options:
+        template: '{{id}}'
+      readonly: false
+      hidden: false
       sort: 1
       width: full
       translations: null
       note: null
       conditions: null
       required: false
-      group: null
+      group: accordion-hnsphe
       validation: null
       validation_message: null
-  - collection: groups
-    field: name
-    type: string
-    schema:
-      name: name
-      table: groups
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
+    schema: null
+    type: alias
+  - collection: events
+    field: rooms
     meta:
-      collection: groups
-      field: name
-      special: null
-      interface: input
+      collection: events
+      field: rooms
+      special:
+        - o2m
+      interface: list-o2m
       options:
-        trim: true
-        iconLeft: null
-      display: formatted-value
+        enableCreate: false
+      display: related-values
       display_options:
-        bold: true
-        formatTitle: true
+        template: '{{id}}'
       readonly: false
       hidden: false
       sort: 2
@@ -485,122 +977,56 @@ fields:
       translations: null
       note: null
       conditions: null
-      required: true
-      group: null
+      required: false
+      group: accordion-hnsphe
       validation: null
       validation_message: null
-  - collection: groups
-    field: country
-    type: string
-    schema:
-      name: country
-      table: groups
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: groups
-      field: country
-      special: null
-      interface: input
-      options: null
-      display: formatted-value
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 3
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: null
-      validation: null
-      validation_message: null
+    schema: null
+    type: alias
   - collection: events
-    field: id
-    type: uuid
-    schema:
-      name: id
-      table: events
-      data_type: char
-      default_value: null
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: true
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
+    field: start_date
     meta:
       collection: events
-      field: id
-      special:
-        - uuid
-      interface: input
-      options: null
+      conditions: null
       display: null
       display_options: null
-      readonly: true
-      hidden: true
-      sort: 1
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
+      field: start_date
       group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: 5
+      special: null
+      translations: null
       validation: null
       validation_message: null
-  - collection: events
-    field: status
-    type: string
+      width: half
     schema:
-      name: status
-      table: events
-      data_type: varchar
-      default_value: draft
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
+      comment: ''
+      data_type: timestamp
+      default_value: null
       foreign_key_column: null
       foreign_key_table: null
-      comment: ''
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: start_date
+      numeric_precision: null
+      numeric_scale: null
+      table: events
+    type: timestamp
+  - collection: events
+    field: status
     meta:
       collection: events
-      field: status
-      special: null
-      interface: select-dropdown
-      options:
-        choices:
-          - text: $t:published
-            value: published
-          - text: $t:draft
-            value: draft
-          - text: $t:archived
-            value: archived
+      conditions: null
       display: labels
       display_options:
         choices:
@@ -611,864 +1037,296 @@ fields:
           - value: archived
             background: '#F7971C'
         showAsDot: true
-      readonly: false
-      hidden: false
-      sort: 2
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: events
-    field: title
-    type: string
-    schema:
-      name: title
-      table: events
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: events
-      field: title
-      special: null
-      interface: input
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 3
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: null
-      validation: null
-      validation_message: null
-  - collection: events
-    field: reference
-    type: string
-    schema:
-      name: reference
-      table: events
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 32
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: events
-      field: reference
-      special: null
-      interface: input
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 4
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: null
-      validation: null
-      validation_message: null
-  - collection: events
-    field: start_date
-    type: timestamp
-    schema:
-      name: start_date
-      table: events
-      data_type: timestamp
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: events
-      field: start_date
-      special: null
-      interface: datetime
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 5
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: events
-    field: end_date
-    type: timestamp
-    schema:
-      name: end_date
-      table: events
-      data_type: timestamp
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: events
-      field: end_date
-      special: null
-      interface: datetime
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 6
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: id
-    type: integer
-    schema:
-      name: id
-      table: rooms
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: true
-      has_auto_increment: true
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: rooms
-      field: id
-      special: null
-      interface: input
-      options: null
-      display: raw
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 1
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: null
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: name
-    type: string
-    schema:
-      name: name
-      table: rooms
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: rooms
-      field: name
-      special: null
-      interface: input
-      options:
-        trim: true
-      display: formatted-value
-      display_options:
-        bold: true
-      readonly: false
-      hidden: false
-      sort: 2
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: null
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: capacity
-    type: integer
-    schema:
-      name: capacity
-      table: rooms
-      data_type: int
-      default_value: 2
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: rooms
-      field: capacity
-      special: null
-      interface: slider
-      options:
-        maxValue: 16
-        minValue: 1
-        stepInterval: 1
-      display: raw
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 4
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: null
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: group
-    type: integer
-    schema:
-      name: group
-      table: rooms
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: groups
-      comment: ''
-    meta:
-      collection: rooms
-      field: group
-      special: null
-      interface: select-dropdown-m2o
-      options:
-        template: '{{name}}'
-      display: related-values
-      display_options:
-        template: '{{name}}'
-      readonly: false
-      hidden: false
-      sort: 5
-      width: full
-      translations: null
-      note: The group that can allocate to this room
-      conditions: null
-      required: true
-      group: null
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: gender
-    type: string
-    schema:
-      name: gender
-      table: rooms
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 10
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: rooms
-      field: gender
-      special: null
-      interface: select-dropdown
-      options:
-        choices:
-          - text: Male
-            value: male
-          - text: Female
-            value: female
-      display: labels
-      display_options:
-        choices:
-          - text: Male
-            value: Male
-            background: '#68B0F4'
-            foreground: '#ECEFF1'
-          - text: Female
-            value: Female
-            background: '#E35169'
-            foreground: '#ECEFF1'
-      readonly: false
-      hidden: false
-      sort: 3
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: arrival
-    type: timestamp
-    schema:
-      name: arrival
-      table: rooms
-      data_type: timestamp
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: rooms
-      field: arrival
-      special: null
-      interface: datetime
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: null
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: departure
-    type: timestamp
-    schema:
-      name: departure
-      table: rooms
-      data_type: timestamp
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: rooms
-      field: departure
-      special: null
-      interface: datetime
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: null
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: features
-    type: json
-    schema:
-      name: features
-      table: rooms
-      data_type: json
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: rooms
-      field: features
-      special:
-        - cast-json
-      interface: select-multiple-checkbox
-      options:
-        choices:
-          - text: For disabled
-            value: handicapped
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: is_complete
-    type: boolean
-    schema:
-      name: is_complete
-      table: rooms
-      data_type: boolean
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 3
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: rooms
-      field: is_complete
-      special:
-        - cast-boolean
-      interface: boolean
-      options:
-        label: Completed
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: null
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: is_reviewed
-    type: boolean
-    schema:
-      name: is_reviewed
-      table: rooms
-      data_type: boolean
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 3
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: rooms
-      field: is_reviewed
-      special:
-        - cast-boolean
-      interface: boolean
-      options:
-        label: Reviewed
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: null
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: event
-    type: string
-    schema:
-      name: event
-      table: rooms
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: events
-      comment: ''
-    meta:
-      collection: rooms
-      field: event
-      special:
-        - m2o
-      interface: select-dropdown-m2o
-      options:
-        template: '{{title}}'
-      display: related-values
-      display_options:
-        template: '{{title}}'
-      readonly: false
-      hidden: false
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: null
-      validation: null
-      validation_message: null
-  - collection: registrations_activities
-    field: id
-    type: integer
-    schema:
-      name: id
-      table: registrations_activities
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: true
-      has_auto_increment: true
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations_activities
-      field: id
-      special: null
-      interface: null
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: true
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: registrations_activities
-    field: activity
-    type: integer
-    schema:
-      name: activity
-      table: registrations_activities
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: activities
-      comment: ''
-    meta:
-      collection: registrations_activities
-      field: activity
-      special: null
-      interface: null
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: true
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: registrations_activities
-    field: registration
-    type: string
-    schema:
-      name: registration
-      table: registrations_activities
-      data_type: char
-      default_value: null
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: registrations
-      comment: ''
-    meta:
-      collection: registrations_activities
-      field: registration
-      special: null
-      interface: null
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: true
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: registrations_activities
-    field: comment
-    type: string
-    schema:
-      name: comment
-      table: registrations_activities
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations_activities
-      field: comment
-      special: null
-      interface: input
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: id
-    type: integer
-    schema:
-      name: id
-      table: exports
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: true
-      has_auto_increment: true
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: exports
-      field: id
-      special: null
-      interface: input
-      options: null
-      display: null
-      display_options: null
-      readonly: true
-      hidden: true
-      sort: 1
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: status
-    type: string
-    schema:
-      name: status
-      table: exports
-      data_type: varchar
-      default_value: new
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: exports
       field: status
-      special: null
+      group: null
+      hidden: false
       interface: select-dropdown
+      note: null
       options:
         choices:
           - text: $t:published
             value: published
-          - text: $t:New
-            value: new
+          - text: $t:draft
+            value: draft
           - text: $t:archived
             value: archived
-          - text: $t:Pending
-            value: pending
+      readonly: false
+      required: false
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: draft
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: status
+      numeric_precision: null
+      numeric_scale: null
+      table: events
+    type: string
+  - collection: events
+    field: title
+    meta:
+      collection: events
+      conditions: null
+      display: null
+      display_options: null
+      field: title
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: title
+      numeric_precision: null
+      numeric_scale: null
+      table: events
+    type: string
+  - collection: exports
+    field: change_since
+    meta:
+      collection: exports
+      conditions:
+        - name: Disable on update
+          rule:
+            id:
+              _nnull: true
+          readonly: true
+      display: datetime
+      display_options:
+        relative: true
+      field: change_since
+      group: null
+      hidden: false
+      interface: date-picker
+      note: Leave empty if you want to export all changes since the last export
+      options: null
+      readonly: false
+      required: false
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: datetime
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: change_since
+      numeric_precision: null
+      numeric_scale: null
+      table: exports
+    type: dateTime
+  - collection: exports
+    field: date_created
+    meta:
+      collection: exports
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_created
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options:
+        enableTime: true
+      readonly: true
+      required: false
+      sort: 7
+      special:
+        - date-created
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: timestamp
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: date_created
+      numeric_precision: null
+      numeric_scale: null
+      table: exports
+    type: timestamp
+  - collection: exports
+    field: event
+    meta:
+      collection: exports
+      conditions: null
+      display: null
+      display_options: null
+      field: event
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: events
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: event
+      numeric_precision: null
+      numeric_scale: null
+      table: exports
+    type: string
+  - collection: exports
+    field: file
+    meta:
+      collection: exports
+      conditions: null
+      display: file
+      display_options: null
+      field: file
+      group: null
+      hidden: false
+      interface: file
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 4
+      special:
+        - file
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: directus_files
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: file
+      numeric_precision: null
+      numeric_scale: null
+      table: exports
+    type: uuid
+  - collection: exports
+    field: id
+    meta:
+      collection: exports
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: exports
+    type: integer
+  - collection: exports
+    field: status
+    meta:
+      collection: exports
+      conditions: null
       display: labels
       display_options:
         choices:
@@ -1485,175 +1343,219 @@ fields:
             background: '#F2C94C'
             foreground: '#607D8B'
         showAsDot: true
-      readonly: true
-      hidden: false
-      sort: 3
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
+      field: status
       group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: $t:published
+            value: published
+          - text: $t:New
+            value: new
+          - text: $t:archived
+            value: archived
+          - text: $t:Pending
+            value: pending
+      readonly: true
+      required: false
+      sort: 3
+      special: null
+      translations: null
       validation: null
       validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: new
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: status
+      numeric_precision: null
+      numeric_scale: null
+      table: exports
+    type: string
   - collection: exports
     field: user_created
-    type: string
-    schema:
-      name: user_created
-      table: exports
-      data_type: char
-      default_value: null
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: directus_users
-      comment: ''
     meta:
       collection: exports
-      field: user_created
-      special:
-        - user-created
-      interface: select-dropdown-m2o
-      options:
-        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      conditions: null
       display: user
       display_options: null
-      readonly: true
-      hidden: false
-      sort: 6
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
+      field: user_created
       group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: date_created
-    type: timestamp
-    schema:
-      name: date_created
-      table: exports
-      data_type: timestamp
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: exports
-      field: date_created
-      special:
-        - date-created
-      interface: datetime
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
       options:
-        enableTime: true
-      display: datetime
-      display_options:
-        relative: true
+        template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
       readonly: true
-      hidden: false
-      sort: 7
+      required: false
+      sort: 6
+      special:
+        - user-created
+      translations: null
+      validation: null
+      validation_message: null
       width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: change_since
-    type: dateTime
     schema:
-      name: change_since
-      table: exports
-      data_type: datetime
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
       comment: ''
-    meta:
-      collection: exports
-      field: change_since
-      special: null
-      interface: date-picker
-      options: null
-      display: datetime
-      display_options:
-        relative: true
-      readonly: false
-      hidden: false
-      sort: 5
-      width: full
-      translations: null
-      note: Leave empty if you want to export all changes since the last export
-      conditions:
-        - name: Disable on update
-          rule:
-            id:
-              _nnull: true
-          readonly: true
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: exports
-    field: file
-    type: uuid
-    schema:
-      name: file
-      table: exports
       data_type: char
       default_value: null
+      foreign_key_column: id
+      foreign_key_table: directus_users
       generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
+      has_auto_increment: false
       is_generated: false
       is_nullable: true
-      is_unique: false
       is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: directus_files
-      comment: ''
+      is_unique: false
+      max_length: 36
+      name: user_created
+      numeric_precision: null
+      numeric_scale: null
+      table: exports
+    type: string
+  - collection: group_users
+    field: group
     meta:
-      collection: exports
-      field: file
-      special:
-        - file
-      interface: file
-      options: null
-      display: file
+      collection: group_users
+      conditions: null
+      display: null
       display_options: null
-      readonly: true
+      field: group
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: groups
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: group
+      numeric_precision: 10
+      numeric_scale: 0
+      table: group_users
+    type: integer
+  - collection: group_users
+    field: id
+    meta:
+      collection: group_users
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: group_users
+    type: integer
+  - collection: group_users
+    field: user
+    meta:
+      collection: group_users
+      conditions: null
+      display: null
+      display_options: null
+      field: user
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: user
+      numeric_precision: null
+      numeric_scale: null
+      table: group_users
+    type: string
+  - collection: groups
+    field: accordion-f-tsvw
+    meta:
+      collection: groups
+      field: accordion-f-tsvw
+      special:
+        - alias
+        - no-data
+        - group
+      interface: group-accordion
+      options: null
+      display: null
+      display_options: null
+      readonly: false
       hidden: false
       sort: 4
       width: full
@@ -1664,524 +1566,187 @@ fields:
       group: null
       validation: null
       validation_message: null
-  - collection: exports
-    field: event
-    type: string
-    schema:
-      name: event
-      table: exports
-      data_type: char
-      default_value: null
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: events
-      comment: ''
+    schema: null
+    type: alias
+  - collection: groups
+    field: country
     meta:
-      collection: exports
-      field: event
-      special:
-        - m2o
-      interface: select-dropdown-m2o
-      options:
-        template: '{{title}}'
-      display: null
+      collection: groups
+      conditions: null
+      display: formatted-value
       display_options: null
-      readonly: false
+      field: country
+      group: null
       hidden: false
-      sort: 2
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: null
-      validation: null
-      validation_message: null
-  - collection: registrations
-    field: id
-    type: uuid
-    schema:
-      name: id
-      table: registrations
-      data_type: char
-      default_value: null
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: true
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations
-      field: id
-      special:
-        - uuid
       interface: input
+      note: null
       options: null
-      display: raw
-      display_options: null
       readonly: false
-      hidden: true
-      sort: 1
-      width: full
+      required: true
+      sort: 3
+      special: null
       translations: null
-      note: PMO ID
-      conditions: null
-      required: false
-      group: null
       validation: null
       validation_message: null
-  - collection: registrations
-    field: name
-    type: string
+      width: full
     schema:
-      name: name
-      table: registrations
+      comment: ''
       data_type: varchar
       default_value: null
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
       foreign_key_column: null
       foreign_key_table: null
-      comment: ''
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: country
+      numeric_precision: null
+      numeric_scale: null
+      table: groups
+    type: string
+  - collection: groups
+    field: id
     meta:
-      collection: registrations
-      field: name
-      special: null
+      collection: groups
+      conditions: null
+      display: raw
+      display_options: null
+      field: id
+      group: null
+      hidden: true
       interface: input
-      options:
-        trim: true
-        placeholder: Full name
+      note: null
+      options: null
+      readonly: true
+      required: false
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: groups
+    type: integer
+  - collection: groups
+    field: name
+    meta:
+      collection: groups
+      conditions: null
       display: formatted-value
       display_options:
         bold: true
         formatTitle: true
-      readonly: false
+      field: name
+      group: null
       hidden: false
-      sort: 2
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: user
-      validation: null
-      validation_message: null
-  - collection: registrations
-    field: age
-    type: integer
-    schema:
-      name: age
-      table: registrations
-      data_type: int
-      default_value: 999
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations
-      field: age
-      special: null
       interface: input
-      options:
-        max: 130
-        min: 0
-      display: raw
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 3
-      width: half
-      translations: null
       note: null
-      conditions: null
+      options:
+        iconLeft: null
+        trim: true
+      readonly: false
       required: true
-      group: user
+      sort: 2
+      special: null
+      translations: null
       validation: null
       validation_message: null
-  - collection: registrations
-    field: gender
-    type: string
+      width: full
     schema:
-      name: gender
-      table: registrations
+      comment: ''
       data_type: varchar
       default_value: null
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
       foreign_key_column: null
       foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations
-      field: gender
-      special: null
-      interface: select-dropdown
-      options:
-        choices:
-          - text: Male
-            value: male
-          - text: Female
-            value: female
-      display: labels
-      display_options:
-        choices:
-          - text: Male
-            value: male
-            background: '#68B0F4'
-            foreground: '#FFFFFF'
-          - text: Female
-            value: female
-            background: '#E35169'
-            foreground: '#FFFFFF'
-      readonly: false
-      hidden: false
-      sort: 4
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: user
-      validation: null
-      validation_message: null
-  - collection: registrations
-    field: group
-    type: integer
-    schema:
-      name: group
-      table: registrations
-      data_type: int unsigned
-      default_value: null
       generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
+      has_auto_increment: false
       is_generated: false
       is_nullable: false
-      is_unique: false
       is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: groups
-      comment: ''
+      is_unique: false
+      max_length: 255
+      name: name
+      numeric_precision: null
+      numeric_scale: null
+      table: groups
+    type: string
+  - collection: groups
+    field: registrations
     meta:
-      collection: registrations
-      field: group
-      special: null
-      interface: select-dropdown-m2o
+      collection: groups
+      field: registrations
+      special:
+        - o2m
+      interface: list-o2m
       options:
-        template: '{{name}}'
+        template: "{{name}}\_{{age}}"
+        enableCreate: false
+        enableSelect: false
       display: related-values
       display_options:
-        template: '{{name}}'
+        template: '{{id}}'
       readonly: false
       hidden: false
       sort: 2
-      width: half
+      width: full
       translations: null
       note: null
       conditions: null
-      required: true
-      group: relations
+      required: false
+      group: accordion-f-tsvw
       validation: null
       validation_message: null
-  - collection: registrations
-    field: room
-    type: integer
-    schema:
-      name: room
-      table: registrations
-      data_type: int unsigned
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: 10
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: rooms
-      comment: ''
+    schema: null
+    type: alias
+  - collection: groups
+    field: rooms
     meta:
-      collection: registrations
-      field: room
-      special: null
-      interface: select-dropdown-m2o
+      collection: groups
+      field: rooms
+      special:
+        - o2m
+      interface: list-o2m
       options:
         filter: null
-        template: "{{name}}\_({{capacity}})"
+        template: "{{name}}\_{{capacity}}\_{{id}}"
+        enableCreate: false
       display: related-values
       display_options:
-        template: '{{name}}'
+        template: '{{id}}'
       readonly: false
       hidden: false
       sort: 3
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: relations
-      validation: null
-      validation_message: null
-  - collection: registrations
-    field: status
-    type: boolean
-    schema:
-      name: status
-      table: registrations
-      data_type: boolean
-      default_value: true
-      generation_expression: null
-      max_length: null
-      numeric_precision: 3
-      numeric_scale: 0
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations
-      field: status
-      special:
-        - cast-boolean
-      interface: boolean
-      options:
-        label: Attending
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 4
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: registrations
-    field: event
-    type: string
-    schema:
-      name: event
-      table: registrations
-      data_type: char
-      default_value: null
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: id
-      foreign_key_table: events
-      comment: ''
-    meta:
-      collection: registrations
-      field: event
-      special:
-        - m2o
-      interface: select-dropdown-m2o
-      options:
-        template: '{{title}}'
-      display: related-values
-      display_options:
-        template: '{{title}}'
-      readonly: false
-      hidden: false
-      sort: 1
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: relations
-      validation: null
-      validation_message: null
-  - collection: registrations
-    field: person_id
-    type: string
-    schema:
-      name: person_id
-      table: registrations
-      data_type: char
-      default_value: ''
-      generation_expression: null
-      max_length: 36
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: false
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations
-      field: person_id
-      special: null
-      interface: input
-      options:
-        trim: true
-        placeholder: BCC Person ID
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 1
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: user
-      validation: null
-      validation_message: null
-  - collection: registrations
-    field: tags
-    type: csv
-    schema:
-      name: tags
-      table: registrations
-      data_type: varchar
-      default_value: null
-      generation_expression: null
-      max_length: 255
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations
-      field: tags
-      special:
-        - cast-csv
-      interface: tags
-      options:
-        presets:
-          - mentor
-          - responsible
-        whitespace: _
-        alphabetize: true
-        placeholder: Mentor | Room responsible
-        capitalization: lowercase
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 5
       width: full
       translations: null
       note: null
       conditions: null
       required: false
-      group: user
+      group: accordion-f-tsvw
       validation: null
       validation_message: null
-  - collection: registrations
-    field: date_updated
-    type: dateTime
-    schema:
-      name: date_updated
-      table: registrations
-      data_type: datetime
-      default_value: null
-      generation_expression: null
-      max_length: null
-      numeric_precision: null
-      numeric_scale: null
-      is_generated: false
-      is_nullable: true
-      is_unique: false
-      is_primary_key: false
-      has_auto_increment: false
-      foreign_key_column: null
-      foreign_key_table: null
-      comment: ''
-    meta:
-      collection: registrations
-      field: date_updated
-      special:
-        - date-updated
-        - date-created
-      interface: datetime
-      options: null
-      display: datetime
-      display_options:
-        relative: true
-      readonly: true
-      hidden: false
-      sort: 5
-      width: half
-      translations: null
-      note: null
-      conditions: null
-      required: true
-      group: null
-      validation: null
-      validation_message: null
+    schema: null
+    type: alias
   - collection: groups
     field: users
-    type: alias
-    schema: null
     meta:
       collection: groups
       field: users
@@ -2207,118 +1772,10 @@ fields:
       group: accordion-f-tsvw
       validation: null
       validation_message: null
-  - collection: directus_users
-    field: groups
-    type: alias
     schema: null
-    meta:
-      collection: directus_users
-      field: groups
-      special:
-        - m2m
-      interface: list-m2m
-      options:
-        template: '{{group.name}}'
-      display: related-values
-      display_options:
-        template: '{{group.name}}'
-      readonly: false
-      hidden: false
-      sort: null
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: groups
-    field: registrations
     type: alias
-    schema: null
-    meta:
-      collection: groups
-      field: registrations
-      special:
-        - o2m
-      interface: list-o2m
-      options:
-        template: "{{name}}\_{{age}}"
-        enableCreate: false
-        enableSelect: false
-      display: related-values
-      display_options:
-        template: '{{id}}'
-      readonly: false
-      hidden: false
-      sort: 2
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: accordion-f-tsvw
-      validation: null
-      validation_message: null
-  - collection: groups
-    field: rooms
-    type: alias
-    schema: null
-    meta:
-      collection: groups
-      field: rooms
-      special:
-        - o2m
-      interface: list-o2m
-      options:
-        filter: null
-        template: "{{name}}\_{{capacity}}\_{{id}}"
-        enableCreate: false
-      display: related-values
-      display_options:
-        template: '{{id}}'
-      readonly: false
-      hidden: false
-      sort: 3
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: accordion-f-tsvw
-      validation: null
-      validation_message: null
-  - collection: rooms
-    field: guests
-    type: alias
-    schema: null
-    meta:
-      collection: rooms
-      field: guests
-      special:
-        - o2m
-      interface: list-o2m
-      options:
-        template: '{{name}}'
-      display: related-values
-      display_options:
-        template: '{{name}}'
-      readonly: false
-      hidden: false
-      sort: 6
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
   - collection: registrations
     field: activities
-    type: alias
-    schema: null
     meta:
       collection: registrations
       field: activities
@@ -2342,26 +1799,368 @@ fields:
       group: relations
       validation: null
       validation_message: null
-  - collection: activities
-    field: registrations
-    type: alias
     schema: null
+    type: alias
+  - collection: registrations
+    field: age
     meta:
-      collection: activities
-      field: registrations
-      special:
-        - m2m
-      interface: list-m2m
+      collection: registrations
+      conditions: null
+      display: raw
+      display_options: null
+      field: age
+      group: user
+      hidden: false
+      interface: input
+      note: null
       options:
-        template: "{{registration.name}}\_{{registration.age}}\_{{registration.gender}}"
-        enableCreate: false
-        enableSelect: false
+        max: 130
+        min: 0
+      readonly: false
+      required: true
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: int
+      default_value: 999
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: age
+      numeric_precision: 10
+      numeric_scale: 0
+      table: registrations
+    type: integer
+  - collection: registrations
+    field: date_updated
+    meta:
+      collection: registrations
+      conditions: null
+      display: datetime
+      display_options:
+        relative: true
+      field: date_updated
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: true
+      required: true
+      sort: 5
+      special:
+        - date-created
+        - date-updated
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: datetime
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: date_updated
+      numeric_precision: null
+      numeric_scale: null
+      table: registrations
+    type: dateTime
+  - collection: registrations
+    field: event
+    meta:
+      collection: registrations
+      conditions: null
       display: related-values
       display_options:
-        template: '{{id}}'
+        template: '{{title}}'
+      field: event
+      group: relations
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      sort: 1
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: events
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: event
+      numeric_precision: null
+      numeric_scale: null
+      table: registrations
+    type: string
+  - collection: registrations
+    field: gender
+    meta:
+      collection: registrations
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - text: Male
+            value: male
+            background: '#68B0F4'
+            foreground: '#FFFFFF'
+          - text: Female
+            value: female
+            background: '#E35169'
+            foreground: '#FFFFFF'
+      field: gender
+      group: user
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Male
+            value: male
+          - text: Female
+            value: female
+      readonly: false
+      required: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: gender
+      numeric_precision: null
+      numeric_scale: null
+      table: registrations
+    type: string
+  - collection: registrations
+    field: group
+    meta:
+      collection: registrations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      field: group
+      group: relations
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{name}}'
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: groups
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: group
+      numeric_precision: 10
+      numeric_scale: 0
+      table: registrations
+    type: integer
+  - collection: registrations
+    field: id
+    meta:
+      collection: registrations
+      conditions: null
+      display: raw
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: input
+      note: PMO ID
+      options: null
+      readonly: false
+      required: false
+      sort: 1
+      special:
+        - uuid
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: 36
+      name: id
+      numeric_precision: null
+      numeric_scale: null
+      table: registrations
+    type: uuid
+  - collection: registrations
+    field: name
+    meta:
+      collection: registrations
+      conditions: null
+      display: formatted-value
+      display_options:
+        bold: true
+        formatTitle: true
+      field: name
+      group: user
+      hidden: false
+      interface: input
+      note: null
+      options:
+        placeholder: Full name
+        trim: true
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: name
+      numeric_precision: null
+      numeric_scale: null
+      table: registrations
+    type: string
+  - collection: registrations
+    field: person_id
+    meta:
+      collection: registrations
+      conditions: null
+      display: null
+      display_options: null
+      field: person_id
+      group: user
+      hidden: false
+      interface: input
+      note: null
+      options:
+        placeholder: BCC Person ID
+        trim: true
+      readonly: false
+      required: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: char
+      default_value: ''
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: person_id
+      numeric_precision: null
+      numeric_scale: null
+      table: registrations
+    type: string
+  - collection: registrations
+    field: relations
+    meta:
+      collection: registrations
+      field: relations
+      special:
+        - alias
+        - no-data
+        - group
+      interface: group-detail
+      options:
+        headerColor: '#F7971C'
+      display: null
+      display_options: null
       readonly: false
       hidden: false
-      sort: null
+      sort: 3
       width: full
       translations: null
       note: null
@@ -2370,10 +2169,140 @@ fields:
       group: null
       validation: null
       validation_message: null
+    schema: null
+    type: alias
+  - collection: registrations
+    field: room
+    meta:
+      collection: registrations
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      field: room
+      group: relations
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        filter: null
+        template: "{{name}}\_({{capacity}})"
+      readonly: false
+      required: false
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: rooms
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: room
+      numeric_precision: 10
+      numeric_scale: 0
+      table: registrations
+    type: integer
+  - collection: registrations
+    field: status
+    meta:
+      collection: registrations
+      conditions: null
+      display: null
+      display_options: null
+      field: status
+      group: null
+      hidden: false
+      interface: boolean
+      note: null
+      options:
+        label: Attending
+      readonly: false
+      required: false
+      sort: 4
+      special:
+        - cast-boolean
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: boolean
+      default_value: true
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: status
+      numeric_precision: 3
+      numeric_scale: 0
+      table: registrations
+    type: boolean
+  - collection: registrations
+    field: tags
+    meta:
+      collection: registrations
+      conditions: null
+      display: null
+      display_options: null
+      field: tags
+      group: user
+      hidden: false
+      interface: tags
+      note: null
+      options:
+        alphabetize: true
+        capitalization: lowercase
+        placeholder: Mentor | Room responsible
+        presets:
+          - mentor
+          - responsible
+        whitespace: _
+      readonly: false
+      required: false
+      sort: 5
+      special:
+        - cast-csv
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: tags
+      numeric_precision: null
+      numeric_scale: null
+      table: registrations
+    type: csv
   - collection: registrations
     field: user
-    type: alias
-    schema: null
     meta:
       collection: registrations
       field: user
@@ -2399,386 +2328,1251 @@ fields:
       group: null
       validation: null
       validation_message: null
-  - collection: registrations
-    field: relations
-    type: alias
     schema: null
-    meta:
-      collection: registrations
-      field: relations
-      special:
-        - alias
-        - no-data
-        - group
-      interface: group-detail
-      options:
-        headerColor: '#F7971C'
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 3
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: groups
-    field: accordion-f-tsvw
     type: alias
-    schema: null
-    meta:
-      collection: groups
-      field: accordion-f-tsvw
-      special:
-        - alias
-        - no-data
-        - group
-      interface: group-accordion
-      options: null
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 4
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-  - collection: events
-    field: registrations
-    type: alias
-    schema: null
-    meta:
-      collection: events
-      field: registrations
-      special:
-        - o2m
-      interface: list-o2m
-      options: null
-      display: related-values
-      display_options:
-        template: '{{id}}'
-      readonly: false
-      hidden: false
-      sort: 1
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: accordion-hnsphe
-      validation: null
-      validation_message: null
-  - collection: events
-    field: rooms
-    type: alias
-    schema: null
-    meta:
-      collection: events
-      field: rooms
-      special:
-        - o2m
-      interface: list-o2m
-      options:
-        enableCreate: false
-      display: related-values
-      display_options:
-        template: '{{id}}'
-      readonly: false
-      hidden: false
-      sort: 2
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: accordion-hnsphe
-      validation: null
-      validation_message: null
-  - collection: events
-    field: accordion-hnsphe
-    type: alias
-    schema: null
-    meta:
-      collection: events
-      field: accordion-hnsphe
-      special:
-        - alias
-        - no-data
-        - group
-      interface: group-accordion
-      options: {}
-      display: null
-      display_options: null
-      readonly: false
-      hidden: false
-      sort: 7
-      width: full
-      translations: null
-      note: null
-      conditions: null
-      required: false
-      group: null
-      validation: null
-      validation_message: null
-relations:
-  - collection: exports
-    field: file
-    related_collection: directus_files
-    schema:
-      table: exports
-      column: file
-      foreign_key_table: directus_files
-      foreign_key_column: id
-      constraint_name: exports_file_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-    meta:
-      many_collection: exports
-      many_field: file
-      one_collection: directus_files
-      one_field: null
-      one_collection_field: null
-      one_allowed_collections: null
-      junction_field: null
-      sort_field: null
-      one_deselect_action: nullify
-  - collection: exports
-    field: event
-    related_collection: events
-    schema:
-      table: exports
-      column: event
-      foreign_key_table: events
-      foreign_key_column: id
-      constraint_name: exports_ibfk_1
-      on_update: CASCADE
-      on_delete: CASCADE
-    meta:
-      many_collection: exports
-      many_field: event
-      one_collection: events
-      one_field: null
-      one_collection_field: null
-      one_allowed_collections: null
-      junction_field: null
-      sort_field: null
-      one_deselect_action: nullify
-  - collection: exports
-    field: user_created
-    related_collection: directus_users
-    schema:
-      table: exports
-      column: user_created
-      foreign_key_table: directus_users
-      foreign_key_column: id
-      constraint_name: exports_user_created_foreign
-      on_update: NO ACTION
-      on_delete: SET NULL
-    meta:
-      many_collection: exports
-      many_field: user_created
-      one_collection: directus_users
-      one_field: null
-      one_collection_field: null
-      one_allowed_collections: null
-      junction_field: null
-      sort_field: null
-      one_deselect_action: nullify
-  - collection: group_users
-    field: group
-    related_collection: groups
-    schema:
-      table: group_users
-      column: group
-      foreign_key_table: groups
-      foreign_key_column: id
-      constraint_name: group_users_group_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
-    meta:
-      many_collection: group_users
-      many_field: group
-      one_collection: groups
-      one_field: users
-      one_collection_field: null
-      one_allowed_collections: null
-      junction_field: user
-      sort_field: null
-      one_deselect_action: delete
-  - collection: group_users
-    field: user
-    related_collection: directus_users
-    schema:
-      table: group_users
-      column: user
-      foreign_key_table: directus_users
-      foreign_key_column: id
-      constraint_name: group_users_user_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
-    meta:
-      many_collection: group_users
-      many_field: user
-      one_collection: directus_users
-      one_field: groups
-      one_collection_field: null
-      one_allowed_collections: null
-      junction_field: group
-      sort_field: null
-      one_deselect_action: nullify
   - collection: registrations_activities
     field: activity
-    related_collection: activities
-    schema:
-      table: registrations_activities
-      column: activity
-      foreign_key_table: activities
-      foreign_key_column: id
-      constraint_name: registrations_activities_activity_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
     meta:
-      many_collection: registrations_activities
-      many_field: activity
-      one_collection: activities
-      one_field: registrations
-      one_collection_field: null
-      one_allowed_collections: null
-      junction_field: registration
-      sort_field: null
-      one_deselect_action: nullify
+      collection: registrations_activities
+      conditions: null
+      display: null
+      display_options: null
+      field: activity
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: activities
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: activity
+      numeric_precision: 10
+      numeric_scale: 0
+      table: registrations_activities
+    type: integer
+  - collection: registrations_activities
+    field: comment
+    meta:
+      collection: registrations_activities
+      conditions: null
+      display: null
+      display_options: null
+      field: comment
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: comment
+      numeric_precision: null
+      numeric_scale: null
+      table: registrations_activities
+    type: string
+  - collection: registrations_activities
+    field: id
+    meta:
+      collection: registrations_activities
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: registrations_activities
+    type: integer
   - collection: registrations_activities
     field: registration
-    related_collection: registrations
-    schema:
-      table: registrations_activities
-      column: registration
-      foreign_key_table: registrations
-      foreign_key_column: id
-      constraint_name: registrations_activities_registration_foreign
-      on_update: CASCADE
-      on_delete: CASCADE
     meta:
-      many_collection: registrations_activities
-      many_field: registration
-      one_collection: registrations
-      one_field: activities
-      one_collection_field: null
-      one_allowed_collections: null
-      junction_field: activity
-      sort_field: null
-      one_deselect_action: delete
-  - collection: registrations
+      collection: registrations_activities
+      conditions: null
+      display: null
+      display_options: null
+      field: registration
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: registrations
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: registration
+      numeric_precision: null
+      numeric_scale: null
+      table: registrations_activities
+    type: string
+  - collection: rooms
+    field: arrival
+    meta:
+      collection: rooms
+      conditions: null
+      display: null
+      display_options: null
+      field: arrival
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: timestamp
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: arrival
+      numeric_precision: null
+      numeric_scale: null
+      table: rooms
+    type: timestamp
+  - collection: rooms
+    field: capacity
+    meta:
+      collection: rooms
+      conditions: null
+      display: raw
+      display_options: null
+      field: capacity
+      group: null
+      hidden: false
+      interface: slider
+      note: null
+      options:
+        maxValue: 16
+        minValue: 1
+        stepInterval: 1
+      readonly: false
+      required: true
+      sort: 4
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: int
+      default_value: 2
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: capacity
+      numeric_precision: 10
+      numeric_scale: 0
+      table: rooms
+    type: integer
+  - collection: rooms
+    field: departure
+    meta:
+      collection: rooms
+      conditions: null
+      display: null
+      display_options: null
+      field: departure
+      group: null
+      hidden: false
+      interface: datetime
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: timestamp
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: departure
+      numeric_precision: null
+      numeric_scale: null
+      table: rooms
+    type: timestamp
+  - collection: rooms
+    field: event
+    meta:
+      collection: rooms
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
+      field: event
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: null
+      options:
+        template: '{{title}}'
+      readonly: false
+      required: true
+      sort: null
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: events
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: event
+      numeric_precision: null
+      numeric_scale: null
+      table: rooms
+    type: string
+  - collection: rooms
+    field: features
+    meta:
+      collection: rooms
+      conditions: null
+      display: null
+      display_options: null
+      field: features
+      group: null
+      hidden: false
+      interface: select-multiple-checkbox
+      note: null
+      options:
+        choices:
+          - text: For disabled
+            value: handicapped
+          - text: Extra long bed
+            value: long_bed
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - cast-json
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: json
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: features
+      numeric_precision: null
+      numeric_scale: null
+      table: rooms
+    type: json
+  - collection: rooms
+    field: gender
+    meta:
+      collection: rooms
+      conditions: null
+      display: labels
+      display_options:
+        choices:
+          - text: Male
+            value: Male
+            background: '#68B0F4'
+            foreground: '#ECEFF1'
+          - text: Female
+            value: Female
+            background: '#E35169'
+            foreground: '#ECEFF1'
+      field: gender
+      group: null
+      hidden: false
+      interface: select-dropdown
+      note: null
+      options:
+        choices:
+          - text: Male
+            value: male
+          - text: Female
+            value: female
+      readonly: false
+      required: false
+      sort: 3
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 10
+      name: gender
+      numeric_precision: null
+      numeric_scale: null
+      table: rooms
+    type: string
+  - collection: rooms
     field: group
+    meta:
+      collection: rooms
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      field: group
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: The group that can allocate to this room
+      options:
+        template: '{{name}}'
+      readonly: false
+      required: true
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: groups
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: group
+      numeric_precision: 10
+      numeric_scale: 0
+      table: rooms
+    type: integer
+  - collection: rooms
+    field: guests
+    meta:
+      collection: rooms
+      field: guests
+      special:
+        - o2m
+      interface: list-o2m
+      options:
+        template: '{{name}}'
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      readonly: false
+      hidden: false
+      sort: 6
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: null
+      validation: null
+      validation_message: null
+    schema: null
+    type: alias
+  - collection: rooms
+    field: id
+    meta:
+      collection: rooms
+      conditions: null
+      display: raw
+      display_options: null
+      field: id
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options: null
+      readonly: false
+      required: true
+      sort: 1
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: rooms
+    type: integer
+  - collection: rooms
+    field: is_complete
+    meta:
+      collection: rooms
+      conditions: null
+      display: null
+      display_options: null
+      field: is_complete
+      group: null
+      hidden: false
+      interface: boolean
+      note: null
+      options:
+        label: Completed
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - cast-boolean
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: boolean
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: is_complete
+      numeric_precision: 3
+      numeric_scale: 0
+      table: rooms
+    type: boolean
+  - collection: rooms
+    field: is_reviewed
+    meta:
+      collection: rooms
+      conditions: null
+      display: null
+      display_options: null
+      field: is_reviewed
+      group: null
+      hidden: false
+      interface: boolean
+      note: null
+      options:
+        label: Reviewed
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - cast-boolean
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: boolean
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: is_reviewed
+      numeric_precision: 3
+      numeric_scale: 0
+      table: rooms
+    type: boolean
+  - collection: rooms
+    field: name
+    meta:
+      collection: rooms
+      conditions: null
+      display: formatted-value
+      display_options:
+        bold: true
+      field: name
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        trim: true
+      readonly: false
+      required: true
+      sort: 2
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: false
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: name
+      numeric_precision: null
+      numeric_scale: null
+      table: rooms
+    type: string
+  - collection: tmp
+    field: act_id
+    meta: null
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: act_id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp
+    type: integer
+  - collection: tmp
+    field: activity
+    meta: null
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: activity
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp
+    type: integer
+  - collection: tmp
+    field: id
+    meta: null
+    schema:
+      comment: ''
+      data_type: int
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp
+    type: integer
+  - collection: tmp
+    field: person_id
+    meta: null
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: person_id
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp
+    type: string
+  - collection: tmp
+    field: reg_id
+    meta: null
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: reg_id
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp
+    type: string
+  - collection: tmp
+    field: tags
+    meta: null
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: tags
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp
+    type: string
+  - collection: user_roles
+    field: id
+    meta:
+      collection: user_roles
+      conditions: null
+      display: null
+      display_options: null
+      field: id
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: user_roles
+    type: integer
+  - collection: user_roles
+    field: role
+    meta:
+      collection: user_roles
+      conditions: null
+      display: null
+      display_options: null
+      field: role
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: directus_roles
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: role
+      numeric_precision: null
+      numeric_scale: null
+      table: user_roles
+    type: string
+  - collection: user_roles
+    field: user
+    meta:
+      collection: user_roles
+      conditions: null
+      display: null
+      display_options: null
+      field: user
+      group: null
+      hidden: true
+      interface: null
+      note: null
+      options: null
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: user
+      numeric_precision: null
+      numeric_scale: null
+      table: user_roles
+    type: string
+relations:
+  - collection: activities
+    field: event
+    meta:
+      junction_field: null
+      many_collection: activities
+      many_field: event
+      one_allowed_collections: null
+      one_collection: events
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: events
+    schema:
+      column: event
+      constraint_name: activities_event_foreign
+      foreign_key_column: id
+      foreign_key_table: events
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: activities
+  - collection: activity_coordinators
+    field: activity
+    meta:
+      junction_field: user
+      many_collection: activity_coordinators
+      many_field: activity
+      one_allowed_collections: null
+      one_collection: activities
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: coordinators
+      sort_field: null
+    related_collection: activities
+    schema:
+      column: activity
+      constraint_name: activity_coordinators_activity_foreign
+      foreign_key_column: id
+      foreign_key_table: activities
+      on_delete: CASCADE
+      on_update: NO ACTION
+      table: activity_coordinators
+  - collection: activity_coordinators
+    field: user
+    meta:
+      junction_field: activity
+      many_collection: activity_coordinators
+      many_field: user
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: activities
+      sort_field: null
+    related_collection: directus_users
+    schema:
+      column: user
+      constraint_name: activity_coordinators_user_foreign
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      on_delete: CASCADE
+      on_update: NO ACTION
+      table: activity_coordinators
+  - collection: exports
+    field: event
+    meta:
+      junction_field: null
+      many_collection: exports
+      many_field: event
+      one_allowed_collections: null
+      one_collection: events
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: events
+    schema:
+      column: event
+      constraint_name: exports_ibfk_1
+      foreign_key_column: id
+      foreign_key_table: events
+      on_delete: CASCADE
+      on_update: CASCADE
+      table: exports
+  - collection: exports
+    field: file
+    meta:
+      junction_field: null
+      many_collection: exports
+      many_field: file
+      one_allowed_collections: null
+      one_collection: directus_files
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: directus_files
+    schema:
+      column: file
+      constraint_name: exports_file_foreign
+      foreign_key_column: id
+      foreign_key_table: directus_files
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: exports
+  - collection: exports
+    field: user_created
+    meta:
+      junction_field: null
+      many_collection: exports
+      many_field: user_created
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: null
+      sort_field: null
+    related_collection: directus_users
+    schema:
+      column: user_created
+      constraint_name: exports_user_created_foreign
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      on_delete: SET NULL
+      on_update: NO ACTION
+      table: exports
+  - collection: group_users
+    field: group
+    meta:
+      junction_field: user
+      many_collection: group_users
+      many_field: group
+      one_allowed_collections: null
+      one_collection: groups
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: users
+      sort_field: null
     related_collection: groups
     schema:
-      table: registrations
       column: group
-      foreign_key_table: groups
+      constraint_name: group_users_group_foreign
       foreign_key_column: id
-      constraint_name: registrations_group_foreign
-      on_update: NO ACTION
+      foreign_key_table: groups
       on_delete: CASCADE
+      on_update: NO ACTION
+      table: group_users
+  - collection: group_users
+    field: user
     meta:
+      junction_field: group
+      many_collection: group_users
+      many_field: user
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: groups
+      sort_field: null
+    related_collection: directus_users
+    schema:
+      column: user
+      constraint_name: group_users_user_foreign
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      on_delete: CASCADE
+      on_update: NO ACTION
+      table: group_users
+  - collection: registrations
+    field: event
+    meta:
+      junction_field: null
+      many_collection: registrations
+      many_field: event
+      one_allowed_collections: null
+      one_collection: events
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: registrations
+      sort_field: null
+    related_collection: events
+    schema:
+      column: event
+      constraint_name: registrations_ibfk_2
+      foreign_key_column: id
+      foreign_key_table: events
+      on_delete: CASCADE
+      on_update: CASCADE
+      table: registrations
+  - collection: registrations
+    field: group
+    meta:
+      junction_field: null
       many_collection: registrations
       many_field: group
-      one_collection: groups
-      one_field: registrations
-      one_collection_field: null
       one_allowed_collections: null
-      junction_field: null
-      sort_field: null
+      one_collection: groups
+      one_collection_field: null
       one_deselect_action: nullify
+      one_field: registrations
+      sort_field: null
+    related_collection: groups
+    schema:
+      column: group
+      constraint_name: registrations_group_foreign
+      foreign_key_column: id
+      foreign_key_table: groups
+      on_delete: CASCADE
+      on_update: NO ACTION
+      table: registrations
   - collection: registrations
     field: room
-    related_collection: rooms
-    schema:
-      table: registrations
-      column: room
-      foreign_key_table: rooms
-      foreign_key_column: id
-      constraint_name: registrations_ibfk_1
-      on_update: CASCADE
-      on_delete: SET NULL
     meta:
+      junction_field: null
       many_collection: registrations
       many_field: room
+      one_allowed_collections: null
       one_collection: rooms
+      one_collection_field: null
+      one_deselect_action: nullify
       one_field: guests
-      one_collection_field: null
-      one_allowed_collections: null
-      junction_field: null
       sort_field: null
-      one_deselect_action: nullify
-  - collection: registrations
-    field: event
-    related_collection: events
+    related_collection: rooms
     schema:
-      table: registrations
-      column: event
-      foreign_key_table: events
+      column: room
+      constraint_name: registrations_ibfk_1
       foreign_key_column: id
-      constraint_name: registrations_ibfk_2
+      foreign_key_table: rooms
+      on_delete: SET NULL
       on_update: CASCADE
-      on_delete: CASCADE
+      table: registrations
+  - collection: registrations_activities
+    field: activity
     meta:
-      many_collection: registrations
-      many_field: event
-      one_collection: events
-      one_field: registrations
-      one_collection_field: null
+      junction_field: registration
+      many_collection: registrations_activities
+      many_field: activity
       one_allowed_collections: null
-      junction_field: null
-      sort_field: null
+      one_collection: activities
+      one_collection_field: null
       one_deselect_action: nullify
+      one_field: registrations
+      sort_field: null
+    related_collection: activities
+    schema:
+      column: activity
+      constraint_name: registrations_activities_activity_foreign
+      foreign_key_column: id
+      foreign_key_table: activities
+      on_delete: CASCADE
+      on_update: NO ACTION
+      table: registrations_activities
+  - collection: registrations_activities
+    field: registration
+    meta:
+      junction_field: activity
+      many_collection: registrations_activities
+      many_field: registration
+      one_allowed_collections: null
+      one_collection: registrations
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: activities
+      sort_field: null
+    related_collection: registrations
+    schema:
+      column: registration
+      constraint_name: registrations_activities_registration_foreign
+      foreign_key_column: id
+      foreign_key_table: registrations
+      on_delete: CASCADE
+      on_update: CASCADE
+      table: registrations_activities
   - collection: rooms
     field: event
-    related_collection: events
-    schema:
-      table: rooms
-      column: event
-      foreign_key_table: events
-      foreign_key_column: id
-      constraint_name: rooms_event_foreign
-      on_update: NO ACTION
-      on_delete: NO ACTION
     meta:
+      junction_field: null
       many_collection: rooms
       many_field: event
-      one_collection: events
-      one_field: rooms
-      one_collection_field: null
       one_allowed_collections: null
-      junction_field: null
-      sort_field: null
+      one_collection: events
+      one_collection_field: null
       one_deselect_action: nullify
+      one_field: rooms
+      sort_field: null
+    related_collection: events
+    schema:
+      column: event
+      constraint_name: rooms_event_foreign
+      foreign_key_column: id
+      foreign_key_table: events
+      on_delete: NO ACTION
+      on_update: NO ACTION
+      table: rooms
   - collection: rooms
     field: group
-    related_collection: groups
-    schema:
-      table: rooms
-      column: group
-      foreign_key_table: groups
-      foreign_key_column: id
-      constraint_name: rooms_group_foreign
-      on_update: NO ACTION
-      on_delete: CASCADE
     meta:
+      junction_field: null
       many_collection: rooms
       many_field: group
-      one_collection: groups
-      one_field: rooms
-      one_collection_field: null
       one_allowed_collections: null
-      junction_field: null
-      sort_field: null
+      one_collection: groups
+      one_collection_field: null
       one_deselect_action: nullify
+      one_field: rooms
+      sort_field: null
+    related_collection: groups
+    schema:
+      column: group
+      constraint_name: rooms_group_foreign
+      foreign_key_column: id
+      foreign_key_table: groups
+      on_delete: CASCADE
+      on_update: NO ACTION
+      table: rooms
+  - collection: user_roles
+    field: role
+    meta:
+      junction_field: user
+      many_collection: user_roles
+      many_field: role
+      one_allowed_collections: null
+      one_collection: directus_roles
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: has_role
+      sort_field: null
+    related_collection: directus_roles
+    schema:
+      column: role
+      constraint_name: user_roles_role_foreign
+      foreign_key_column: id
+      foreign_key_table: directus_roles
+      on_delete: CASCADE
+      on_update: NO ACTION
+      table: user_roles
+  - collection: user_roles
+    field: user
+    meta:
+      junction_field: role
+      many_collection: user_roles
+      many_field: user
+      one_allowed_collections: null
+      one_collection: directus_users
+      one_collection_field: null
+      one_deselect_action: delete
+      one_field: roles
+      sort_field: null
+    related_collection: directus_users
+    schema:
+      column: user
+      constraint_name: user_roles_user_foreign
+      foreign_key_column: id
+      foreign_key_table: directus_users
+      on_delete: CASCADE
+      on_update: NO ACTION
+      table: user_roles
