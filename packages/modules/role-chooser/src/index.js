@@ -1,10 +1,9 @@
-import { defineModule } from '@directus/extensions-sdk';
 import ModuleComponent from './module.vue';
 
-export default defineModule({
-	id: 'room-allocator',
-	name: 'Room Allocator',
-	icon: 'room_service',
+export default {
+	id: 'role-chooser',
+	name: 'Role Chooser',
+	icon: 'security',
 	routes: [
 		{
 			path: '',
@@ -15,9 +14,9 @@ export default defineModule({
 		if (user.role.admin_access) return true;
 
 		const permission = permissions.find(
-			(permission) => permission.collection === 'registrations' && permission.action === 'update'
+			(permission) => permission.collection === 'directus_users' && permission.action === 'update' && permission.fields.includes('role')
 		);
 
 		return !!permission;
 	},
-});
+};
