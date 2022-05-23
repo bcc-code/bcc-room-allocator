@@ -8,7 +8,7 @@ const role = ref('')
 const error = ref(null)
 
 const available_roles = computed(() => {
-  return can_choose.value ? roles.value.filter(r => can_choose.includes(r.id)) : roles.value
+  return can_choose.value ? roles.value.filter(r => can_choose.value.includes(r.id)) : roles.value
 })
 
 const api = useApi()
@@ -32,7 +32,6 @@ function fetchRoles() {
 fetchRoles()
 
 async function selectRole(role) {
-  console.log(role)
   try {
     await api.patch('/users/me', {
       role: role.id,
