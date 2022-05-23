@@ -19,6 +19,8 @@ module.exports = function registerHook({action, filter}, { services }) {
             fields: [
                 'id',
                 'person_id',
+                'gender',
+                'age',
                 'group',
                 'room',
                 'date_updated'

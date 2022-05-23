@@ -18,18 +18,16 @@ function fetchRoles() {
     params: {
       fields: ['role', 'roles.role'],
     },
-  }).then(({ data }) => {
-    role.value = data.data.role;
-    can_choose.value = data.data.roles?.map(r => r.role)
+  }).then(({ data: { data } }) => {
+    role.value = data.role;
+    can_choose.value = data.roles?.map(r => r.role)
   });
 
   api.get('/roles', {
     params: {
       fields: ['id', 'name', 'icon', 'description']
     }
-  }).then(({ data }) => {
-    roles.value = data.data;
-  })
+  }).then(({ data: { data } }) => roles.value = data)
 }
 fetchRoles()
 
@@ -49,7 +47,7 @@ async function selectRole(role) {
 
 <template>
   <private-view title="Choose role" id="role-chooser">
-    <v-error :error="error" @click="error = null"/>
+    <v-error v-if="error" :error="error" @click="error = null"/>
     <div class="flex flex-wrap">
       <v-info v-for="optRole in available_roles"
               :key="optRole.id"
