@@ -1,0 +1,24 @@
+
+- action: read
+  fields: '*'
+  permissions:
+    status:
+      _eq: published
+  roles:
+    - ce23293b-3719-435a-aa6d-e9efa90adf83
+
+- action: read
+  fields: '*'
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9
+    - aa37ee67-b2b6-4ffa-8987-a9f7ae86be51
+
+- action: create
+  fields: '*'
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9
+
+- action: update
+  fields: '*'
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9

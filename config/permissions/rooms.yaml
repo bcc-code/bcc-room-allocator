@@ -1,0 +1,52 @@
+
+- action: read
+  fields: '*'
+  permissions:
+    group:
+      users:
+        user:
+          _eq: $CURRENT_USER
+  roles:
+    - ce23293b-3719-435a-aa6d-e9efa90adf83
+
+- action: update
+  fields: guests
+  permissions:
+    group:
+      users:
+        user:
+          _eq: $CURRENT_USER
+  roles:
+    - ce23293b-3719-435a-aa6d-e9efa90adf83
+
+- action: read
+  fields: '*'
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9
+
+- action: create
+  fields: '*'
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9
+
+- action: update
+  fields:
+    - arrival
+    - capacity
+    - departure
+    - event
+    - features
+    - gender
+    - group
+    - guests
+    - id
+    - is_complete
+    - is_reviewed
+    - name
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9
+
+- action: delete
+  fields: '*'
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9

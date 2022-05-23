@@ -1,0 +1,5 @@
+
+- action: read
+  fields: '*'
+  roles:
+    - ae0f8645-b4c3-4d80-b866-6f9c4b2d47f6
