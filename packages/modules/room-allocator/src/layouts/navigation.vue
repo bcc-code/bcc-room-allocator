@@ -4,6 +4,8 @@ import Draggable from "vueDraggable";
 import Store from "../store";
 import Registration from "../components/Registration.vue";
 import NavDetail from "./nav-detail.vue";
+import { Event } from "../types";
+import env from "directus/dist/env";
 
 const localStore = inject('localStore') as Store
 const { state } = localStore
@@ -14,9 +16,30 @@ const boys = computed(() => localStore.registrations.value?.filter(r => r.gender
 const girls = computed(() => localStore.registrations.value?.filter(r => r.gender === 'female' && !r.room)
     .sort((a,b) => a[state.sortBy] > b[state.sortBy] ? 1 : -1)
 );
+
+const eventDate = computed(() => {
+  const event: Event | null = state.selectedEvent
+  if (! (event?.start_date && event?.end_date)) {
+    return null
+  }
+
+  return {
+    start: new Date(event.start_date).toDateString(),
+    end: new Date(event.end_date).toDateString()
+  }
+})
 </script>
 
 <template>
+
+  <div class="p-4" v-if="state.selectedEvent">
+    <h3 class="text-lg leading-tight mb-2">
+      {{state.selectedEvent.title}}
+      <br/>{{state.selectedGroup ? state.selectedGroup.name : ''}}
+    </h3>
+    <p>Start: {{ eventDate.start }}</p>
+    <p>End: {{ eventDate.end }}</p>
+  </div>
 
   <v-notice v-if="state.errors.length > 0">
     <ul class="list-disc">

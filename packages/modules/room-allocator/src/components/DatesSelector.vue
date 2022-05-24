@@ -39,38 +39,31 @@ const eventEnd = computed(() => {
 })
 
 const arrivalRange = computed(() => {
+  const point = (eventStart.value || eventEnd.value) as string
+  // Max arrival one day before the event
+  const max = new Date(point)
+  max.setDate(max.getDate() - 1)
   // Min arrival from one week before the event
-  let min: null | string | Date = eventStart.value || eventEnd.value
-  if (min) {
-    min = new Date(min)
-    min.setDate(min.getDate() - 7)
-  }
-
-  // Use the earliest date
-  const max = [formatDate(departure.value), eventStart.value].filter(d => d)
-  max.sort((a,b) => a > b ? 1 : -1)
+  const min = new Date(point)
+  min.setDate(min.getDate() - 7)
 
   return {
     min: formatDate(min),
-    max: max[0]
+    max: formatDate(max)
   }
 })
 
 const departureRange = computed(() => {
-  // Max departure one week after the event
-  let max, point = eventEnd.value || eventStart.value
-  if (point) {
-    max = new Date(point)
-    max.setDate(max.getDate() + 7)
-  }
+  const point = (eventEnd.value || eventStart.value) as string
+  // Min departure one day after the event
+  const min = new Date(point)
+  min.setDate(min.getDate() + 1)
+  // Max departure from one week after the event
+  const max = new Date(point)
+  max.setDate(max.getDate() + 7)
 
-  console.log(point)
-  // Use the latest date
-  const min = [formatDate(arrival.value), point].filter(d => d)
-  min.sort((a,b) => a > b ? -1 : 1)
-  console.log(min)
   return {
-    min: min[0],
+    min: formatDate(min),
     max: formatDate(max)
   }
 })
@@ -93,36 +86,41 @@ async function submit() {
   <v-dialog v-model="isOpen" :persistent="true">
     <v-card v-if="room">
       <form @submit.prevent="submit">
-        <v-card-title>{{ room.name }} #{{ room.id }}</v-card-title>
-        <v-sheet>
-          <v-divider class="mt-2">
-            Arrival date
-          </v-divider>
-          <div class="mt-1">
-            <v-input
-              name="arrival" type="date"
-              :disabled="loading"
-              :min="arrivalRange.min"
-              :max="arrivalRange.max"
-              v-model="arrival"
-            />
-          </div>
-          <v-divider class="mt-2">
-            Departure date
-          </v-divider>
-          <div class="mt-1">
-            <v-input full-width
-              name="departure" type="date"
-              :disabled="loading"
-              :min="departureRange.min"
-              :max="departureRange.max"
-              v-model="departure"
-            />
-          </div>
-        </v-sheet>
+        <div class="p-6">
+          <v-info type="warning" icon="date_range" :title="`Request for shoulder days`">Please note that these dates have to be confirmed by Oslofjord and may be rejected.</v-info>
+
+          <v-sheet>
+            <v-divider class="mt-2">
+              Arrival date
+            </v-divider>
+            <div class="mt-1 flex items-center">
+              <v-input
+                name="arrival" type="date"
+                :disabled="loading"
+                :min="arrivalRange.min"
+                :max="arrivalRange.max"
+                v-model="arrival"
+              />
+              <v-button icon @click="arrival = null" secondary><v-icon name="close"></v-icon></v-button>
+            </div>
+            <v-divider class="mt-2">
+              Departure date
+            </v-divider>
+            <div class="mt-1 flex items-center">
+              <v-input full-width
+                name="departure" type="date"
+                :disabled="loading"
+                :min="departureRange.min"
+                :max="departureRange.max"
+                v-model="departure"
+              />
+              <v-button icon @click="departure = null" secondary><v-icon name="close"></v-icon></v-button>
+            </div>
+          </v-sheet>
+        </div>
         <v-card-actions>
           <v-button @click="emit('onClose')" secondary>Cancel</v-button>
-          <v-button :disabled="loading" @click="submit">Submit</v-button>
+          <v-button :disabled="loading" @click="submit">Save</v-button>
         </v-card-actions>
       </form>
     </v-card>

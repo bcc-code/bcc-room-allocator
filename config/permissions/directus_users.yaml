@@ -3,10 +3,51 @@
   fields: '*'
   permissions:
     _and:
+      - _or:
+          - role:
+              _eq: 7e3ac987-8a62-409f-8f3c-639cfdeb3568
+          - role:
+              _in:
+                - $CURRENT_USER.roles.role
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9
+
+- action: update
+  fields:
+    - activities
+    - avatar
+    - description
+    - email
+    - first_name
+    - groups
+    - language
+    - last_name
+    - location
+    - password
+    - role
+    - roles
+    - theme
+    - title
+  permissions:
+    _and:
+      - _or:
+          - role:
+              _eq: 7e3ac987-8a62-409f-8f3c-639cfdeb3568
+          - role:
+              _in: $CURRENT_USER.roles.role
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9
+  validation:
+    role:
+      _in: $CURRENT_USER.roles.role
+
+- action: read
+  fields: '*'
+  permissions:
+    _and:
       - id:
           _eq: $CURRENT_USER
   roles:
-    - 901ead82-3e1e-4b81-a876-0b36638ff1d9
     - aa37ee67-b2b6-4ffa-8987-a9f7ae86be51
     - ce23293b-3719-435a-aa6d-e9efa90adf83
 
@@ -27,7 +68,6 @@
     id:
       _eq: $CURRENT_USER
   roles:
-    - 901ead82-3e1e-4b81-a876-0b36638ff1d9
     - aa37ee67-b2b6-4ffa-8987-a9f7ae86be51
   validation:
     role:

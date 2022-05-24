@@ -76,17 +76,25 @@ export default class AutoAssign {
             return num + (room.activities[activity] || 0)
         }), 0) / (room.taken || 1)
 
-        // c = room capacity filled
-        score += room.taken < room.capacity ? 1 - (room.taken/room.capacity) : room.capacity - room.taken - 100
+        // C = room capacity filled
+        const filled = room.taken/room.capacity
+        score += room.taken < room.capacity ? 1 - filled : room.capacity - room.taken - 100
 
         // m = percentage of mentor in group
-        const mentorQuota = room.mentors/room.capacity
-        score += reg.age >= this.mentorAge ? (1 - mentorQuota) : mentorQuota < this.minMentors ? -1 : 0
+        const mentorQuota = room.mentors / room.capacity
+        if (mentorQuota < this.minMentors) {
+            if (reg.age >= this.mentorAge) {
+                score += 2 - mentorQuota
+            } else {
+                // Decrease score if there won't be enough space for mentor
+                score += filled * (this.minMentors - mentorQuota) * -10
+            }
+        }
 
         // a = has above average age
         score += reg.age > room.ageAvg ? 1 : 0
 
-        return score * 20 * (reg.age < this.mentorAge && mentorQuota > this.minMentors ? 2 : 1)
+        return score
 
         /*const input = {
             // r = related activities in common
@@ -187,8 +195,10 @@ export default class AutoAssign {
         let lowestScore = 10000
         let totalGuests = 0
         roomsMap.forEach(room => {
-            totalScore += room.score
-            if (lowestScore > room.score) {
+            const mentorQuota = room.mentors/room.capacity
+
+            totalScore += room.score * (mentorQuota < this.minMentors ? mentorQuota : 1)
+            if (room.score < lowestScore) {
                 lowestScore = room.score
             }
             totalGuests += room.guests.length

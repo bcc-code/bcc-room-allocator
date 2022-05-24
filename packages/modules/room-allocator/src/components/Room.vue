@@ -15,6 +15,7 @@ const props = defineProps<{
   arrival?: Date,
   departure?: Date,
   features?: Array<string>,
+  requests?: Array<string>,
   is_complete: boolean,
   is_reviewed: boolean,
 }>()
@@ -80,9 +81,10 @@ const statusClass = computed(() => {
     border = 'border-pink-400'
   }
 
-  if (count.value > props.capacity) {
+  // Border color if capacity exceeded
+  /*if (count.value > props.capacity) {
     border = 'border-red-600'
-  }
+  }*/
 
   if (localStore.selection.value.length) {
     pointer = isInsertableGroup.value ? 'cursor-not-allowed' : 'cursor-pointer'
@@ -169,13 +171,29 @@ async function toggleComplete () {
             <Registration v-bind="element" :key="element.id" :can-edit="! is_complete" />
           </template>
         </Draggable>
-        <div class="flex items-center justify-between p-2">
+        <div class="flex items-center p-2">
           <button
               @click="$emit('edit')"
-              class="flex items-center px-2 text-xs py-1 text-gray-800 bg-gray-100 rounded-full">
+              class="flex items-center px-2 text-sm py-1 rounded-full"
+              :class="dateInfo != ' - ' ? 'text-gray-100 bg-gray-600' : 'text-gray-800 bg-gray-100'"
+          >
             <v-icon name="date_range" style="--v-icon-size: 1.2rem;" />
             <span v-if="dateInfo" class="ml-1">{{ dateInfo }}</span>
           </button>
+          <button
+              @click="$emit('request')"
+              class="flex items-center px-2 text-xs py-1 ml-1 rounded-full"
+              :class="requests && requests.length ? 'text-gray-100 bg-gray-600' : 'text-gray-800 bg-gray-100'"
+          >
+            <v-icon name="room_preferences" style="--v-icon-size: 1.2rem;" />
+            <span v-if="requests" class="ml-1" style="--v-icon-size: 1.2rem;">
+              <v-icon v-if="requests.includes('handicapped')" name="accessible" title="Handicap room" right />
+              <v-icon v-if="requests.includes('long_bed')" name="king_bed" title="Has extra long bed" right />
+            </span>
+          </button>
+
+          <div class="flex-1 block"></div>
+
           <button v-if="count > 1"
                   @click="clear"
                   :disabled="is_complete"

@@ -10,7 +10,12 @@
     - ce23293b-3719-435a-aa6d-e9efa90adf83
 
 - action: update
-  fields: guests
+  fields:
+    - arrival
+    - departure
+    - guests
+    - is_complete
+    - requests
   permissions:
     group:
       users:

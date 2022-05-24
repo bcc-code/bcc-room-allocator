@@ -14,6 +14,7 @@ export interface Room extends Item {
     arrival: string | null
     departure: string | null
     features?: Array<string>
+    requests?: Array<string>
     is_complete?: boolean
     is_reviewed?: boolean
     event?: sID<Event>

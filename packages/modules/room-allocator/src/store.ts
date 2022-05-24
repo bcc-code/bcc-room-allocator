@@ -82,7 +82,7 @@ class Store {
 
     public eventCollection = useItems(ref('events'), {
         limit: ref(-1),
-        fields: ref(['id', 'title', 'start_date']),
+        fields: ref(['id', 'title', 'start_date', 'end_date']),
         filter: ref({status: { _eq: 'published' }}),
         sort: ref(['-start_date']),
         page: ref(1),
@@ -140,6 +140,7 @@ class Store {
                 'arrival',
                 'departure',
                 'features',
+                'requests',
                 'is_complete',
                 'is_reviewed'
             ]),

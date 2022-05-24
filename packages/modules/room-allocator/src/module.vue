@@ -11,6 +11,8 @@ import DraggableRoom from "./components/Room.vue";
 import DatesSelector from "./components/DatesSelector.vue";
 import EventSelector from "./components/EventSelector.vue";
 import GroupSelector from "./components/GroupSelector.vue";
+import RoomRequests from "./components/RoomRequests.vue";
+import './styles.css'
 
 const api = useApi();
 
@@ -19,7 +21,8 @@ provide('localStore', localStore)
 
 const { state } = localStore
 
-const currentRoom = ref<Room | null>(null)
+const editRoomDates = ref<Room | null>(null)
+const editRoomRequests = ref<Room | null>(null)
 
 const rooms = computed(() => {
   localStore.rooms.value.sort((a, b) => a.gender.localeCompare(b.gender))
@@ -50,7 +53,7 @@ const showAlert = computed({
 </script>
 
 <template>
-	<private-view :title="`Rooms (${state.selectedEvent ? state.selectedEvent.title : '' }: ${state.selectedGroup ? state.selectedGroup.name : ''})`" id="room-allocator">
+	<private-view title="Rooms" id="room-allocator">
     <template #actions:prepend>
       <Actions />
     </template>
@@ -76,12 +79,13 @@ const showAlert = computed({
           handle=".room-handle"
           item-key="id">
         <template #item="{ element, index }">
-          <DraggableRoom v-bind="element" :key="element.id" @edit="currentRoom = element"></DraggableRoom>
+          <DraggableRoom v-bind="element" :key="element.id" @edit="editRoomDates = element" @request="editRoomRequests = element"></DraggableRoom>
         </template>
       </Draggable>
     </div>
 
-    <DatesSelector :room="currentRoom" @onClose="currentRoom = null" />
+    <DatesSelector :room="editRoomDates" @onClose="editRoomDates = null" />
+    <RoomRequests :room="editRoomRequests" @onClose="editRoomRequests = null" />
 
     <v-dialog v-model="showSetup" :persistent="true">
       <v-card>
@@ -102,6 +106,8 @@ const showAlert = computed({
               </v-list-item-content>
             </v-list-item>
           </v-list>
+
+          <v-item to="/admin/content">Back</v-item>
         </v-sheet>
       </v-card>
     </v-dialog>

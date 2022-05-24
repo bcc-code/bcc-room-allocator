@@ -10,7 +10,7 @@ const { state } = localStore
 const busy = ref('')
 const status = ref('')
 const percentage = ref(-1)
-const allowOverbooking = ref(false)
+const allowOverbooking = ref(true)
 
 async function magicAssign(gender: 'male' | 'female') {
   if (busy.value) {
@@ -77,7 +77,7 @@ async function magicAssign(gender: 'male' | 'female') {
   <v-slider v-model="state.minMentorAge" min="18" max="26" step="1" />
 
   <br/>
-  <label>Percentage of Mentors ({{ state.minMentors }})</label>
+  <label>Percentage of Mentors ({{ state.minMentors }}%)</label>
   <v-slider v-model="state.minMentors" min="10" max="50" step="5" />
 
   <br/>
