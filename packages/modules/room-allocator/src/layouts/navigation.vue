@@ -31,7 +31,6 @@ const eventDate = computed(() => {
 </script>
 
 <template>
-
   <div class="p-4" v-if="state.selectedEvent">
     <h3 class="text-lg leading-tight mb-2">
       {{state.selectedEvent.title}}

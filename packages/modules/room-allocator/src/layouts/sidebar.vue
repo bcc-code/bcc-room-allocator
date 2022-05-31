@@ -10,7 +10,6 @@ const { state } = localStore
 </script>
 
 <template>
-
   <sidebar-detail
       :close="true"
       icon="settings"
