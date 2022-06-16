@@ -1,9 +1,9 @@
 const { AsyncParser } = require('json2csv');
 
-module.exports = function registerHook({action, filter}, { services }) {
+module.exports = function registerHook({action, filter}, { services, env }) {
     const { ItemsService, FilesService } = services;
 
-    const generateFile = async function(from, title, {schema, database}) {
+    const generateFile = async function(from, exportJob, {schema, database}) {
         const RegistrationsService = new ItemsService('registrations', {schema, knex: database})
 
         const query = {
@@ -17,14 +17,24 @@ module.exports = function registerHook({action, filter}, { services }) {
                 }
             },
             fields: [
-                'id',
+                'room.id',
+                'room.name',
+                'group.id',
+                'group.name',
                 'person_id',
                 'gender',
                 'age',
-                'group',
-                'room',
-                'date_updated'
+                'room.requests',
+                'room.arrival',
+                'room.departure',
+                'date_updated',
             ]
+        }
+
+        if (exportJob.event) {
+            query.filter.event = {
+                _eq: exportJob.event.id
+            }
         }
 
         if (from) {
@@ -41,12 +51,15 @@ module.exports = function registerHook({action, filter}, { services }) {
 
         const FileService = new FilesService({ schema });
 
+        const title = (exportJob.event?.reference || 'export') + '-' +
+            exportJob.date_created.split(':').splice(0,2).join(':')
+
         const payloadWithRequiredFields = {
             title,
             filename_download: `${title}.csv`,
             type: 'text/csv',
             charset: 'utf-8',
-            storage: 'gcs',
+            storage: env.STORAGE_LOCATIONS.split(' ')[0] ?? 'local',
         };
 
         const json2csv = new AsyncParser({}, { objectMode: true });
@@ -58,9 +71,15 @@ module.exports = function registerHook({action, filter}, { services }) {
             if (regs.length) {
                 regs.forEach(r => {
                     json2csv.input.push({
+                        RoomId: r.room.id,
+                        RoomName: r.room.name,
+                        GroupId: r.group.id,
+                        GroupName: r.group.name,
                         PersonId: r.person_id,
-                        TeamId: r.group,
-                        RoomNo: r.room,
+                        Gender: r.gender,
+                        Arrival: r.room.arrival,
+                        Departure: r.room.departure,
+                        SpecialRequests: r.room.requests,
                         Updated: r.date_updated,
                     })
                 })
@@ -76,7 +95,13 @@ module.exports = function registerHook({action, filter}, { services }) {
         const {schema, database} = context
         const ExportsService = new ItemsService('exports', {schema, knex: database})
 
-        const newExportJob = await ExportsService.readOne(id)
+        const newExportJob = await ExportsService.readOne(id, {
+            fields: [
+                '*',
+                'event.id',
+                'event.reference',
+            ]
+        })
 
         let exportFrom = newExportJob.change_since;
 
@@ -102,7 +127,7 @@ module.exports = function registerHook({action, filter}, { services }) {
             change_since: exportFrom
         }, { emitEvents: false })
 
-        const file = await generateFile(exportFrom, newExportJob.date_created, context)
+        const file = await generateFile(exportFrom, newExportJob, context)
 
         if (file) {
             await ExportsService.updateOne(newExportJob.id, {
