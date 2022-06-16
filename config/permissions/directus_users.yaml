@@ -18,12 +18,14 @@
     - avatar
     - description
     - email
+    - external_identifier
     - first_name
     - groups
     - language
     - last_name
     - location
     - password
+    - provider
     - role
     - roles
     - theme
@@ -84,3 +86,22 @@
   validation:
     role:
       _in: $CURRENT_USER.roles.role
+
+- action: create
+  fields: '*'
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9
+  validation:
+    role:
+      _in: $CURRENT_USER.roles.role
+
+- action: delete
+  permissions:
+    _and:
+      - _or:
+          - role:
+              _eq: 7e3ac987-8a62-409f-8f3c-639cfdeb3568
+          - role:
+              _in: $CURRENT_USER.roles.role
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9

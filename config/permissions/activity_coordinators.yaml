@@ -12,3 +12,13 @@
   fields: '*'
   roles:
     - 901ead82-3e1e-4b81-a876-0b36638ff1d9
+
+- action: create
+  fields: '*'
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9
+
+- action: update
+  fields: '*'
+  roles:
+    - 901ead82-3e1e-4b81-a876-0b36638ff1d9

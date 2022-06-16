@@ -13,6 +13,7 @@
   fields:
     - arrival
     - departure
+    - gender
     - guests
     - is_complete
     - requests
@@ -48,6 +49,7 @@
     - is_complete
     - is_reviewed
     - name
+    - requests
   roles:
     - 901ead82-3e1e-4b81-a876-0b36638ff1d9
 
