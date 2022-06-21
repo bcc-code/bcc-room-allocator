@@ -59,7 +59,7 @@ module.exports = function registerHook({action, filter}, { services, env }) {
             filename_download: `${title}.csv`,
             type: 'text/csv',
             charset: 'utf-8',
-            storage: env.STORAGE_LOCATIONS.split(',')[0] ?? 'local',
+            storage: env.STORAGE_LOCATIONS[0] ?? 'local',
         };
 
         const json2csv = new AsyncParser({}, { objectMode: true });
