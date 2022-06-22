@@ -76,7 +76,7 @@ module.exports = function registerHook({action, filter}, { services, env }) {
                         Gender: r.gender,
                         Arrival: r.room?.arrival ?? '–',
                         Departure: r.room?.departure ?? '–',
-                        SpecialRequests: r.room?.requests ?? '–',
+                        SpecialRequests: r.room?.requests ?? '[]',
                         Updated: r.date_updated,
                     })
                 })

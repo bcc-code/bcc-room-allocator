@@ -8,13 +8,13 @@
 	],
 	"directus:extension": {
 		"type": "module",
-		"path": "dist/index.js",
+		"path": "../../../extensions/modules/role-chooser/index.js",
 		"source": "src/index.js",
 		"host": "^9.11.0"
 	},
 	"scripts": {
-		"dev": "directus-extension build -w --no-minify --sourcemap -o ../../../extensions/modules/role-chooser/index.js",
-		"build": "directus-extension build -o ../../../extensions/modules/role-chooser/index.js"
+		"dev": "directus-extension build -w --no-minify --sourcemap",
+		"build": "directus-extension build"
 	},
 	"devDependencies": {
 		"@directus/extensions-sdk": "9.11.0",
