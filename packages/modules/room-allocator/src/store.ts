@@ -131,7 +131,16 @@ class Store {
     constructor() {
         this.roomCollection = useItems(ref('rooms'), {
             limit: ref(-1),
-            filter: this.scope,
+            filter: computed(() => ({
+                _or: [
+                    this.scope.value,
+                    {
+                        id: {
+                            _eq: 999999
+                        }
+                    }
+                ]
+            })),
             fields: ref([
                 'name',
                 'capacity',
