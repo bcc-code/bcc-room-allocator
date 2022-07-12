@@ -2,10 +2,14 @@
 - action: read
   fields: '*'
   permissions:
-    group:
-      users:
-        user:
-          _eq: $CURRENT_USER
+    _and:
+      - _or:
+          - group:
+              users:
+                user:
+                  _eq: $CURRENT_USER
+          - group:
+              _null: true
   roles:
     - ce23293b-3719-435a-aa6d-e9efa90adf83
 

@@ -1,10 +1,10 @@
 version: 1
-directus: 9.11.0
+directus: 9.14.1
 collections:
   - collection: activities
     meta:
       accountability: all
-      archive_app_filter: true
+      archive_app_filter: false
       archive_field: null
       archive_value: null
       collapse: open
@@ -174,7 +174,7 @@ collections:
       note: null
       singleton: false
       sort: 6
-      sort_field: room
+      sort_field: null
       translations: null
       unarchive_value: '1'
     schema:
@@ -243,6 +243,30 @@ collections:
       engine: InnoDB
       name: tmp
       schema: room_allocator_db
+  - collection: tmp_regs
+    meta: null
+    schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
+      name: tmp_regs
+      schema: room_allocator_db
+  - collection: tmp_rooms
+    meta: null
+    schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
+      name: tmp_rooms
+      schema: room_allocator_db
+  - collection: tmp_updates
+    meta: null
+    schema:
+      collation: utf8mb4_0900_ai_ci
+      comment: ''
+      engine: InnoDB
+      name: tmp_updates
+      schema: room_allocator_db
   - collection: user_roles
     meta:
       accountability: all
@@ -283,7 +307,7 @@ fields:
       interface: tags
       note: null
       options:
-        allowCustom: false
+        alphabetize: true
         placeholder: Alternative IDs to match
       readonly: false
       required: false
@@ -324,7 +348,7 @@ fields:
       display: null
       display_options: null
       readonly: false
-      hidden: false
+      hidden: true
       sort: null
       width: full
       translations: null
@@ -387,12 +411,12 @@ fields:
       display_options: null
       field: id
       group: null
-      hidden: true
+      hidden: false
       interface: input
       note: null
       options: null
-      readonly: true
-      required: false
+      readonly: false
+      required: true
       sort: null
       special: null
       translations: null
@@ -467,12 +491,12 @@ fields:
         - m2m
       interface: list-m2m
       options:
-        template: "{{registration.name}}\_{{registration.age}}\_{{registration.gender}}"
+        template: "{{registration.name}}\_{{registration.age}}\_{{registration.gender}} - {{tags}}"
         enableCreate: false
         enableSelect: false
       display: related-values
       display_options:
-        template: '{{id}}'
+        template: '{{tags}}'
       readonly: false
       hidden: false
       sort: null
@@ -681,6 +705,46 @@ fields:
     schema: null
     type: alias
   - collection: directus_users
+    field: personId
+    meta:
+      collection: directus_users
+      conditions: null
+      display: null
+      display_options: null
+      field: personId
+      group: null
+      hidden: false
+      interface: input
+      note: null
+      options:
+        placeholder: BCC Members ID
+      readonly: false
+      required: false
+      sort: null
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: personId
+      numeric_precision: null
+      numeric_scale: null
+      table: directus_users
+    type: string
+  - collection: directus_users
     field: roles
     meta:
       collection: directus_users
@@ -689,6 +753,10 @@ fields:
         - m2m
       interface: list-m2m
       options:
+        filter:
+          _and:
+            - app_access:
+                _eq: true
         template: '{{role.name}}'
         enableCreate: false
       display: related-values
@@ -1207,8 +1275,9 @@ fields:
     meta:
       collection: exports
       conditions: null
-      display: null
-      display_options: null
+      display: related-values
+      display_options:
+        template: '{{title}}'
       field: event
       group: null
       hidden: false
@@ -1249,7 +1318,8 @@ fields:
       collection: exports
       conditions: null
       display: file
-      display_options: null
+      display_options:
+        template: '{{filename_download}}'
       field: file
       group: null
       hidden: false
@@ -1557,7 +1627,7 @@ fields:
       display_options: null
       readonly: false
       hidden: false
-      sort: 4
+      sort: 5
       width: full
       translations: null
       note: null
@@ -1583,7 +1653,7 @@ fields:
       options: null
       readonly: false
       required: true
-      sort: 3
+      sort: 4
       special: null
       translations: null
       validation: null
@@ -1611,23 +1681,23 @@ fields:
     field: id
     meta:
       collection: groups
-      conditions: null
+      conditions: []
       display: raw
       display_options: null
       field: id
       group: null
-      hidden: true
+      hidden: false
       interface: input
       note: null
       options: null
-      readonly: true
-      required: false
+      readonly: false
+      required: true
       sort: 1
       special: null
       translations: null
       validation: null
       validation_message: null
-      width: full
+      width: half
     schema:
       comment: ''
       data_type: int unsigned
@@ -1665,7 +1735,7 @@ fields:
         trim: true
       readonly: false
       required: true
-      sort: 2
+      sort: 3
       special: null
       translations: null
       validation: null
@@ -1707,6 +1777,74 @@ fields:
       readonly: false
       hidden: false
       sort: 2
+      width: full
+      translations: null
+      note: null
+      conditions: null
+      required: false
+      group: accordion-f-tsvw
+      validation: null
+      validation_message: null
+    schema: null
+    type: alias
+  - collection: groups
+    field: replace_by
+    meta:
+      collection: groups
+      conditions: null
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      field: replace_by
+      group: null
+      hidden: false
+      interface: select-dropdown-m2o
+      note: All rooms and registrations will be updated to this group if defined.
+      options:
+        template: '{{name}}'
+      readonly: false
+      required: false
+      sort: 2
+      special:
+        - m2o
+      translations: null
+      validation: null
+      validation_message: null
+      width: half
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: id
+      foreign_key_table: groups
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: replace_by
+      numeric_precision: 10
+      numeric_scale: 0
+      table: groups
+    type: integer
+  - collection: groups
+    field: replaces
+    meta:
+      collection: groups
+      field: replaces
+      special:
+        - o2m
+      interface: list-o2m
+      options:
+        template: '{{name}}'
+      display: related-values
+      display_options:
+        template: '{{name}}'
+      readonly: false
+      hidden: false
+      sort: 4
       width: full
       translations: null
       note: null
@@ -1783,14 +1921,14 @@ fields:
         - m2m
       interface: list-m2m
       options:
-        template: '{{activity.name}}'
+        template: "{{activity.name}}\_-\_{{tags}}"
         enableCreate: false
       display: related-values
       display_options:
-        template: '{{activity.name}}'
+        template: "{{activity.name}}\_-\_{{tags}}"
       readonly: false
       hidden: false
-      sort: 4
+      sort: 5
       width: full
       translations: null
       note: null
@@ -1857,7 +1995,7 @@ fields:
       note: null
       options: null
       readonly: true
-      required: true
+      required: false
       sort: 5
       special:
         - date-created
@@ -1907,7 +2045,7 @@ fields:
       translations: null
       validation: null
       validation_message: null
-      width: full
+      width: half
     schema:
       comment: ''
       data_type: char
@@ -1973,7 +2111,7 @@ fields:
       is_nullable: false
       is_primary_key: false
       is_unique: false
-      max_length: 255
+      max_length: 10
       name: gender
       numeric_precision: null
       numeric_scale: null
@@ -2145,6 +2283,46 @@ fields:
       table: registrations
     type: string
   - collection: registrations
+    field: phone
+    meta:
+      collection: registrations
+      conditions: null
+      display: null
+      display_options: null
+      field: phone
+      group: user
+      hidden: false
+      interface: input
+      note: null
+      options:
+        iconLeft: phone_iphone
+      readonly: false
+      required: false
+      sort: 5
+      special: null
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 30
+      name: phone
+      numeric_precision: null
+      numeric_scale: null
+      table: registrations
+    type: string
+  - collection: registrations
     field: relations
     meta:
       collection: registrations
@@ -2175,7 +2353,7 @@ fields:
     field: room
     meta:
       collection: registrations
-      conditions: null
+      conditions: []
       display: related-values
       display_options:
         template: '{{name}}'
@@ -2183,7 +2361,7 @@ fields:
       group: relations
       hidden: false
       interface: select-dropdown-m2o
-      note: null
+      note: It is not allowed to mix genders in the same room.
       options:
         filter: null
         template: "{{name}}\_({{capacity}})"
@@ -2276,7 +2454,7 @@ fields:
         whitespace: _
       readonly: false
       required: false
-      sort: 5
+      sort: 6
       special:
         - cast-csv
       translations: null
@@ -2486,6 +2664,55 @@ fields:
       numeric_scale: null
       table: registrations_activities
     type: string
+  - collection: registrations_activities
+    field: tags
+    meta:
+      collection: registrations_activities
+      conditions: null
+      display: labels
+      display_options: null
+      field: tags
+      group: null
+      hidden: false
+      interface: tags
+      note: null
+      options:
+        iconLeft: tag
+        presets:
+          - ikke-deltakende
+          - lag
+          - mentor
+          - mix
+          - trener
+          - u16
+          - u23
+      readonly: false
+      required: false
+      sort: null
+      special:
+        - cast-csv
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: tags
+      numeric_precision: null
+      numeric_scale: null
+      table: registrations_activities
+    type: csv
   - collection: rooms
     field: arrival
     meta:
@@ -2501,7 +2728,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: null
+      sort: 7
       special: null
       translations: null
       validation: null
@@ -2582,7 +2809,7 @@ fields:
       options: null
       readonly: false
       required: false
-      sort: null
+      sort: 8
       special: null
       translations: null
       validation: null
@@ -2623,7 +2850,7 @@ fields:
         template: '{{title}}'
       readonly: false
       required: true
-      sort: null
+      sort: 13
       special:
         - m2o
       translations: null
@@ -2659,25 +2886,25 @@ fields:
       group: null
       hidden: false
       interface: select-multiple-checkbox
-      note: null
+      note: Requested
       options:
         choices:
-          - text: For disabled
+          - text: Handicapped
             value: handicapped
           - text: Extra long bed
             value: long_bed
       readonly: false
       required: false
-      sort: null
+      sort: 9
       special:
-        - cast-json
+        - cast-csv
       translations: null
       validation: null
       validation_message: null
       width: full
     schema:
       comment: ''
-      data_type: json
+      data_type: varchar
       default_value: null
       foreign_key_column: null
       foreign_key_table: null
@@ -2687,12 +2914,12 @@ fields:
       is_nullable: true
       is_primary_key: false
       is_unique: false
-      max_length: null
+      max_length: 255
       name: features
       numeric_precision: null
       numeric_scale: null
       table: rooms
-    type: json
+    type: csv
   - collection: rooms
     field: gender
     meta:
@@ -2702,13 +2929,16 @@ fields:
       display_options:
         choices:
           - text: Male
-            value: Male
+            value: male
             background: '#68B0F4'
-            foreground: '#ECEFF1'
+            foreground: '#FFFFFF'
           - text: Female
-            value: Female
+            value: female
             background: '#E35169'
-            foreground: '#ECEFF1'
+            foreground: '#FFFFFF'
+          - text: Mixed
+            background: '#FFFFFF'
+            foreground: '#18222F'
       field: gender
       group: null
       hidden: false
@@ -2720,6 +2950,8 @@ fields:
             value: male
           - text: Female
             value: female
+          - text: Mixed
+            value: mixed
       readonly: false
       required: false
       sort: 3
@@ -2805,7 +3037,7 @@ fields:
       sort: 6
       width: full
       translations: null
-      note: null
+      note: It is not allowed to mix genders in the same room.
       conditions: null
       required: false
       group: null
@@ -2827,7 +3059,7 @@ fields:
       note: null
       options: null
       readonly: false
-      required: true
+      required: false
       sort: 1
       special: null
       translations: null
@@ -2868,7 +3100,7 @@ fields:
         label: Completed
       readonly: false
       required: false
-      sort: null
+      sort: 11
       special:
         - cast-boolean
       translations: null
@@ -2909,7 +3141,7 @@ fields:
         label: Reviewed
       readonly: false
       required: false
-      sort: null
+      sort: 12
       special:
         - cast-boolean
       translations: null
@@ -2975,6 +3207,51 @@ fields:
       numeric_scale: null
       table: rooms
     type: string
+  - collection: rooms
+    field: requests
+    meta:
+      collection: rooms
+      conditions: null
+      display: labels
+      display_options: null
+      field: requests
+      group: null
+      hidden: false
+      interface: select-multiple-checkbox
+      note: Requested
+      options:
+        choices:
+          - text: Handicapped
+            value: handicapped
+          - text: Extra long bed
+            value: long_bed
+      readonly: false
+      required: false
+      sort: 10
+      special:
+        - cast-csv
+      translations: null
+      validation: null
+      validation_message: null
+      width: full
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: requests
+      numeric_precision: null
+      numeric_scale: null
+      table: rooms
+    type: csv
   - collection: tmp
     field: act_id
     meta: null
@@ -3100,6 +3377,405 @@ fields:
       numeric_precision: null
       numeric_scale: null
       table: tmp
+    type: string
+  - collection: tmp_regs
+    field: age
+    meta: null
+    schema:
+      comment: ''
+      data_type: int
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: age
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp_regs
+    type: integer
+  - collection: tmp_regs
+    field: gender
+    meta: null
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 10
+      name: gender
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp_regs
+    type: string
+  - collection: tmp_regs
+    field: group
+    meta: null
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: group
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp_regs
+    type: integer
+  - collection: tmp_regs
+    field: id
+    meta: null
+    schema:
+      comment: ''
+      data_type: int
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp_regs
+    type: integer
+  - collection: tmp_regs
+    field: name
+    meta: null
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: name
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp_regs
+    type: string
+  - collection: tmp_regs
+    field: person_id
+    meta: null
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: person_id
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp_regs
+    type: string
+  - collection: tmp_regs
+    field: phone
+    meta: null
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 30
+      name: phone
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp_regs
+    type: string
+  - collection: tmp_regs
+    field: reg_id
+    meta: null
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: reg_id
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp_regs
+    type: string
+  - collection: tmp_regs
+    field: status
+    meta: null
+    schema:
+      comment: ''
+      data_type: boolean
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: status
+      numeric_precision: 3
+      numeric_scale: 0
+      table: tmp_regs
+    type: boolean
+  - collection: tmp_rooms
+    field: gender
+    meta: null
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 10
+      name: gender
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp_rooms
+    type: string
+  - collection: tmp_rooms
+    field: id
+    meta: null
+    schema:
+      comment: ''
+      data_type: int
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp_rooms
+    type: integer
+  - collection: tmp_rooms
+    field: name
+    meta: null
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: name
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp_rooms
+    type: string
+  - collection: tmp_rooms
+    field: orgId
+    meta: null
+    schema:
+      comment: ''
+      data_type: int
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: orgId
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp_rooms
+    type: integer
+  - collection: tmp_rooms
+    field: pax
+    meta: null
+    schema:
+      comment: ''
+      data_type: int
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: pax
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp_rooms
+    type: integer
+  - collection: tmp_updates
+    field: group_id
+    meta: null
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: group_id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp_updates
+    type: integer
+  - collection: tmp_updates
+    field: id
+    meta: null
+    schema:
+      comment: ''
+      data_type: int
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: true
+      is_generated: false
+      is_nullable: false
+      is_primary_key: true
+      is_unique: false
+      max_length: null
+      name: id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp_updates
+    type: integer
+  - collection: tmp_updates
+    field: person_id
+    meta: null
+    schema:
+      comment: ''
+      data_type: char
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 36
+      name: person_id
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp_updates
+    type: string
+  - collection: tmp_updates
+    field: room_id
+    meta: null
+    schema:
+      comment: ''
+      data_type: int unsigned
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: null
+      name: room_id
+      numeric_precision: 10
+      numeric_scale: 0
+      table: tmp_updates
+    type: integer
+  - collection: tmp_updates
+    field: room_name
+    meta: null
+    schema:
+      comment: ''
+      data_type: varchar
+      default_value: null
+      foreign_key_column: null
+      foreign_key_table: null
+      generation_expression: null
+      has_auto_increment: false
+      is_generated: false
+      is_nullable: true
+      is_primary_key: false
+      is_unique: false
+      max_length: 255
+      name: room_name
+      numeric_precision: null
+      numeric_scale: null
+      table: tmp_updates
     type: string
   - collection: user_roles
     field: id
@@ -3234,11 +3910,11 @@ relations:
     related_collection: events
     schema:
       column: event
-      constraint_name: activities_event_foreign
+      constraint_name: activities_ibfk_1
       foreign_key_column: id
       foreign_key_table: events
-      on_delete: SET NULL
-      on_update: NO ACTION
+      on_delete: CASCADE
+      on_update: CASCADE
       table: activities
   - collection: activity_coordinators
     field: activity
@@ -3276,11 +3952,11 @@ relations:
     related_collection: directus_users
     schema:
       column: user
-      constraint_name: activity_coordinators_user_foreign
+      constraint_name: activity_coordinators_ibfk_1
       foreign_key_column: id
       foreign_key_table: directus_users
       on_delete: CASCADE
-      on_update: NO ACTION
+      on_update: CASCADE
       table: activity_coordinators
   - collection: exports
     field: event
@@ -3339,11 +4015,11 @@ relations:
     related_collection: directus_users
     schema:
       column: user_created
-      constraint_name: exports_user_created_foreign
+      constraint_name: exports_ibfk_2
       foreign_key_column: id
       foreign_key_table: directus_users
       on_delete: SET NULL
-      on_update: NO ACTION
+      on_update: CASCADE
       table: exports
   - collection: group_users
     field: group
@@ -3360,11 +4036,11 @@ relations:
     related_collection: groups
     schema:
       column: group
-      constraint_name: group_users_group_foreign
+      constraint_name: group_users_ibfk_1
       foreign_key_column: id
       foreign_key_table: groups
       on_delete: CASCADE
-      on_update: NO ACTION
+      on_update: CASCADE
       table: group_users
   - collection: group_users
     field: user
@@ -3381,12 +4057,33 @@ relations:
     related_collection: directus_users
     schema:
       column: user
-      constraint_name: group_users_user_foreign
+      constraint_name: group_users_ibfk_2
       foreign_key_column: id
       foreign_key_table: directus_users
       on_delete: CASCADE
-      on_update: NO ACTION
+      on_update: CASCADE
       table: group_users
+  - collection: groups
+    field: replace_by
+    meta:
+      junction_field: null
+      many_collection: groups
+      many_field: replace_by
+      one_allowed_collections: null
+      one_collection: groups
+      one_collection_field: null
+      one_deselect_action: nullify
+      one_field: replaces
+      sort_field: null
+    related_collection: groups
+    schema:
+      column: replace_by
+      constraint_name: groups_replace_by_foreign
+      foreign_key_column: id
+      foreign_key_table: groups
+      on_delete: NO ACTION
+      on_update: NO ACTION
+      table: groups
   - collection: registrations
     field: event
     meta:
@@ -3423,11 +4120,11 @@ relations:
     related_collection: groups
     schema:
       column: group
-      constraint_name: registrations_group_foreign
+      constraint_name: registrations_ibfk_3
       foreign_key_column: id
       foreign_key_table: groups
       on_delete: CASCADE
-      on_update: NO ACTION
+      on_update: CASCADE
       table: registrations
   - collection: registrations
     field: room
@@ -3444,10 +4141,10 @@ relations:
     related_collection: rooms
     schema:
       column: room
-      constraint_name: registrations_ibfk_1
+      constraint_name: registrations_ibfk_4
       foreign_key_column: id
       foreign_key_table: rooms
-      on_delete: SET NULL
+      on_delete: CASCADE
       on_update: CASCADE
       table: registrations
   - collection: registrations_activities
@@ -3507,11 +4204,11 @@ relations:
     related_collection: events
     schema:
       column: event
-      constraint_name: rooms_event_foreign
+      constraint_name: rooms_ibfk_1
       foreign_key_column: id
       foreign_key_table: events
-      on_delete: NO ACTION
-      on_update: NO ACTION
+      on_delete: CASCADE
+      on_update: CASCADE
       table: rooms
   - collection: rooms
     field: group
@@ -3570,9 +4267,9 @@ relations:
     related_collection: directus_users
     schema:
       column: user
-      constraint_name: user_roles_user_foreign
+      constraint_name: user_roles_ibfk_1
       foreign_key_column: id
       foreign_key_table: directus_users
       on_delete: CASCADE
-      on_update: NO ACTION
+      on_update: CASCADE
       table: user_roles
