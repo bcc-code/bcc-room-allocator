@@ -1,14 +1,29 @@
 <script setup lang="ts">
-import {computed, inject} from "vue";
+import {computed, inject, ref} from "vue";
 import Draggable from "vueDraggable";
 import Store from "../store";
 import Registration from "../components/Registration.vue";
 import NavDetail from "./nav-detail.vue";
 import { Event } from "../types";
-import env from "directus/dist/env";
 
 const localStore = inject('localStore') as Store
 const { state } = localStore
+
+const loading = ref(false);
+const noRoom = computed({
+  get() {
+    return localStore.registrations.value?.filter(r => r.room === 9999)
+      .sort((a,b) => a[state.sortBy] > b[state.sortBy] ? 1 : -1);
+  },
+  set(value) {
+    loading.value = true
+    Promise.all(value.map(async reg => {
+      if (reg.room !== 9999) {
+        await localStore.setRoom(reg.id, 9999)
+      }
+    })).then(() => loading.value = false)
+  }
+})
 
 const boys = computed(() => localStore.registrations.value?.filter(r => r.gender === 'male' && !r.room)
     .sort((a,b) => a[state.sortBy] > b[state.sortBy] ? 1 : -1)
@@ -36,8 +51,10 @@ const eventDate = computed(() => {
       {{state.selectedEvent.title}}
       <br/>{{state.selectedGroup ? state.selectedGroup.name : ''}}
     </h3>
-    <p>Start: {{ eventDate.start }}</p>
-    <p>End: {{ eventDate.end }}</p>
+    <template v-if="eventDate">
+      <p>Start: {{ eventDate.start }}</p>
+      <p>End: {{ eventDate.end }}</p>
+    </template>
   </div>
 
   <v-notice v-if="state.errors.length > 0">
@@ -50,13 +67,28 @@ const eventDate = computed(() => {
     <v-icon name="undo" class="mr-2" />Remove
   </v-button>
 
+  <nav-detail icon="other_houses" :title="`No room (${noRoom ? noRoom.length : 0})`">
+    <v-progress-linear v-if="loading" indeterminate />
+    <Draggable
+      style="min-height: 2rem"
+      v-model="noRoom"
+      group="people"
+      itemKey="id"
+      handle=".handle"
+    >
+      <template #item="{ element, index }">
+        <Registration v-bind="element" :key="element.id" :can-edit="true" />
+      </template>
+    </Draggable>
+  </nav-detail>
+
   <nav-detail icon="male" :title="`Boys (${boys ? boys.length : 0})`">
     <Draggable v-if="boys && boys.length"
-        class="boys-list"
-        :list="boys"
-        group="people"
-        itemKey="id"
-        handle=".handle"
+      class="boys-list"
+      :list="boys"
+      group="people"
+      itemKey="id"
+      handle=".handle"
     >
       <template #item="{ element, index }">
         <Registration v-bind="element" :key="element.id" :can-edit="true" />
@@ -66,11 +98,11 @@ const eventDate = computed(() => {
 
   <nav-detail icon="female" :title="`Girls (${girls ? girls.length : 0})`">
     <Draggable v-if="girls && girls.length"
-        class="girls-list"
-        :list="girls"
-        group="people"
-        itemKey="id"
-        handle=".handle"
+      class="girls-list"
+      :list="girls"
+      group="people"
+      itemKey="id"
+      handle=".handle"
     >
       <template #item="{ element, index }">
         <Registration v-bind="element" :key="element.id" :can-edit="true" />
