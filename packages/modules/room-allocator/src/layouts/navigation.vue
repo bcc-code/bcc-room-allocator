@@ -12,14 +12,14 @@ const { state } = localStore
 const loading = ref(false);
 const noRoom = computed({
   get() {
-    return localStore.registrations.value?.filter(r => r.room === 9999)
+    return localStore.registrations.value?.filter(r => r.room === 999999)
       .sort((a,b) => a[state.sortBy] > b[state.sortBy] ? 1 : -1);
   },
   set(value) {
     loading.value = true
     Promise.all(value.map(async reg => {
-      if (reg.room !== 9999) {
-        await localStore.setRoom(reg.id, 9999)
+      if (reg.room !== 999999) {
+        await localStore.setRoom(reg.id, 999999)
       }
     })).then(() => loading.value = false)
   }
